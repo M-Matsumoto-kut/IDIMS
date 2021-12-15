@@ -9,4 +9,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="a">Button</string>
+    <string name="研究者の方">研究者の方</string>
+    <string name="一般の方">一般の方</string>
 </resources>
