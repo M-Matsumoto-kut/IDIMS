@@ -12,11 +12,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import android.content.Intent;
 
 import com.example.idims.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Button buttonDisasterSearchDebucButton = (Button) findViewById(R.id.button_TestDS);
+        buttonDisasterSearchDebucButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this, DisasterSearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
