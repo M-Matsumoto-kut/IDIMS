@@ -12,4 +12,5 @@
     <string name="a">Button</string>
     <string name="研究者の方">研究者の方</string>
     <string name="一般の方">一般の方</string>
+    <string name="selectArea">地域を選択</string>
 </resources>
