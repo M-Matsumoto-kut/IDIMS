@@ -3,11 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_disaster_search.xml" value="0.34791666666666665" />
-        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/drawable/eye.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/drawable/eye1.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/drawable/eye2.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/drawable/eye_off.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/drawable/eye_off2.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_researcherpage.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_researcherpassword.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_sensor.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/content_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/fragment_first.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/fragment_second.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/frgment_third.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/menu/menu_main.xml" value="0.3625" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/fragment_second.xml" value="0.5" />
-        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/test.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

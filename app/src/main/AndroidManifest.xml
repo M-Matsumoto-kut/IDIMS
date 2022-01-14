@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IDIMS">
         <activity
+            android:name=".Researcherpassword"
+            android:exported="false" />
+        <activity
+            android:name=".Sensor"
+            android:exported="false" />
+        <activity
+            android:name=".Researcherpage"
+            android:exported="false" />
+        <activity
             android:name=".DisasterSearchActivity"
             android:exported="false" />
         <activity
