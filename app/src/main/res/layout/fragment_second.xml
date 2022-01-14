@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login.SecondFragment">
+    tools:context=".SecondFragment">
 
     <TextView
         android:id="@+id/textview_second"
@@ -32,7 +32,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="time"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="86dp" />
+        android:inputType="time" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
