@@ -25,7 +25,7 @@ public class Researcherpassword extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.researcherpassword);
+        setContentView(R.layout.activity_researcherpassword);
         pass1 = findViewById(R.id.editTextTextPassword1);
         pass2 = findViewById(R.id.editTextTextPassword2);
         eye1 = findViewById(R.id.toggle_view1);

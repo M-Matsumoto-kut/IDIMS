@@ -12,7 +12,7 @@ public class Sensor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sensor);
+        setContentView(R.layout.activity_sensor);
 
         Button button1 = findViewById(R.id.backactivity);
         button1.setOnClickListener(new View.OnClickListener() {

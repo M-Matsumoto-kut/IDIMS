@@ -12,7 +12,7 @@ public class Researcherpage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.researcherpage);
+        setContentView(R.layout.activity_researcherpage);
 
 
         Button button1 = findViewById(R.id.next1activity);
