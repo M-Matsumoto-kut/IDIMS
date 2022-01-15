@@ -38,6 +38,9 @@
         <activity
             android:name=".Authenticate"
             android:exported="false" />
+        <activity
+            android:name=".UserSetUp"
+            android:exported="false" />
     </application>
 
 </manifest>

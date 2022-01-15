@@ -2,23 +2,16 @@ package com.example.idims;
 
 import android.os.Bundle;
 
-import com.example.idims.Menu.Menu;
 import com.example.idims.Researcher.ResearcherPassword;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
 import android.content.Intent;
 
 import com.example.idims.databinding.ActivityMainBinding;
 
-import android.view.MenuItem;
 import android.widget.Button;
 
 //起動時
@@ -65,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     //ユーザタイプ選択
     private void userTypeSelect(){
         //ユーザタイプ選択画面生成
-        setContentView(R.layout.usertype_serect);
+        setContentView(R.layout.activity_usertype_select);
 
         //一般人
         Button generalUser = findViewById(R.id.generalType);

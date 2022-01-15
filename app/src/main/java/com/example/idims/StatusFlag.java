@@ -2,6 +2,8 @@ package com.example.idims;
 
 import android.app.Application;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class StatusFlag extends Application {
     private int activityStatus;     // 起動時のActivityの状態
 

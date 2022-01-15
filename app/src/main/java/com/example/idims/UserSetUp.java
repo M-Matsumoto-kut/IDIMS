@@ -1,4 +1,7 @@
 package com.example.idims;
 
-public class UserSetUp {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class UserSetUp extends AppCompatActivity {
+    
 }
