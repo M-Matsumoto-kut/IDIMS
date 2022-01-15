@@ -22,7 +22,7 @@ public class Authenticate extends AppCompatActivity {
     }
 
     //現在のパスワードが一致しているか検証(true：一致，false:不一致)
-    public static boolean nowPasswordAuthenticate(String id, String nowPassword) {
+    public static boolean nowPasswordAuthenticate(int id, String nowPassword) {
         //boolean match = false;
 
         //idを元にパスワードを取得
@@ -34,7 +34,7 @@ public class Authenticate extends AppCompatActivity {
     }
 
     //新しいパスワードが規定通りか検証(true：一致，false:不一致)
-    public static boolean newPasswordAuthenticate(String id, String newPassword) {
+    public static boolean newPasswordAuthenticate(String newPassword) {
         boolean match = false;
 
         //パスワードが空じゃないか
