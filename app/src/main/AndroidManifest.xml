@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IDIMS">
         <activity
-            android:name=".Researcher.Researcherpassword"
+            android:name=".Researcher.ResearcherPassword"
             android:exported="false" />
         <activity
             android:name=".Researcher.Sensor"

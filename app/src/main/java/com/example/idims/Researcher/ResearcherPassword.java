@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import com.example.idims.R;
 import com.google.android.material.snackbar.Snackbar;
 
-public class Researcherpassword extends AppCompatActivity {
+public class ResearcherPassword extends AppCompatActivity {
 
     EditText pass1, pass2;
     String editTextTextPassword1, editTextTextPassword2;
@@ -40,7 +40,7 @@ public class Researcherpassword extends AppCompatActivity {
         Button button1 = findViewById(R.id.backactivity);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(Researcherpassword.this, Researcherpage.class);
+                Intent intent = new Intent(ResearcherPassword.this, Researcherpage.class);
                 startActivity(intent);
             }
         });
@@ -52,7 +52,7 @@ public class Researcherpassword extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(Researcherpassword.this, Researcherpage.class);
+                        Intent intent = new Intent(ResearcherPassword.this, Researcherpage.class);
                         startActivity(intent);
                     }
                 }, 1000);
