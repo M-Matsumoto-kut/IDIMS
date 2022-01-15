@@ -8,7 +8,6 @@ public class StatusFlag extends Application {
     private int activityStatus;     // 起動時のActivityの状態
     private int loginType;       // login時のユーザのタイプ
     private int id;              // (研究者)ログイン後IDを記録する
-    private String password;        // (研究者)ログイン後パスワードを記録する
 
     @Override
     public void onCreate() {

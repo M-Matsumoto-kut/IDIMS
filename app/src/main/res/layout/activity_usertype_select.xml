@@ -24,22 +24,6 @@
 
 
     <Button
-        android:id="@+id/backactivity"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#03A9F4"
-        android:backgroundTint="#03A9F4"
-        android:text="戻る"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:backgroundTint="#03A9F4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextContrastCheck" />
-
-
-    <Button
         android:id="@+id/generalType"
         android:layout_width="194dp"
         android:layout_height="77dp"

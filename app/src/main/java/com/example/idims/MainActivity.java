@@ -3,6 +3,7 @@ package com.example.idims;
 import android.os.Bundle;
 
 import com.example.idims.Researcher.ResearcherLogin;
+import com.example.idims.Researcher.ResearcherPage;
 import com.example.idims.Researcher.ResearcherPassword;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //status（Activity状態）を取得
+        StatusFlag flag = (StatusFlag) getApplication();
         this.userTypeSelect();
     }
 
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         //status（Activity状態）を取得
-        StatusFlag flag = (StatusFlag) getApplication();
+        StatusFlag flag = (StatusFlag) this.getApplication();
         int status = flag.getActivityStatus();
 
         /*
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         Button generalUser = findViewById(R.id.generalType);
         generalUser.setOnClickListener( v -> {
 
+
             //loginTypeを1(一般人)に設定
             StatusFlag flag = (StatusFlag) getApplication();
             flag.setLoginTypeGen();
@@ -75,8 +79,15 @@ public class MainActivity extends AppCompatActivity {
                 ただし，自動ログイン機能が実現できない場合はメニュー画面に移行
              */
 
-            Intent intent = new Intent(getApplication(), Sensor.class);
+            /*
+            Intent intent = new Intent(getApplication(), UserSetUp.class);
             startActivity(intent);
+             */
+
+            //テスト-------------------------------------------------------
+            Intent intent = new Intent(getApplication(), ResearcherPage.class);
+            startActivity(intent);
+            //テスト-------------------------------------------------------
         });
 
 
