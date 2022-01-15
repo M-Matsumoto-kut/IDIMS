@@ -3,18 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_disaster_search.xml" value="0.5404354587869362" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_researcherpage.xml" value="0.1984375" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_sensor.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/fragment_second.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.31931175632686104" />
-        <entry key="app/src/main/res/layout/activity_researcherpage.xml" value="0.21666666666666667" />
-        <entry key="app/src/main/res/layout/activity_researcherpassword.xml" value="0.21666666666666667" />
-        <entry key="app/src/main/res/layout/activity_sensor.xml" value="0.3392210144927536" />
-        <entry key="app/src/main/res/layout/dead_sensor.xml" value="0.3392210144927536" />
-        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.20989583333333334" />
-        <entry key="app/src/main/res/layout/layout.xml" value="0.20677083333333332" />
-        <entry key="app/src/main/res/layout/password_change.xml" value="0.20677083333333332" />
-        <entry key="app/src/main/res/layout/researcher_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/usertype_serect.xml" value="0.25" />
-        <entry key="app/src/main/res/menu/menu_main.xml" value="0.20989583333333334" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/password_change.xml" value="0.1984375" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/researcher_login.xml" value="0.1984375" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/test.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/usertype_serect.xml" value="0.20208333333333334" />
       </map>
     </option>
   </component>
