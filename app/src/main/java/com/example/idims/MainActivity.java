@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         //一般人
         Button generalUser = findViewById(R.id.generalType);
         generalUser.setOnClickListener( v -> {
-
             /*
                 設定画面に移行
                 ただし，自動ログイン機能が実現できない場合はメニュー画面に移行
