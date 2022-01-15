@@ -1,4 +1,6 @@
 package com.example.idims.Area;
 
-public class PrefectureSelect {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class PrefectureSelect extends AppCompatActivity {
 }

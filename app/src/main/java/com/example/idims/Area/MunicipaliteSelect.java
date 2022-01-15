@@ -1,4 +1,8 @@
 package com.example.idims.Area;
 
-public class MunicipaliteSelect {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MunicipaliteSelect extends AppCompatActivity {
+
+
 }

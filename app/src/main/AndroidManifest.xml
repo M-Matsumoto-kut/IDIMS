@@ -48,6 +48,18 @@
         <activity
             android:name=".UserSetUp"
             android:exported="false" />
+        <activity
+            android:name=".Area.MunicipaliteSelect"
+            android:exported="false" />
+        <activity
+            android:name=".Area.PrefectureSelect"
+            android:exported="false" />
+        <activity
+            android:name=".Area.RegionList"
+            android:exported="false" />
+        <activity
+            android:name=".Area.RegionSelect"
+            android:exported="false" />
     </application>
 
 </manifest>
