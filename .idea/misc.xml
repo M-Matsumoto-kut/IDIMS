@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_disaster_search.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_select_area.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_usertype_select.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/fragment_second.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31931175632686104" />
         <entry key="app/src/main/res/layout/activity_password_change.xml" value="0.23052536231884058" />
