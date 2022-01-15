@@ -15,12 +15,12 @@
     <string name="selectArea">地域を選択</string>
 
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
-    <string-array name = "spinner_Constant">
-    <item>全て</item>
-    <item>過去１か月</item>
-    <item>過去半年</item>
-    <item>過去１年</item>
-    <item>過去５年</item>
+    <string-array name="spinner_Constant">
+        <item>全て</item>
+        <item>過去１か月</item>
+        <item>過去半年</item>
+        <item>過去１年</item>
+        <item>過去５年</item>
     </string-array>
 
     <string-array name="spinner_Year">
