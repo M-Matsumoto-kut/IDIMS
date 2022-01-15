@@ -30,7 +30,7 @@ public class StartLogin extends AppCompatActivity {
         //ユーザタイプ選択画面生成
         setContentView(R.layout.usertype_serect);
 
-        //一般
+        //一般人
         Button generalUser = findViewById(R.id.generalType);
         generalUser.setOnClickListener( v -> {
             //メニュー画面に移行
