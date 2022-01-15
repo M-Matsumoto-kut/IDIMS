@@ -54,7 +54,7 @@ public class ResearcherPassword extends AppCompatActivity {
         //パスワード変更画面生成
         setContentView(R.layout.activity_researcherpassword);
 
-        //現在のパスワードと新しいパスワードをIDと紐付け
+        //現在のパスワードと新しいパスワードを紐付け
         nowPassword = findViewById(R.id.nowPassword);
         newPassword = findViewById(R.id.newPassword);
 

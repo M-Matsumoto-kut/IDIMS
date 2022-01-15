@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StatusFlag extends Application {
     private int activityStatus;     // 起動時のActivityの状態
-
     private int loginType;       // login時のユーザのタイプ
     private int id;              // (研究者)ログイン後IDを記録する
     private String password;        // (研究者)ログイン後パスワードを記録する
@@ -57,10 +56,9 @@ public class StatusFlag extends Application {
     }
 
     //idの値を更新
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
+    /*
     //passwordを返す
     public String getPassword() {
         return this.password;
@@ -70,4 +68,5 @@ public class StatusFlag extends Application {
     public void setPassword(String password) {
         this.password = password;
     }
+    */
 }

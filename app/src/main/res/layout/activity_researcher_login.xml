@@ -39,6 +39,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck" />
 
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -51,17 +52,16 @@
         app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.204" />
-
+        app:layout_constraintVertical_bias="0.232" />
 
     <EditText
-        android:id="@+id/editTextTextPassword1"
+        android:id="@+id/userId"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="20dp"
         android:background="#FBFAFD"
         android:ems="10"
-        android:hint="現在のパスワードを入力してください"
+        android:hint="IDを入力してください"
         android:inputType="textPassword"
         android:maxLength="5"
         android:maxLines="1"
@@ -83,18 +83,20 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.406" />
+        app:layout_constraintVertical_bias="0.434" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/password"
         android:layout_width="300dp"
         android:layout_height="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="40dp"
         android:background="#FBFAFD"
         android:ems="10"
-        android:hint="新しいパスワードを入力してください"
+        android:hint="パスワードを入力してください"
         android:inputType="textPassword"
         android:maxLength="5"
         android:maxLines="1"
@@ -107,10 +109,14 @@
         app:passwordToggleEnabled="true" />
 
     <Button
-        android:id="@+id/changePassword"
+        android:id="@+id/login"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="116dp"
         android:layout_height="57dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="430dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="250dp"
         android:background="#03A9F4"
         android:backgroundTint="#03A9F4"
         android:text="ログイン"
@@ -126,8 +132,8 @@
 
     <ImageView
         android:id="@+id/toggle_view1"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:clickable="true"
         android:minWidth="48dp"
         android:minHeight="48dp"
@@ -136,16 +142,16 @@
         android:src="@drawable/eye_off1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintHorizontal_bias="0.822"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.264"
+        app:layout_constraintVertical_bias="0.311"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/toggle_view2"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:clickable="true"
         android:minWidth="48dp"
         android:minHeight="48dp"
@@ -154,8 +160,9 @@
         android:src="@drawable/eye_off2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintHorizontal_bias="0.822"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.513"
         tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
