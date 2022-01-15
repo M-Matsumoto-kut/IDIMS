@@ -18,29 +18,34 @@ import com.example.idims.UserSetUp;
 
 //研究者ログインページモジュール
 public class ResearcherLogin extends AppCompatActivity {
+    EditText userId;        //id
+    EditText password;      //現在のパスワード
 
-    EditText userId; //id
-    EditText password; //現在のパスワード
+    int userIdInt;          //整数値に変換されたid
+    String passwordStr;     //文字列に変換されたpassword
 
-    String passwordStr;
-    int userIdInt;
-
-    ImageView eye1, eye2; //パスワードの表示・非表示
-
-    boolean state = false;//表示・非表示の切り替えステータス
+    ImageView eye1, eye2;   //パスワードの表示・非表示
+    boolean state = false;  //表示・非表示の切り替えステータス
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.loginResearcher();
+    }
 
-        //すでに研究者ユーザとしてログインしている場合，研究者ページに移行
-        StatusFlag flag = (StatusFlag) getApplication();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        /*
+        StatusFlag flag = (StatusFlag) this.getApplication();
         int loginType = flag.getLoginType();
         if(loginType == 2) {
             //研究者ページに移行
             Intent intent = new Intent(ResearcherLogin.this, ResearcherPage.class);
             startActivity(intent);
         }
+         */
+
         this.loginResearcher();
     }
 
@@ -58,7 +63,7 @@ public class ResearcherLogin extends AppCompatActivity {
         eye2 = findViewById(R.id.toggle_view2);
 
         //戻るボタン
-        Button backButton = findViewById(R.id.backactivity);
+        Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener( v -> {
             finish();
         });

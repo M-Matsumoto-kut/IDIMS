@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//閲覧地域一覧モジュール
 public class RegionList extends AppCompatActivity {
 
     @Override

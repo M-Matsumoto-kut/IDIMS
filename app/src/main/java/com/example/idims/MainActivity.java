@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.example.idims.Researcher.ResearcherLogin;
 import com.example.idims.Researcher.ResearcherPage;
-import com.example.idims.Researcher.ResearcherPassword;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +11,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import android.content.Intent;
 
-import com.example.idims.Researcher.Sensor;
 import com.example.idims.databinding.ActivityMainBinding;
 
 import android.widget.Button;

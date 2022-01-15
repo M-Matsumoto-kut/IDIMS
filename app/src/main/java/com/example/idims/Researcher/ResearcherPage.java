@@ -28,7 +28,7 @@ public class ResearcherPage extends AppCompatActivity {
         Button button2 = findViewById(R.id.next2activity);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(ResearcherPage.this, ResearcherPassword.class);
+                Intent intent = new Intent(ResearcherPage.this, ChangePassword.class);
                 startActivity(intent);
             }
         });

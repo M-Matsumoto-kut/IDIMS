@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Researcher.ResearcherPassword"
+            android:name=".Researcher.ChangePassword"
             android:exported="false" />
         <activity
             android:name=".Researcher.Sensor"
@@ -35,6 +35,9 @@
             android:exported="false" />
         <activity
             android:name=".DisasterSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Researcher.ResearcherLogin"
             android:exported="false" />
         <activity
             android:name=".Menu.Menu"

@@ -2,9 +2,7 @@ package com.example.idims.Researcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import com.example.idims.R;
@@ -22,7 +20,7 @@ public class Sensor extends AppCompatActivity {
         setContentView(R.layout.activity_sensor);
 
         //戻るボタン
-        Button backButton = findViewById(R.id.backactivity);
+        Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener( v -> {
             finish();
         });

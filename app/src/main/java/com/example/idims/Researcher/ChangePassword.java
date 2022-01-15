@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -15,12 +13,11 @@ import android.widget.ImageView;
 
 import com.example.idims.Authenticate;
 import com.example.idims.R;
-import com.google.android.material.snackbar.Snackbar;
 
 /*
     パスワード更新モジュール
  */
-public class ResearcherPassword extends AppCompatActivity {
+public class ChangePassword extends AppCompatActivity {
 
     EditText nowPassword; //現在のパスワード
     EditText newPassword; //現在のパスワード
@@ -63,7 +60,7 @@ public class ResearcherPassword extends AppCompatActivity {
         eye2 = findViewById(R.id.toggle_view2);
 
         //戻るボタン
-        Button backButton = findViewById(R.id.backactivity);
+        Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener( v -> {
             finish();
         });
@@ -87,7 +84,7 @@ public class ResearcherPassword extends AppCompatActivity {
 
 
                     //研究者ページに戻る
-                    Intent intent = new Intent(ResearcherPassword.this, ResearcherPage.class);
+                    Intent intent = new Intent(ChangePassword.this, ResearcherPage.class);
                     startActivity(intent);
                 } else {
                     //再入力を求める
@@ -98,6 +95,11 @@ public class ResearcherPassword extends AppCompatActivity {
                 //再入力を求める
                 this.passwordChange();
             }
+
+            //test-------------------------------------------------------------
+            Intent intent = new Intent(ChangePassword.this, ResearcherPage.class);
+            startActivity(intent);
+            //test-------------------------------------------------------------
         });
     }
 
