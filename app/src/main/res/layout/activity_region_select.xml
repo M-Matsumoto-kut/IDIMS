@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:background="#03A9F4"
         android:gravity="center"
-        android:text="設定地域一覧"
+        android:text="地方地域一覧"
         android:textColor="#FBFAFD"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,20 +40,14 @@
         tools:ignore="TextContrastCheck" />
 
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="420dp"
-        android:layout_height="50dp"
+    <ListView
+        android:id="@+id/regionList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:background="#454545"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:backgroundTint="#454545"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView99"
-        app:layout_constraintVertical_bias="0.137" />
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

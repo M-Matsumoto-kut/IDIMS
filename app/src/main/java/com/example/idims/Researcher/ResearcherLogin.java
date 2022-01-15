@@ -69,7 +69,8 @@ public class ResearcherLogin extends AppCompatActivity {
         });
 
         //ログインボタンが押された時
-        findViewById(R.id.changePassword).setOnClickListener( v -> {
+        Button changeButton = findViewById(R.id.changePassword);
+        changeButton.setOnClickListener( v -> {
 
             //入力したIDを数値に変換
             userIdInt = Integer.parseInt(String.valueOf(userId.getText()));
