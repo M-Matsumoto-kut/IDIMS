@@ -33,9 +33,6 @@
             android:name=".DisasterSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".Login.StartLogin"
-            android:exported="false" />
-        <activity
         android:name=".Menu.Menu"
         android:exported="false" />
         <activity

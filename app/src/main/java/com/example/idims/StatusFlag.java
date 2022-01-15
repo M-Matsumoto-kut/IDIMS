@@ -39,9 +39,14 @@ public class StatusFlag extends Application {
         return this.loginType;
     }
 
-    //loginTypeの値を更新
-    public void setLoginType(int status) {
-        this.loginType = status;
+    //loginTypeの値を更新（一般人）
+    public void setLoginTypeGen() {
+        this.loginType = 1;
+    }
+
+    //loginTypeの値を更新(研究者）
+    public void setLoginTypeRes() {
+        this.loginType = 2;
     }
 
     //idを返す
@@ -63,7 +68,4 @@ public class StatusFlag extends Application {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
-
 }
