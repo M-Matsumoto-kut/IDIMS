@@ -71,10 +71,14 @@ public class MainActivity extends AppCompatActivity {
         Button generalUser = findViewById(R.id.generalType);
         generalUser.setOnClickListener( v -> {
 
-            //メニュー画面に移行
-            Intent intent = new Intent(getApplication(), Menu.class);
+            /*
+                設定画面に移行
+                ただし，自動ログイン機能が実現できない場合はメニュー画面に移行
+             */
+            Intent intent = new Intent(getApplication(), UserSetUp.class);
             startActivity(intent);
         });
+
 
         //研究者
         Button researchUser = findViewById(R.id.researcherType);
@@ -84,6 +88,5 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
 
 }
