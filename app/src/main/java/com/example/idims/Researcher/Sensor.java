@@ -9,19 +9,26 @@ import android.widget.Button;
 
 import com.example.idims.R;
 
+/*
+    センサー確認モジュール
+ */
 public class Sensor extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //データベースからセンサー情報を取得し,表示
         setContentView(R.layout.activity_sensor);
 
-        Button button1 = findViewById(R.id.backactivity);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(Sensor.this, ResearcherPage.class);
-                startActivity(intent);
-            }
+        //戻るボタン
+        Button backButton = findViewById(R.id.backactivity);
+        backButton.setOnClickListener( v -> {
+            finish();
         });
+
+
+
+
     }
 }
