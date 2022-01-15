@@ -2,6 +2,7 @@ package com.example.idims;
 
 //検索条件を格納するクラス
 public class SearchConditions {
+    //種類チェックボタンが押されているかを格納するboolean型,押されている場合は真となる
     public boolean wave_On;
     public boolean landsride_On;
     public boolean thounder_On;

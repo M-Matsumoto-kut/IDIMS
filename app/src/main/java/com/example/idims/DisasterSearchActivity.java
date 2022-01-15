@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,9 +17,6 @@ import java.sql.Statement;
 
 //災害検索アクティビティ
 public class DisasterSearchActivity extends AppCompatActivity {
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +36,49 @@ public class DisasterSearchActivity extends AppCompatActivity {
             }
         });
 
-        //災害の種類のチェックボタンの定義(上から津波、土砂崩れ、雷)
+
+        //災害の種類のチェックボタンの定義と挙動の設定 セット関数に引き渡す
+        //津波
         CheckBox checkBox_Wave = (CheckBox) findViewById(R.id.checkBox_Wave);
+        checkBox_Wave.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if(isChecked) {
+                    search.setWave_on(true);
+                }else{
+                    search.setWave_on(false);
+                }
+            }
+        });
+
+        //土砂崩れ
         CheckBox checkBox_Landsride = (CheckBox) findViewById(R.id.checkBox_Landsride);
-        CheckBox checkBox_thounder = (CheckBox) findViewById(R.id.checkBox_Thounder);
-        //種類チェックボタンが押されているかを格納するboolean型
-        boolean wave_On = false;
-        boolean landsride_On = false;
-        boolean thounder = false;
-        //それぞれのチェックボタンが
+        checkBox_Landsride.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if(isChecked) {
+                    search.setLandsride_On(true);
+                }else{
+                    search.setLandsride_On(false);
+                }
+            }
+        });
+
+        //雷
+        CheckBox checkBox_Thounder = (CheckBox) findViewById(R.id.checkBox_Thounder);
+        checkBox_Thounder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if(isChecked) {
+                    search.setThounder_On(true);
+                }else{
+                    search.setThounder_On(false);
+                }
+            }
+        });
+
 
         //検索結果表示ボタン押下時の処理
         Button resultButton = (Button) findViewById(R.id.button_Search);
         resultButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                //SearchCondisionsクラスに検索条件を引き渡す
-
                 //検索結果画面へ移動
                 Intent intent = new Intent(DisasterSearchActivity.this, );
                 startActivity(intent);
