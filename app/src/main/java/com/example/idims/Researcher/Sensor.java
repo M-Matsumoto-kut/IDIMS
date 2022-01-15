@@ -19,7 +19,7 @@ public class Sensor extends AppCompatActivity {
         Button button1 = findViewById(R.id.backactivity);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(Sensor.this, Researcherpage.class);
+                Intent intent = new Intent(Sensor.this, ResearcherPage.class);
                 startActivity(intent);
             }
         });

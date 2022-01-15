@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.example.idims.R;
 
-public class Researcherpage extends AppCompatActivity {
+public class ResearcherPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class Researcherpage extends AppCompatActivity {
         Button button1 = findViewById(R.id.next1activity);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(Researcherpage.this, Sensor.class);
+                Intent intent = new Intent(ResearcherPage.this, Sensor.class);
                 startActivity(intent);
             }
         });
@@ -28,7 +28,7 @@ public class Researcherpage extends AppCompatActivity {
         Button button2 = findViewById(R.id.next2activity);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(Researcherpage.this, ResearcherPassword.class);
+                Intent intent = new Intent(ResearcherPage.this, ResearcherPassword.class);
                 startActivity(intent);
             }
         });

@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.example.idims.R;
 import com.example.idims.Researcher.ResearcherPassword;
+import com.example.idims.Researcher.ResearcherPage;
 import com.example.idims.Menu.Menu;
 
 public class StartLogin extends AppCompatActivity {
@@ -31,6 +33,7 @@ public class StartLogin extends AppCompatActivity {
         //一般
         Button generalUser = findViewById(R.id.generalType);
         generalUser.setOnClickListener( v -> {
+            //メニュー画面に移行
             Intent intent = new Intent(getApplication(), Menu.class);
             startActivity(intent);
         });
@@ -38,8 +41,15 @@ public class StartLogin extends AppCompatActivity {
         //研究者
         Button researchUser = findViewById(R.id.researcherType);
         generalUser.setOnClickListener( v -> {
+            //研究者ユーザログイン画面に移行
             Intent intent = new Intent(getApplication(), ResearcherPassword.class);
             startActivity(intent);
+        });
+
+        //戻るボタン
+        Button backButton = findViewById(R.id.backactivity);
+        backButton.setOnClickListener( v -> {
+                finish(); //Activityを終了する（前の画面に戻る)
         });
     }
 }

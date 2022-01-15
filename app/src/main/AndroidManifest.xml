@@ -10,18 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IDIMS">
         <activity
-            android:name=".Researcher.ResearcherPassword"
-            android:exported="false" />
-        <activity
-            android:name=".Researcher.Sensor"
-            android:exported="false" />
-        <activity
-            android:name=".Researcher.Researcherpage"
-            android:exported="false" />
-        <activity
-            android:name=".DisasterSearchActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
@@ -32,6 +20,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Researcher.ResearcherPassword"
+            android:exported="false" />
+        <activity
+            android:name=".Researcher.Sensor"
+            android:exported="false" />
+        <activity
+            android:name=".Researcher.ResearcherPage"
+            android:exported="false" />
+        <activity
+            android:name=".DisasterSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Login.StartLogin"
+            android:exported="false" />
+        <activity
+        android:name=".Menu.Menu"
+        android:exported="false" />
+        <activity
+            android:name=".Authenticate"
+            android:exported="false" />
     </application>
 
 </manifest>

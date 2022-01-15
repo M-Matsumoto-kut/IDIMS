@@ -40,7 +40,7 @@ public class ResearcherPassword extends AppCompatActivity {
         Button button1 = findViewById(R.id.backactivity);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(ResearcherPassword.this, Researcherpage.class);
+                Intent intent = new Intent(ResearcherPassword.this, ResearcherPage.class);
                 startActivity(intent);
             }
         });
@@ -52,7 +52,7 @@ public class ResearcherPassword extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(ResearcherPassword.this, Researcherpage.class);
+                        Intent intent = new Intent(ResearcherPassword.this, ResearcherPage.class);
                         startActivity(intent);
                     }
                 }, 1000);
