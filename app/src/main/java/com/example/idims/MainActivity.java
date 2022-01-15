@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         //研究者
         Button researchUser = findViewById(R.id.researcherType);
-        generalUser.setOnClickListener( v -> {
+        researchUser.setOnClickListener( v -> {
             //研究者ユーザログイン画面に移行
             Intent intent = new Intent(getApplication(), ResearcherLogin.class);
             startActivity(intent);
