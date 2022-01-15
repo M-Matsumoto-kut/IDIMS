@@ -1,4 +1,4 @@
-package com.example.idims;
+package com.example.idims.Researcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.idims.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public class Researcherpassword extends AppCompatActivity {
@@ -44,7 +45,7 @@ public class Researcherpassword extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.changeactivity).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.changePassword).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Snackbar.make(v, "パスワードを変更しました",  Snackbar.LENGTH_SHORT).show();

@@ -1,4 +1,4 @@
 package com.example.idims.Login;
 
-public class startLogin {
+public class StartLogin {
 }

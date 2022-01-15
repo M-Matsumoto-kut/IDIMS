@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IDIMS">
         <activity
-            android:name=".Researcherpassword"
+            android:name=".Researcher.Researcherpassword"
             android:exported="false" />
         <activity
-            android:name=".Sensor"
+            android:name=".Researcher.Sensor"
             android:exported="false" />
         <activity
-            android:name=".Researcherpage"
+            android:name=".Researcher.Researcherpage"
             android:exported="false" />
         <activity
             android:name=".DisasterSearchActivity"
