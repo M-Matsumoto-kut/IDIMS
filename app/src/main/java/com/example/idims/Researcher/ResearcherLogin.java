@@ -112,13 +112,13 @@ public class ResearcherLogin extends AppCompatActivity {
     //パスワードの表示・非表示
     public void toggle1(View v){
         if(!state){
-            userId.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            userId.setSelection(userId.getText().length());
+            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            password.setSelection(password.getText().length());
             eye1.setImageResource(R.drawable.eye1);
         }
         else{
-            userId.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            userId.setSelection(userId.getText().length());
+            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            password.setSelection(password.getText().length());
             eye1.setImageResource(R.drawable.eye_off1);
         }
         state = !state;
