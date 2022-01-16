@@ -22,6 +22,8 @@ public class StatusFlag extends Application {
                                     "熊本県", "宮崎県", "鹿児島県", "沖縄県"};
     private int countReg; // 選択地方数をカウント
     private int countPre; // 選択都道府県数をカウント
+    private int addSel; //　どの地方を選択したか記録
+
 
 
     @Override
@@ -33,6 +35,7 @@ public class StatusFlag extends Application {
         Arrays.fill(selectPrefectureNum,99);
         countPre = 0;
         countReg = 0;
+        addSel = 99;
 
         this.setActivityStatus(1);
     }
@@ -97,7 +100,6 @@ public class StatusFlag extends Application {
     }
 
 
-
     //prefectures（都道府県リスト）から特定の都道府県名を返す
     public String getPrefectureName(int num) { return prefectures[num]; };
 
@@ -111,14 +113,23 @@ public class StatusFlag extends Application {
     }
 
     /*
-    //passwordを返す
-    public String getPassword() {
-        return this.password;
+        addSel
+        1:北海道
+        2:東北
+        3:関東
+        4:中部
+        5:近畿
+        6:中国
+        7:四国
+        8:九州
+     */
+
+    //addSelを返す
+    public int getAddSel() {
+        return this.getAddSel();
     }
 
-    //passwordの値を更新
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    */
+    //addSelを更新
+    public void setAddSel(int addSel) { this.addSel = addSel; }
+
 }

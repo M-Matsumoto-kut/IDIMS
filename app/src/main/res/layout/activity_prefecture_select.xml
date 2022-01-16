@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".Researcher.Sensor">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textView99"
+        android:layout_width="420dp"
+        android:layout_height="50dp"
+        android:background="#03A9F4"
+        android:gravity="center"
+        android:text="都道府県地域選択"
+        android:textColor="#FBFAFD"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/backActivity"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:background="#03A9F4"
+        android:backgroundTint="#03A9F4"
+        android:text="戻る"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:backgroundTint="#03A9F4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+
+    <Button
+        android:id="@+id/addSelectArea"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginStart="328dp"
+        android:background="#03A9F4"
+        android:backgroundTint="#03A9F4"
+        android:text="追加"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:backgroundTint="#03A9F4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <ListView
+        android:id="@+id/regionList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView99"
+        app:layout_constraintVertical_bias="0.98"
+        tools:layout_editor_absoluteX="69dp">
+    </ListView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
