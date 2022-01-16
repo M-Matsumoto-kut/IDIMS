@@ -32,7 +32,7 @@
         </activity>
         <activity
             android:name=".Researcher.ChangePassword"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Researcher.Sensor"
             android:exported="false" />

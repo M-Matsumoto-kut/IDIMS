@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_area_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_disaster_search.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_prefecture_select.xml" value="0.2015625" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_region_select.xml" value="0.2015625" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_researcher_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_researcherpassword.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_select_area.xml" value="0.33" />
+        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_sensor.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_usertype_select.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/fragment_second.xml" value="0.5" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/spinner_layout.xml" value="0.20520833333333333" />
