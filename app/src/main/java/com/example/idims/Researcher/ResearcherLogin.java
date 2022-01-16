@@ -115,7 +115,6 @@ public class ResearcherLogin extends AppCompatActivity {
             userId.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             userId.setSelection(userId.getText().length());
             eye1.setImageResource(R.drawable.eye1);
-
         }
         else{
             userId.setTransformationMethod(PasswordTransformationMethod.getInstance());
