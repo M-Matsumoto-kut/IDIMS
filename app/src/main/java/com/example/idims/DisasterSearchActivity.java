@@ -114,9 +114,14 @@ public class DisasterSearchActivity extends AppCompatActivity {
                     switch(checkedId){
                         case R.id.radioButton_Constant://一定期間が押されている場合
                             String str = spinner_Constant.getSelectedItem().toString();//期間の取得
-                            int constant = setContant(str);
+                            search.settingConstant(str);
                             break;
                         case R.id.radioButton_free://自由期間が押されている場合
+                            String startYear = spinner_Free_YearStart.getSelectedItem().toString();
+                            String startMonth = spinner_Free_MonthStart.getSelectedItem().toString();
+                            String endYear = spinner_Free_YearEnd.getSelectedItem().toString();
+                            String endMonth = spinner_Free_MonthEnd.getSelectedItem().toString();
+                            search.settingFree(startYear, startMonth, endYear, endMonth);
                             break;
                     }
                 }
@@ -129,7 +134,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
         resultButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 //検索結果画面へ移動
-                Intent intent = new Intent(DisasterSearchActivity.this, );
+                Intent intent = new Intent(DisasterSearchActivity.this, SearchResultListActivity.class);
                 startActivity(intent);
 
             }

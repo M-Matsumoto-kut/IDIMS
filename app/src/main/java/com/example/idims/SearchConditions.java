@@ -32,6 +32,12 @@ public class SearchConditions {
         }
     }
 
+    //期間設定において自由期間を選択した際の期間選択
+    public void settingFree(String startYear, String startMonth, String endYear, String endMonth){
+        allConstant = false;
+
+    }
+
     //ここから下は検索条件に入っているかを判定するbool型のセット関数の集まり
     //津波
     public void setWave_on(boolean wave_On){
