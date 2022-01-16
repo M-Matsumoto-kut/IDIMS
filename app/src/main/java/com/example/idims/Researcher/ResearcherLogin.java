@@ -24,7 +24,7 @@ public class ResearcherLogin extends AppCompatActivity {
     int userIdInt;          //整数値に変換されたid
     String passwordStr;     //文字列に変換されたpassword
 
-    ImageView eye1, eye2;   //パスワードの表示・非表示
+    ImageView eye1;   //パスワードの表示・非表示
     boolean state = false;  //表示・非表示の切り替えステータス
 
     @Override
@@ -61,7 +61,6 @@ public class ResearcherLogin extends AppCompatActivity {
 
         //eyeとIDを紐付け
         eye1 = findViewById(R.id.toggle_view1);
-        eye2 = findViewById(R.id.toggle_view2);
 
         //戻るボタン
         Button backButton = findViewById(R.id.backActivity);
@@ -122,21 +121,6 @@ public class ResearcherLogin extends AppCompatActivity {
             userId.setTransformationMethod(PasswordTransformationMethod.getInstance());
             userId.setSelection(userId.getText().length());
             eye1.setImageResource(R.drawable.eye_off1);
-        }
-        state = !state;
-    }
-
-    public void toggle2(View v){
-        if(!state){
-            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            password.setSelection(password.getText().length());
-            eye2.setImageResource(R.drawable.eye2);
-
-        }
-        else{
-            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            password.setSelection(password.getText().length());
-            eye2.setImageResource(R.drawable.eye_off2);
         }
         state = !state;
     }

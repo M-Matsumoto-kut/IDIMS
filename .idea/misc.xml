@@ -3,9 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/drawable/eye2.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/drawable/eye_off2.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_area_list.xml" value="0.25" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_disaster_search.xml" value="0.25" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_municipalite_select.xml" value="0.25" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_prefecture_select.xml" value="0.25" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_region_select.xml" value="0.25" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_researcher_login.xml" value="0.25" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_researcherpage.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_researcherpassword.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_search_result_list.xml" value="0.25" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_sensor.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_setting.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_usertype_select.xml" value="0.3625" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/fragment_first.xml" value="0.25" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/fragment_second.xml" value="0.25" />
+        <entry key="..\:/Users/FMV/AndroidStudioProjects/IDIMS/app/src/main/res/layout/researcher_login.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/fragment_second.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_addresion.xml" value="0.1765625" />
-        <entry key="app/src/main/res/layout/activity_area_list.xml" value="0.2807971014492754" />
         <entry key="app/src/main/res/layout/activity_content_main.xml" value="0.11770833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31931175632686104" />
         <entry key="app/src/main/res/layout/activity_municipalite_select.xml" value="0.2713541666666667" />
@@ -13,15 +30,13 @@
         <entry key="app/src/main/res/layout/activity_prefecture_select.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/activity_region_select.xml" value="0.21979166666666666" />
         <entry key="app/src/main/res/layout/activity_regionlist.xml" value="0.18802083333333333" />
-        <entry key="app/src/main/res/layout/activity_researcher_login.xml" value="0.3143939393939394" />
+        <entry key="app/src/main/res/layout/activity_researcher_login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_researcherpage.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/activity_researcherpassword.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_sensor.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_usertype_select.xml" value="0.21794821203675532" />
         <entry key="app/src/main/res/layout/dead_sensor.xml" value="0.3392210144927536" />
-        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2807971014492754" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.20989583333333334" />
-        <entry key="app/src/main/res/layout/frgment_third.xml" value="0.2807971014492754" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.20677083333333332" />
         <entry key="app/src/main/res/layout/password_change.xml" value="0.20677083333333332" />
         <entry key="app/src/main/res/layout/researcher_login.xml" value="0.25" />
