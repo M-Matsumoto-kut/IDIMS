@@ -29,7 +29,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
     int disasterCount = 0; //災害の数が選択されている数を表す
     static final int RESULT_AREA = 1000; //getexistを使用するのに必要
 
-    public static final String SEARCHCONDITIONS_DATA = "com.example.idims.SearchConditions";//検索結果アクティビティに検索条件を引き渡すのに必要
+    public static final String SEARCHCONDITIONS_DATA = "com.example.idims.SearchConditions.java";//検索結果アクティビティに検索条件を引き渡すのに必要
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +55,10 @@ public class DisasterSearchActivity extends AppCompatActivity {
         checkBox_Wave.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 if(isChecked) {
-                    search.setWave_on(true);
+                    search.setWave_On(true);
                     disasterCount++;
                 }else{
-                    search.setWave_on(false);
+                    search.setWave_On(false);
                     disasterCount--;
                 }
             }
@@ -172,7 +172,13 @@ public class DisasterSearchActivity extends AppCompatActivity {
                 }
                 //検索結果画面へ移動
                 Intent intent = new Intent(DisasterSearchActivity.this, SearchResultListActivity.class);
-                //intent.putExtra(SEARCHCONDITIONS_DATA,search);
+                //検索結果の条件を一つずつ引き渡す
+                intent.putExtra("AreaNumber", areaNum);
+                intent.putExtra("Wave", search.getWave_On());
+                intent.putExtra("Landsride", search.getLandsride_On());
+                intent.putExtra("Thounder", search.getThounder_On());
+                intent.putExtra("startTime", search.getStartDate());
+                intent.putExtra("endTime", search.getEndDate());
                 startActivity(intent);
 
 

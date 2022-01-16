@@ -85,7 +85,7 @@ public class SearchConditions {
 
     //ここから下は検索条件に入っているかを判定するbool型のセット関数の集まり
     //津波
-    public void setWave_on(boolean wave_On){
+    public void setWave_On(boolean wave_On){
         this.wave_On = wave_On;
     }
     //地すべり
@@ -95,6 +95,18 @@ public class SearchConditions {
     //雷
     public void setThounder_On(boolean thounder_On){
         this.thounder_On = thounder_On;
+    }
+
+    public boolean getWave_On(){
+        return this.wave_On;
+    }
+
+    public boolean getLandsride_On(){
+        return this.landsride_On;
+    }
+
+    public boolean getThounder_On(){
+        return this.thounder_On;
     }
 
     public String getStartDate(){
