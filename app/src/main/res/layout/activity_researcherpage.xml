@@ -8,7 +8,7 @@
     tools:context=".Researcher.ResearcherPage">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView1"
         android:layout_width="420dp"
         android:layout_height="50dp"
         android:background="#03A9F4"
@@ -46,11 +46,11 @@
         android:text="センサー異常"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/next1activity"
+        app:layout_constraintBottom_toTopOf="@+id/next1Activity"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/next1activity"
+        android:id="@+id/next1Activity"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginBottom="350dp"
@@ -68,7 +68,7 @@
         app:layout_constraintVertical_bias="0.561" />
 
     <Button
-        android:id="@+id/next2activity"
+        android:id="@+id/next2Activity"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:background="#454545"
@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/next1activity"
+        app:layout_constraintTop_toBottomOf="@+id/next1Activity"
         app:layout_constraintVertical_bias="0.32" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,7 @@ public class ResearcherPage extends AppCompatActivity {
         setContentView(R.layout.activity_researcherpage);
 
         //センサー異常の画面に移動
-        Button button1 = findViewById(R.id.next1activity);
+        Button button1 = findViewById(R.id.next1Activity);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(ResearcherPage.this, Sensor.class);
@@ -30,7 +30,7 @@ public class ResearcherPage extends AppCompatActivity {
         });
 
         //パスワード変更の画面に移動
-        Button button2 = findViewById(R.id.next2activity);
+        Button button2 = findViewById(R.id.next2Activity);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(ResearcherPage.this, ChangePassword.class);
@@ -39,7 +39,7 @@ public class ResearcherPage extends AppCompatActivity {
         });
 
         //戻るボタン　
-        Button backButton = findViewById(R.id.backactivity);
+        Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener( v -> {
             finish();
         });
