@@ -35,7 +35,7 @@ public class ResearcherPage extends AppCompatActivity {
             }
         });
 
-        //戻るボタン
+        //戻るボタン　
         Button backButton = findViewById(R.id.backactivity);
         backButton.setOnClickListener( v -> {
             finish();
