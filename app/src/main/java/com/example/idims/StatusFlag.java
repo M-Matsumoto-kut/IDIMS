@@ -3,6 +3,7 @@ package com.example.idims;
 import android.app.Application;
 import java.util.Arrays;
 
+//　全てモジュールにおいて，保持する必要があるデータを格納するクラス
 public class StatusFlag extends Application {
     private int activityStatus;     // 起動時のActivityの状態
     private int loginType;          // login時のユーザのタイプ
@@ -81,14 +82,30 @@ public class StatusFlag extends Application {
     //regions（地方リスト）から特定の地方名を返す
     public String getRegionName(int num) { return regions[num]; };
 
+    //設定されている地域の番号を返す,値が99=格納されていない
+    public int getSelectRegionNum(int num) {
+        return this.selectRegionNum[num];
+    };
+
     /*
     選択地域を設定(selectRegionNumに地方に対応した配列番号numを格納）
-    例：北海道 -> 0, ~, 沖縄県 -> 46
-
+    例：北海道 -> 0, ~, 九州 -> 7
      */
     public void setRegion(int num) {
         this.selectRegionNum[this.countReg] = num;
-        this.countReg ++; //
+        this.countReg ++; //カウント
+    }
+
+    //prefectures（都道府県リスト）から特定の都道府県名を返す
+    public String getPrefectureName(int num) { return prefectures[num]; };
+
+    /*
+    選択地域を設定(selectPrefectureNumに都道府県に対応した配列番号numを格納）
+    例：北海道 -> 0, ~, 沖縄県 -> 46
+     */
+    public void setPrefecture(int num) {
+        this.selectPrefectureNum[this.countPre] = num;
+        this.countPre ++; //カウント
     }
 
     /*
