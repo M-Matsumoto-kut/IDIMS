@@ -3,12 +3,16 @@
     package="com.example.idims">
 
     <application
+        android:name=".StatusFlag"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IDIMS">
+        <activity
+            android:name=".SelectAreaActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -21,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Researcher.ResearcherPassword"
+            android:name=".Researcher.ChangePassword"
             android:exported="false" />
         <activity
             android:name=".Researcher.Sensor"
@@ -33,13 +37,28 @@
             android:name=".DisasterSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".Login.StartLogin"
+            android:name=".Researcher.ResearcherLogin"
             android:exported="false" />
         <activity
-        android:name=".Menu.Menu"
-        android:exported="false" />
+            android:name=".Menu.Menu"
+            android:exported="false" />
         <activity
             android:name=".Authenticate"
+            android:exported="false" />
+        <activity
+            android:name=".UserSetUp"
+            android:exported="false" />
+        <activity
+            android:name=".Area.MunicipaliteSelect"
+            android:exported="false" />
+        <activity
+            android:name=".Area.PrefectureSelect"
+            android:exported="false" />
+        <activity
+            android:name=".Area.RegionList"
+            android:exported="false" />
+        <activity
+            android:name=".Area.RegionSelect"
             android:exported="false" />
     </application>
 

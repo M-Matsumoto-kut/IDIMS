@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class Authenticate extends AppCompatActivity {
 
     //IDとパスワードが一致しているか検証(true：一致，false:不一致)
-    public static boolean loginAuthenticate(String id, String inputPassword) {
+    public static boolean loginAuthenticate(int id, String inputPassword) {
         //boolean match = false;
 
         //idを元にパスワードを取得

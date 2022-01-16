@@ -2,87 +2,100 @@ package com.example.idims;
 
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.example.idims.Researcher.ResearcherLogin;
+import com.example.idims.Researcher.ResearcherPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
 import android.content.Intent;
 
 import com.example.idims.databinding.ActivityMainBinding;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 
+//起動時
 public class MainActivity extends AppCompatActivity {
 
+    //なにこれ
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        Button buttonDisasterSearchDebucButton = (Button) findViewById(R.id.button_TestDS);
-        buttonDisasterSearchDebucButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, DisasterSearchActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
+        //status（Activity状態）を取得
+        StatusFlag flag = (StatusFlag) getApplication();
+        this.userTypeSelect();
     }
 
+    /*
+        開始状態になると動作
+        初起動時，flagはLoginStart(1)を返す
+     */
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    protected void onStart(){
+        super.onStart();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        //status（Activity状態）を取得
+        StatusFlag flag = (StatusFlag) this.getApplication();
+        int status = flag.getActivityStatus();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        /*
+        statusの値によってActivityを変える（予定）
+         */
+        switch(status) {
+            case 1: //初回ログイン
+                this.userTypeSelect();
+                break;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            default:
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+    //ユーザタイプ選択
+    private void userTypeSelect(){
+        //ユーザタイプ選択画面生成
+        setContentView(R.layout.activity_usertype_select);
+
+        //一般人
+        Button generalUser = findViewById(R.id.generalType);
+        generalUser.setOnClickListener( v -> {
+
+
+            //loginTypeを1(一般人)に設定
+            StatusFlag flag = (StatusFlag) getApplication();
+            flag.setLoginTypeGen();
+
+            /*
+                設定画面に移行
+                ただし，自動ログイン機能が実現できない場合はメニュー画面に移行
+             */
+
+            /*
+            Intent intent = new Intent(getApplication(), UserSetUp.class);
+            startActivity(intent);
+             */
+
+            //テスト-------------------------------------------------------
+            Intent intent = new Intent(getApplication(), ResearcherPage.class);
+            startActivity(intent);
+            //テスト-------------------------------------------------------
+        });
+
+
+        //研究者
+        Button researchUser = findViewById(R.id.researcherType);
+        researchUser.setOnClickListener( v -> {
+            //研究者ユーザログイン画面に移行
+            Intent intent = new Intent(getApplication(), ResearcherLogin.class);
+            startActivity(intent);
+        });
     }
+
 }

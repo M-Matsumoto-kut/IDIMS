@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".Researcher.ResearcherPassword">
+    tools:context=".Researcher.Sensor">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView99"
         android:layout_width="420dp"
         android:layout_height="50dp"
         android:background="#03A9F4"
         android:gravity="center"
-        android:text="ユーザの選択"
+        android:text="地方を選択"
         android:textColor="#FBFAFD"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,13 +22,13 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck" />
 
-
-
     <Button
-        android:id="@+id/backactivity"
+        android:id="@+id/backActivity"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+
         android:background="#03A9F4"
         android:backgroundTint="#03A9F4"
         android:text="戻る"
@@ -40,42 +40,20 @@
         tools:ignore="TextContrastCheck" />
 
 
-    <Button
-        android:id="@+id/generalType"
-        android:layout_width="194dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginEnd="109dp"
-        android:background="#03A9F4"
-        android:backgroundTint="#03A9F4"
-        android:text="一般の方"
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="420dp"
+        android:layout_height="50dp"
+        android:background="#454545"
+        android:gravity="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:backgroundTint="#03A9F4"
+        android:textSize="20sp"
+        app:backgroundTint="#454545"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.311" />
-
-    <Button
-        android:id="@+id/researcherType"
-        android:layout_width="194dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginBottom="281dp"
-        android:background="#03A9F4"
-        android:backgroundTint="#03A9F4"
-        android:text="研究者の方"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:backgroundTint="#03A9F4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generalType" />
+        app:layout_constraintTop_toBottomOf="@+id/textView99"
+        app:layout_constraintVertical_bias="0.137" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

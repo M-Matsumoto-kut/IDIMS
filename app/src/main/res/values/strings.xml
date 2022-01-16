@@ -13,4 +13,34 @@
     <string name="研究者の方">研究者の方</string>
     <string name="一般の方">一般の方</string>
     <string name="selectArea">地域を選択</string>
+
+    <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
+    <string-array name="spinner_Constant">
+        <item>全て</item>
+        <item>過去１か月</item>
+        <item>過去半年</item>
+        <item>過去１年</item>
+        <item>過去５年</item>
+    </string-array>
+
+    <string-array name="spinner_Year">
+        <item>2021</item>
+        <item>2022</item>
+    </string-array>
+
+    <string-array name="spinner_Month">
+        <item>１月</item>
+        <item>２月</item>
+        <item>３月</item>
+        <item>４月</item>
+        <item>５月</item>
+        <item>６月</item>
+        <item>７月</item>
+        <item>８月</item>
+        <item>９月</item>
+        <item>１０月</item>
+        <item>１１月</item>
+        <item>１２月</item>
+    </string-array>
+    <!-- ここまで-->
 </resources>
