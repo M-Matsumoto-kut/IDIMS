@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,7 +35,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
         serectAreaButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Intent intent = new Intent(DisasterSearchActivity.this, SelectAreaActivity.class);
-                startActivity(intent);
+                startActivity(intent);//地域選択画面へ移行
             }
         });
 
@@ -70,6 +73,23 @@ public class DisasterSearchActivity extends AppCompatActivity {
                     search.setThounder_On(true);
                 }else{
                     search.setThounder_On(false);
+                }
+            }
+        });
+
+        //期間設定の挙動の処理
+        RadioGroup group = (RadioGroup)findViewById(R.id.radioGroup_period);
+        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId){
+                RadioButton radio = (RadioButton)findViewById(checkedId);
+                if(radio.isChecked() == true){//ラジオボタンのどちらかが押されている場合
+                    switch(checkedId){
+                        case R.id.radioButton_Constant://一定期間が押されている場合
+                            break;
+                        case R.id.radioButton_free://自由期間が押されている場合
+                            break;
+                    }
                 }
             }
         });

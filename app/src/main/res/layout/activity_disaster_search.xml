@@ -99,7 +99,7 @@
         app:layout_constraintTop_toTopOf="@+id/toolbar3" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioGroup_period"
         android:layout_width="92dp"
         android:layout_height="104dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -127,10 +127,12 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="84dp"
+        android:entries="@array/spinner_Constant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+        app:layout_constraintStart_toEndOf="@+id/radioGroup_period"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -138,12 +140,14 @@
         android:layout_height="50dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_period">
 
         <Spinner
             android:id="@+id/spinner_FreeYear_Start"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:entries="@array/spinner_Year"
+            tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
     <LinearLayout
@@ -152,7 +156,7 @@
         android:layout_height="50dp"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_period">
 
         <TextView
             android:id="@+id/textView_Year"
@@ -169,12 +173,14 @@
         android:layout_height="50dp"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout4"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_period">
 
         <Spinner
             android:id="@+id/spinner_FreeMonth_Start"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:entries="@array/spinner_Month"
+            tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
     <LinearLayout
@@ -183,7 +189,7 @@
         android:layout_height="50dp"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout5"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_period">
 
         <TextView
             android:id="@+id/textView_Month"
@@ -202,7 +208,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/linearLayout6"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_period">
 
         <TextView
             android:id="@+id/textView_Kara"
@@ -224,7 +230,9 @@
         <Spinner
             android:id="@+id/spinner_FreeYear_End"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:entries="@array/spinner_Year"
+            tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
     <LinearLayout
@@ -255,7 +263,9 @@
         <Spinner
             android:id="@+id/spinner_FreeMonth_End"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:entries="@array/spinner_Month"
+            tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
     <LinearLayout

@@ -7,6 +7,9 @@ public class SearchConditions {
     public boolean landsride_On;
     public boolean thounder_On;
 
+    //インストラクタ
+    public SearchConditions(){}
+
     //ここから下は検索条件に入っているかを判定するbool型のセット関数の集まり
     //津波
     public void setWave_on(boolean wave_On){
