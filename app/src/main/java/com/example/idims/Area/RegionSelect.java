@@ -115,13 +115,12 @@ public class RegionSelect extends AppCompatActivity {
                 addSel = Integer.parseInt(String.valueOf(v.getTag()));
 
 
-                if(addSel != 99) {
                     //選択したボタンに対応する地方をStatusFlagに記録
                     status.setAddSel(addSel);
                     //都道府県選択画面へ移行
                     Intent intent = new Intent(getApplication(), PrefectureSelect.class);
                     startActivity(intent);
-                }
+
             });
             i++;
         }

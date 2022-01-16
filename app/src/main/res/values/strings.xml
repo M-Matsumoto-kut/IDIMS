@@ -27,8 +27,27 @@
     <string name="free">自由期間</string>
     <string name="kara">から</string>
 
+    <string name="January">１月</string>
+    <string name="February">２月</string>
+    <string name="March">３月</string>
+    <string name="April">４月</string>
+    <string name="May">５月</string>
+    <string name="June">６月</string>
+    <string name="July">７月</string>
+    <string name="August">８月</string>
+    <string name="September">９月</string>
+    <string name="October">１０月</string>
+    <string name="November">１１月</string>
+    <string name="December">１２月</string>
+
+    <string name = "all">全て</string>
+    <string name = "before1month">過去１か月</string>
+    <string name = "beforehalfyear">過去半年</string>
+    <string name = "before1year">過去１年</string>
+    <string name = "before5year">過去５年</string>
+
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
-    <string-array name="spinner_Constant">
+    <string-array name="spinner_constant">
         <item>全て</item>
         <item>過去１か月</item>
         <item>過去半年</item>
@@ -36,12 +55,12 @@
         <item>過去５年</item>
     </string-array>
 
-    <string-array name="spinner_Year">
+    <string-array name="spinner_year">
         <item>2021</item>
         <item>2022</item>
     </string-array>
 
-    <string-array name="spinner_Month">
+    <string-array name="spinner_month">
         <item>１月</item>
         <item>２月</item>
         <item>３月</item>
