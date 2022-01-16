@@ -133,7 +133,18 @@ public class DisasterSearchActivity extends AppCompatActivity {
         Button resultButton = (Button) findViewById(R.id.button_Search);
         resultButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                //検索条件を満たさない場合エラーを起こす
+                //地域が選択されていない場合
+                //災害の種類が一つも選択されていない場合
+                //自由設定期間が正しく設定されていない場合
                 //検索結果画面へ移動
+                Connection con = null;
+                try{
+                    con = DriverManager.getConnection(jdbc:mysql://);
+
+                    Statement state = con.createStatement();
+                    String sql =
+                }
                 Intent intent = new Intent(DisasterSearchActivity.this, SearchResultListActivity.class);
                 startActivity(intent);
 
