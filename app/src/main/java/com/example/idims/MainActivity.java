@@ -2,6 +2,7 @@ package com.example.idims;
 
 import android.os.Bundle;
 
+import com.example.idims.Area.RegionSelect;
 import com.example.idims.Researcher.ResearcherLogin;
 import com.example.idims.Researcher.ResearcherPage;
 
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
              */
 
             //テスト-------------------------------------------------------
-            Intent intent = new Intent(getApplication(), ResearcherPage.class);
+            Intent intent = new Intent(getApplication(), RegionSelect.class);
             startActivity(intent);
             //テスト-------------------------------------------------------
         });
