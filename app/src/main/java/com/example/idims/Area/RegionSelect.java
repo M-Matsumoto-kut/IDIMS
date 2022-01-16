@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.idims.MainActivity;
 import com.example.idims.R;
 import com.example.idims.StatusFlag;
 
@@ -22,7 +23,7 @@ public class RegionSelect extends AppCompatActivity {
     private TextView textView;
     private StatusFlag status;
 
-    private final String[] regions = {"北海道", "東北地方", "関東地方", "中部地方", "近畿地方",
+    private final String[] regions = {"北海道地方", "東北地方", "関東地方", "中部地方", "近畿地方",
             "中国地方", "四国地方", "九州地方"};
 
     private int addSel;
@@ -49,6 +50,9 @@ public class RegionSelect extends AppCompatActivity {
 
         // リニアレイアウトの設定
         LinearLayout layout = new LinearLayout(this);
+        //LinearLayout layout = findViewById(R.id.regionLinear);
+
+
         layout.setOrientation(LinearLayout.VERTICAL);
 
         layout.setLayoutParams(new LinearLayout.LayoutParams(
@@ -59,22 +63,24 @@ public class RegionSelect extends AppCompatActivity {
         layout.setGravity(Gravity.CENTER);
 
         // 背景色
-        layout.setBackgroundColor(Color.rgb(0xdd, 0xff, 0xee));
+        layout.setBackgroundColor(Color.rgb(0x00, 0x00, 0x00));
+
 
         setContentView(layout);
 
         // dp単位を取得
         float dp = getResources().getDisplayMetrics().density;
         // Button 幅を250dpに設定
-        int buttonWidth = (int)(250 * dp);
+        int buttonWidth = (int)(380 * dp);
+        int buttonHeight = (int)(60 * dp);
         // マージン 10dp に設定
-        int margins = (int)(10 * dp);
+        int margins = (int)(5 * dp);
 
         // TextViewの設定
         textView = new TextView(this);
         String str = "TextView";
         textView.setText(str);
-        textView.setTextColor(0xff000000);
+        textView.setTextColor(0xffffff);
         textView.setTextSize(10*dp);
         layout.addView(textView,
                 new LinearLayout.LayoutParams(
@@ -93,18 +99,29 @@ public class RegionSelect extends AppCompatActivity {
 
             LinearLayout.LayoutParams buttonLayoutParams =
                     new LinearLayout.LayoutParams(buttonWidth,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
+                            buttonHeight);
             buttonLayoutParams.setMargins(margins, margins, margins, margins);
+
 
             btn.setLayoutParams(buttonLayoutParams);
             layout.addView(btn);
 
-            // Listnerをセット
-            // lambda型
             btn.setOnClickListener( v -> {
                 // View からTagを取り出す
                 textView.setText(String.format(Locale.US,
                         "Button: %s", v.getTag().toString()));
+
+                //tagを数値で取得
+                addSel = Integer.parseInt(String.valueOf(v.getTag()));
+
+
+                if(addSel != 99) {
+                    //選択したボタンに対応する地方をStatusFlagに記録
+                    status.setAddSel(addSel);
+                    //都道府県選択画面へ移行
+                    Intent intent = new Intent(getApplication(), PrefectureSelect.class);
+                    startActivity(intent);
+                }
             });
             i++;
         }
