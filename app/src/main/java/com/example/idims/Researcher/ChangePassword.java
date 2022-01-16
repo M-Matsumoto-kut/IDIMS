@@ -76,7 +76,7 @@ public class ChangePassword extends AppCompatActivity {
             int id = 1230344;
 
             //現在のパスワードが正しいか
-            if(Authenticate.nowPasswordAuthenticate(id, newPasswordStr)) {
+            if(Authenticate.nowPasswordAuthenticate(id, nowPasswordStr)) {
 
                 //現在のパスワードが半角英数字でかつ8文字以上16文字以下か
                 if(Authenticate.newPasswordAuthenticate(newPasswordStr)){
