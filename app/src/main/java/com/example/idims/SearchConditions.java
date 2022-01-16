@@ -1,5 +1,9 @@
 package com.example.idims;
 
+import java.util.Date;
+import java.util.Formatter;
+import java.text.SimpleDateFormat;
+
 //検索条件を格納するクラス
 public class SearchConditions {
     //種類チェックボタンが押されているかを格納するboolean型,押されている場合は真となる
@@ -23,13 +27,37 @@ public class SearchConditions {
         if (str.equals(all)) {
             allConstant = true;
         } else {
+            int today = getToday();
             allConstant = false;
-            if (str.equals(a_month)) {
+            if (str.equals(a_month)) {//過去1か月を選択した場合
+                if()
+
             } else if (str.equals(half_year)) {
             } else if (str.equals(a_year)) {
             } else if (str.equals(five_year)) {
             }
         }
+    }
+
+    //現在日時の取得
+    private int getToday(){
+        Date date = new Date();
+        SimpleDateFormat today = new SimpleDateFormat("yyyy/MM/dd");
+        String str = today.format(date);//日付から文字列へ変換
+        return Integer.parseInt(str);//int型へ変換して返す
+
+    }
+    //年の取得
+    private int getYear(int day){
+
+    }
+    //月の取得
+    private int getMonth(int day){
+
+    }
+    //日の取得
+    private int getDay(int day){
+
     }
 
     //期間設定において自由期間を選択した際の期間選択

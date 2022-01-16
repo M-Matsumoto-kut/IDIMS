@@ -49,7 +49,11 @@ public class SelectAreaActivity extends AppCompatActivity {
                             areaNum = 7;
                             break;
                     }
-                    setResult(areaNum);
+                    //選択結果を元の画面に渡す
+                    Intent intent = new Intent();
+                    intent.putExtra("areaNumber", areaNum);
+                    setResult(RESULT_OK, intent);
+                    //画面の終了
                     finish();
                 }
             }

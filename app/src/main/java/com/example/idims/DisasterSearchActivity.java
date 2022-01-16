@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,6 +23,8 @@ import java.sql.Statement;
 //災害検索アクティビティ
 public class DisasterSearchActivity extends AppCompatActivity {
 
+    int areaNum = 0;
+    static final int RESULT_AREA = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
         serectAreaButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Intent intent = new Intent(DisasterSearchActivity.this, SelectAreaActivity.class);
-                startActivity(intent);//地域選択画面へ移行
+                startActivityForResult(intent, RESULT_AREA);//地域選択画面へ移行
             }
         });
 
@@ -135,6 +138,12 @@ public class DisasterSearchActivity extends AppCompatActivity {
             public void onClick(View view){
                 //検索条件を満たさない場合エラーを起こす
                 //地域が選択されていない場合
+                if(areaNum == 0){
+                    TextView textView = (TextView) findViewById(R.id.textView_Error);
+                    textView.setText("地域を選択してください");
+                    break;
+                }
+
                 //災害の種類が一つも選択されていない場合
                 //自由設定期間が正しく設定されていない場合
                 //検索結果画面へ移動
@@ -150,6 +159,14 @@ public class DisasterSearchActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //地域選択アクティビティから結果を受け取る
+    protected void OnActivityResult(int requestCode, int resultCode, Intent intent){
+        super.onActivityResult(requestCode, resultCode, intent);
+        if(resultCode == RESULT_OK && requestCode == RESULT_AREA && intent != null){
+            areaNum = intent.getIntExtra("areaNumber", 0);
+        }
     }
 
 
