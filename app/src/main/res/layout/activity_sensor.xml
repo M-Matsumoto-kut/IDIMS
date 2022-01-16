@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:background="#03A9F4"
         android:gravity="center"
-        android:text="センサー異常"
+        android:text="センサー異常一覧"
         android:textColor="#FBFAFD"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
