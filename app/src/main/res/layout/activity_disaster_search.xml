@@ -128,7 +128,8 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="84dp"
-        android:entries="@array/spinner_Constant"
+        android:entries="@array/spinner_constant"
+        android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/radioGroup_period"
@@ -139,7 +140,6 @@
         android:id="@+id/linearLayout3"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup_period">
 
@@ -147,7 +147,8 @@
             android:id="@+id/spinner_FreeYear_Start"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:entries="@array/spinner_Year"
+            android:entries="@array/spinner_year"
+            android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
     </LinearLayout>
 
@@ -155,7 +156,6 @@
         android:id="@+id/linearLayout4"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout3"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup_period">
 
@@ -172,7 +172,6 @@
         android:id="@+id/linearLayout5"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout4"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup_period">
 
@@ -180,7 +179,8 @@
             android:id="@+id/spinner_FreeMonth_Start"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:entries="@array/spinner_Month"
+            android:entries="@array/spinner_month"
+            android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
     </LinearLayout>
 
@@ -188,7 +188,6 @@
         android:id="@+id/linearLayout6"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout5"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup_period">
 
@@ -205,7 +204,6 @@
         android:id="@+id/linearLayout10"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/linearLayout6"
@@ -224,7 +222,6 @@
         android:id="@+id/linearLayout7"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
@@ -232,7 +229,8 @@
             android:id="@+id/spinner_FreeYear_End"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:entries="@array/spinner_Year"
+            android:entries="@array/spinner_year"
+            android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
@@ -240,7 +238,6 @@
         android:id="@+id/linearLayout8"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout7"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
@@ -257,7 +254,6 @@
         android:id="@+id/linearLayout9"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout8"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
@@ -265,7 +261,8 @@
             android:id="@+id/spinner_FreeMonth_End"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:entries="@array/spinner_Month"
+            android:entries="@array/spinner_month"
+            android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
@@ -273,7 +270,6 @@
         android:id="@+id/linearLayout11"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout9"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
@@ -298,7 +294,7 @@
         <TextView
             android:id="@+id/textView_Made"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/made"
             android:textAlignment="textEnd"
             android:textSize="20sp" />

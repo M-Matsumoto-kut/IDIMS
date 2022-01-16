@@ -91,7 +91,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
         //一定期間スピナー
         Spinner spinner_Constant = (Spinner) findViewById(R.id.spinner_Constant);
         //adapterクラスを利用して作成した文字配列をspinnerのリソースにする 以下のスピナーにも同様の処理を行う
-        ArrayAdapter<CharSequence> adapter_Constant = ArrayAdapter.createFromResource(this, R.array.spinner_Constant, R.layout.activity_disaster_search);
+        ArrayAdapter<CharSequence> adapter_Constant = ArrayAdapter.createFromResource(this, R.array.spinner_constant, R.layout.activity_disaster_search);
         adapter_Constant.setDropDownViewResource(R.layout.activity_disaster_search);
         spinner_Constant.setAdapter(adapter_Constant);
 
@@ -104,9 +104,9 @@ public class DisasterSearchActivity extends AppCompatActivity {
         Spinner spinner_Free_MonthEnd = (Spinner) findViewById(R.id.spinner_FreeMonth_End);
 
         //自由期間のスピナーにadapterを当てる
-        ArrayAdapter<CharSequence> adapter_FreeYear = ArrayAdapter.createFromResource(this, R.array.spinner_Year, R.layout.activity_disaster_search);
+        ArrayAdapter<CharSequence> adapter_FreeYear = ArrayAdapter.createFromResource(this, R.array.spinner_year, R.layout.activity_disaster_search);
         adapter_FreeYear.setDropDownViewResource(R.layout.activity_disaster_search);
-        ArrayAdapter<CharSequence> adapter_FreeMonth = ArrayAdapter.createFromResource(this, R.array.spinner_Month, R.layout.activity_disaster_search);
+        ArrayAdapter<CharSequence> adapter_FreeMonth = ArrayAdapter.createFromResource(this, R.array.spinner_month, R.layout.activity_disaster_search);
         adapter_FreeMonth.setDropDownViewResource(R.layout.activity_disaster_search);
         spinner_Free_YearStart.setAdapter(adapter_FreeYear);
         spinner_Free_MonthStart.setAdapter(adapter_FreeMonth);
