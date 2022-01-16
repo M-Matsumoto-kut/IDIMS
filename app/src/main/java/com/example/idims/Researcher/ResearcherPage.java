@@ -9,6 +9,9 @@ import android.widget.Button;
 
 import com.example.idims.R;
 
+/*
+    研究者ページモジュール
+ */
 public class ResearcherPage extends AppCompatActivity {
 
 
