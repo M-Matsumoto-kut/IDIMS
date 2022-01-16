@@ -9,7 +9,7 @@ public class StatusFlag extends Application {
     private int loginType;          // login時のユーザのタイプ
     private int id;                 // (研究者)ログイン後IDを記録する
     private int[] selectRegionNum = new int[8];       //　選択地方を番号で格納（添字がregionsと対応)
-    final private String[] regions = {"北海道", "東北地方", "関東地方", "中部地方", "近畿地方",
+    final private String[] regions = {"北海道地方", "東北地方", "関東地方", "中部地方", "近畿地方",
             "中国地方", "四国地方", "九州地方"};
     private int[] selectPrefectureNum = new int[47]; //　選択都道府県を番号で格納
     final private String[] prefectures = { "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県",
@@ -23,7 +23,6 @@ public class StatusFlag extends Application {
     private int countReg; // 選択地方数をカウント
     private int countPre; // 選択都道府県数をカウント
     private int addSel; //　どの地方を選択したか記録
-
 
 
     @Override
@@ -107,29 +106,34 @@ public class StatusFlag extends Application {
     選択地域を設定(selectPrefectureNumに都道府県に対応した配列番号numを格納）
     例：北海道 -> 0, ~, 沖縄県 -> 46
      */
-    public void setPrefecture(int num) {
+    public void setPrefectureNum(int num) {
         this.selectPrefectureNum[this.countPre] = num;
         this.countPre ++; //カウント
     }
 
     /*
         addSel
-        1:北海道
-        2:東北
-        3:関東
-        4:中部
-        5:近畿
-        6:中国
-        7:四国
-        8:九州
+        0:北海道
+        1:東北
+        2:関東
+        3:中部
+        4:近畿
+        5:中国
+        6:四国
+        7:九州
      */
 
     //addSelを返す
     public int getAddSel() {
-        return this.getAddSel();
+        return this.addSel;
     }
 
     //addSelを更新
     public void setAddSel(int addSel) { this.addSel = addSel; }
+
+    //prefectureNumを返す
+    public int getPrefectureNum(int i) {
+        return this.selectPrefectureNum[i];
+    }
 
 }

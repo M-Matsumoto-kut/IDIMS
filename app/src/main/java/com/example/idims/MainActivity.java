@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         /*
         statusの値によってActivityを変える（予定）
-         */
+
         switch(status) {
             case 1: //初回ログイン
                 this.userTypeSelect();
@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
             case 6:
             default:
         }
+
+         */
     }
 
     //ユーザタイプ選択
