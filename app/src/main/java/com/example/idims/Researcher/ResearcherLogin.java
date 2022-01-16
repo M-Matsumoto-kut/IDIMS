@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.idims.Authenticate;
 import com.example.idims.R;
+import com.example.idims.Setting;
 import com.example.idims.StatusFlag;
-import com.example.idims.UserSetUp;
 
 //研究者ログインページモジュール
 public class ResearcherLogin extends AppCompatActivity {
@@ -47,7 +47,7 @@ public class ResearcherLogin extends AppCompatActivity {
         }
          */
 
-        //this.loginResearcher();
+        this.loginResearcher();
     }
 
     //ログイン
@@ -93,7 +93,7 @@ public class ResearcherLogin extends AppCompatActivity {
                 flag.setId(userIdInt);
 
                 //設定画面に移動
-                Intent intent = new Intent(getApplication(), UserSetUp.class);
+                Intent intent = new Intent(getApplication(), Setting.class);
                 startActivity(intent);
             } else {
                 //再入力を求める
@@ -101,7 +101,6 @@ public class ResearcherLogin extends AppCompatActivity {
                 startActivity(intent);
 
             }
-
 
             //テスト----------------------------------------
             Intent intent = new Intent(getApplication(), ResearcherPage.class);

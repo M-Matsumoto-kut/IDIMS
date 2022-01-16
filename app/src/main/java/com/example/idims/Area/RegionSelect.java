@@ -1,5 +1,6 @@
 package com.example.idims.Area;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -12,39 +13,43 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.idims.R;
+import com.example.idims.StatusFlag;
 
 import java.util.Locale;
 
 //地方選択画面モジュール
 public class RegionSelect extends AppCompatActivity {
-
-    //private LinearLayout linearLayout;
     private TextView textView;
-    private ScrollView scrollView;
+    private StatusFlag status;
+
+    private final String[] regions = {"北海道", "東北地方", "関東地方", "中部地方", "近畿地方",
+            "中国地方", "四国地方", "九州地方"};
+
+    private int addSel;
+    private int num;
+    private ViewGroup Linearlayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.status = (StatusFlag) getApplication();
+    }
 
-        //地方選択画面表示
-        setContentView(R.layout.activity_region_select);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        addSel = 99;
+        this.regionSelect();
+    }
 
-        ScrollView scrollView = new ScrollView(this);
+    //地方選択
+    private void regionSelect(){
 
-        // View に ScrollView を設定
-        setContentView(scrollView);
+        Button[] button = new Button[regions.length];
 
-
-
-        //ボタン配列
-        Button[] buttons = new Button[8];
-
-        //リニアレイアウトの設定
+        // リニアレイアウトの設定
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
-
-        // ScrollView に LinearLayout を追加
-        scrollView.addView(layout);
 
         layout.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -54,86 +59,110 @@ public class RegionSelect extends AppCompatActivity {
         layout.setGravity(Gravity.CENTER);
 
         // 背景色
-        layout.setBackgroundColor(Color.rgb(0x00, 0x00, 0x00));
+        layout.setBackgroundColor(Color.rgb(0xdd, 0xff, 0xee));
 
         setContentView(layout);
-
 
         // dp単位を取得
         float dp = getResources().getDisplayMetrics().density;
         // Button 幅を250dpに設定
-        int buttonWidth = (int)(420 * dp);
-        int buttonHeight = (int)(100 * dp);
-
+        int buttonWidth = (int)(250 * dp);
         // マージン 10dp に設定
-        int margins = (int)(0 * dp);
+        int margins = (int)(10 * dp);
 
         // TextViewの設定
         textView = new TextView(this);
         String str = "TextView";
         textView.setText(str);
-        textView.setTextColor(0xffffff);
-        textView.setTextSize(50 * dp);
+        textView.setTextColor(0xff000000);
+        textView.setTextSize(10*dp);
         layout.addView(textView,
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-        );
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
 
         int i = 0;
-        for(Button btn : buttons) {
+        int num = 0;
+        for(Button btn : button) {
             btn = new Button(this);
-            i++;
 
+            num = i;
             // Tag を設定する
             btn.setTag(String.valueOf(i));
-            btn.setText(String.format(Locale.US, "Button %d", i));
+            btn.setText(String.format(Locale.US, "%s", regions[num]));
 
             LinearLayout.LayoutParams buttonLayoutParams =
-                    //new LinearLayout.LayoutParams(buttonWidth,
-                    //        ViewGroup.LayoutParams.WRAP_CONTENT);
                     new LinearLayout.LayoutParams(buttonWidth,
-                        buttonHeight);
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
             buttonLayoutParams.setMargins(margins, margins, margins, margins);
 
             btn.setLayoutParams(buttonLayoutParams);
             layout.addView(btn);
 
-            // Listenerをセット
+            // Listnerをセット
             // lambda型
             btn.setOnClickListener( v -> {
                 // View からTagを取り出す
                 textView.setText(String.format(Locale.US,
                         "Button: %s", v.getTag().toString()));
             });
+            i++;
         }
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        //this.regtionSelect();
-    }
 
-    //地方選択画面モジュール
-    private void regtionSelect() {
+        // TextViewの設定
 
-        //地方選択画面表示
-        setContentView(R.layout.activity_region_select);
+        /*
+        textView = new TextView(this);
+        String str = "TextView";
+        textView.setText(str);
+        textView.setTextColor(0xff000000);
+        textView.setTextSize(10*dp);
+        layout.addView(textView,
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+
+        //地方選択ボタンを配置
+        for(int i=0; i < regions.length; i++) {
+            //ボタン生成
+            Button btn = new Button(this);
+
+            //地方名表示
+            btn.setTag(String.valueOf(i)); //各ボタンごとにタグづけ
+            btn.setText(regions[i]);
+
+            LinearLayout.LayoutParams buttonLayoutParams =
+                    new LinearLayout.LayoutParams(buttonWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            buttonLayoutParams.setMargins(margins, margins, margins, margins);
+
+
+            btn.setLayoutParams(buttonLayoutParams);
+            layout.addView(btn);
+
+
+            //地方選択ボタンが押された時
+
+            btn.setOnClickListener( v -> {
+                //選択したボタンに対応する地方をStatusFlagに記録
+                //status.setAddSel(i);
+
+                if(addSel != 99) {
+
+                }
+
+                //都道府県選択画面へ移行
+                Intent intent = new Intent(getApplication(), PrefectureSelect.class);
+                startActivity(intent);
+            });
+
+        }
+        */
 
 
         //戻るボタン
-        Button backButton = findViewById(R.id.backActivity);
-        backButton.setOnClickListener( v -> {
-            finish();
-        });
-
-
-        //リストのボタンが押された時
-
-
+        //Button backButton = findViewById(R.id.backActivity);
+        //backButton.setOnClickListener( v -> finish());
     }
-
-
 }

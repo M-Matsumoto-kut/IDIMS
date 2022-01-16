@@ -1,7 +1,9 @@
 package com.example.idims;
 
+import android.hardware.Camera;
 import android.os.Bundle;
 
+import com.example.idims.Area.AreaList;
 import com.example.idims.Area.RegionSelect;
 import com.example.idims.Researcher.ResearcherLogin;
 import com.example.idims.Researcher.ResearcherPage;
@@ -79,12 +81,12 @@ public class MainActivity extends AppCompatActivity {
              */
 
             /*
-            Intent intent = new Intent(getApplication(), UserSetUp.class);
+            Intent intent = new Intent(getApplication(), Setting.class);
             startActivity(intent);
              */
 
             //テスト-------------------------------------------------------
-            Intent intent = new Intent(getApplication(), RegionSelect.class);
+            Intent intent = new Intent(getApplication(), AreaList.class);
             startActivity(intent);
             //テスト-------------------------------------------------------
         });

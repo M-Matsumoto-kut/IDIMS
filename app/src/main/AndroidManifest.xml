@@ -52,16 +52,13 @@
             android:name=".Authenticate"
             android:exported="false" />
         <activity
-            android:name=".UserSetUp"
-            android:exported="false" />
-        <activity
             android:name=".Area.MunicipaliteSelect"
             android:exported="false" />
         <activity
             android:name=".Area.PrefectureSelect"
             android:exported="false" />
         <activity
-            android:name=".Area.RegionList"
+            android:name=".Area.AreaList"
             android:exported="false" />
         <activity
             android:name=".Area.RegionSelect"

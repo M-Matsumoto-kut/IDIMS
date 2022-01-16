@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.ArraySet;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,17 +15,16 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 
 //災害検索アクティビティ
 public class DisasterSearchActivity extends AppCompatActivity {
 
-    int areaNum = 0;
-    static final int RESULT_AREA = 1000;
+    int areaNum = 0; //地方を選択する
+    int disasterCount = 0; //災害の数が選択されている数を表す
+    static final int RESULT_AREA = 1000; //getexistを使用するのに必要
+
+    public static final String SEARCHCONDITIONS_DATA = "com.example.idims.SearchConditions.java";//検索結果アクティビティに検索条件を引き渡すのに必要
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +50,11 @@ public class DisasterSearchActivity extends AppCompatActivity {
         checkBox_Wave.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 if(isChecked) {
-                    search.setWave_on(true);
+                    search.setWave_On(true);
+                    disasterCount++;
                 }else{
-                    search.setWave_on(false);
+                    search.setWave_On(false);
+                    disasterCount--;
                 }
             }
         });
@@ -63,8 +65,10 @@ public class DisasterSearchActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 if(isChecked) {
                     search.setLandsride_On(true);
+                    disasterCount++;
                 }else{
                     search.setLandsride_On(false);
+                    disasterCount--;
                 }
             }
         });
@@ -75,8 +79,10 @@ public class DisasterSearchActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 if(isChecked) {
                     search.setThounder_On(true);
+                    disasterCount++;
                 }else{
                     search.setThounder_On(false);
+                    disasterCount--;
                 }
             }
         });
@@ -138,24 +144,38 @@ public class DisasterSearchActivity extends AppCompatActivity {
             public void onClick(View view){
                 //検索条件を満たさない場合エラーを起こす
                 //地域が選択されていない場合
-                if(areaNum == 0){
-                    TextView textView = (TextView) findViewById(R.id.textView_Error);
-                    textView.setText("地域を選択してください");
-                    break;
+                switch(areaNum){
+                    case 0:
+                        TextView textView = (TextView) findViewById(R.id.textView_Error);
+                        textView.setText("地域を選択してください");
+                        break;
                 }
-
                 //災害の種類が一つも選択されていない場合
-                //自由設定期間が正しく設定されていない場合
-                //検索結果画面へ移動
-                Connection con = null;
-                try{
-                    con = DriverManager.getConnection(jdbc:mysql://);
-
-                    Statement state = con.createStatement();
-                    String sql =
+                switch(disasterCount){
+                    case 0:
+                        TextView textView = (TextView) findViewById(R.id.textView_Error);
+                        textView.setText("災害を1種類以上選んでください");
+                        break;
                 }
+
+                //自由設定期間が正しく設定されていない場合
+                switch(overTime(search.startDate, search.endDate)){
+                    case 0:
+                        TextView textView = (TextView) findViewById(R.id.textView_Error);
+                        textView.setText("開始時刻が終了時刻より先にならないよう設定してください");
+                        break;
+                }
+                //検索結果画面へ移動
                 Intent intent = new Intent(DisasterSearchActivity.this, SearchResultListActivity.class);
+                //検索結果の条件を一つずつ引き渡す
+                intent.putExtra("AreaNumber", areaNum);
+                intent.putExtra("Wave", search.getWave_On());
+                intent.putExtra("Landsride", search.getLandsride_On());
+                intent.putExtra("Thounder", search.getThounder_On());
+                intent.putExtra("startTime", search.getStartDate());
+                intent.putExtra("endTime", search.getEndDate());
                 startActivity(intent);
+
 
             }
         });
@@ -167,6 +187,16 @@ public class DisasterSearchActivity extends AppCompatActivity {
         if(resultCode == RESULT_OK && requestCode == RESULT_AREA && intent != null){
             areaNum = intent.getIntExtra("areaNumber", 0);
         }
+    }
+
+    //検索範囲の開始日時が終了日時より未来の場合0を返す
+    protected int overTime(String startTime, String endTime){
+        int sTime = Integer.parseInt(startTime);
+        int eTime = Integer.parseInt(endTime);
+        if(sTime > eTime){
+            return 0;
+        }
+        return 1;
     }
 
 
