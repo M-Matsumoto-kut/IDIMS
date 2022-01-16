@@ -13,6 +13,7 @@
     <string name="研究者の方">研究者の方</string>
     <string name="一般の方">一般の方</string>
     <string name="selectArea">地域を選択</string>
+    <string name="Hokkaido">北海道</string>
 
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
     <string-array name="spinner_Constant">
