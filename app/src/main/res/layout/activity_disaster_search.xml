@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".DisasterSearchActivity">
 
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="0dp"
