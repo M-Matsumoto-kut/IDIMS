@@ -9,10 +9,10 @@ public class StatusFlag extends Application {
     private int loginType;          // login時のユーザのタイプ
     private int id;                 // (研究者)ログイン後IDを記録する
     private int[] selectRegionNum = new int[8];       //　選択地方を番号で格納（添字がregionsと対応)
-    private String[] regions = {"北海道", "東北地方", "関東地方", "中部地方", "近畿地方",
+    final private String[] regions = {"北海道", "東北地方", "関東地方", "中部地方", "近畿地方",
             "中国地方", "四国地方", "九州地方"};
     private int[] selectPrefectureNum = new int[47]; //　選択都道府県を番号で格納
-    private String[] prefectures = { "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県",
+    final private String[] prefectures = { "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県",
                                     "福島県", "東京都", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県",
                                     "神奈川県", "新潟県", "富山県", "石川県", "福井県", "山梨県",
                                      "長野県", "岐阜県", "静岡県", "愛知県", "京都府", "大阪府",
@@ -95,6 +95,8 @@ public class StatusFlag extends Application {
         this.selectRegionNum[this.countReg] = num;
         this.countReg ++; //カウント
     }
+
+
 
     //prefectures（都道府県リスト）から特定の都道府県名を返す
     public String getPrefectureName(int num) { return prefectures[num]; };

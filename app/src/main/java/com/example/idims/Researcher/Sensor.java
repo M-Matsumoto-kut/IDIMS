@@ -15,18 +15,27 @@ public class Sensor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    //毎動作時に実行
+    @Override
+    protected void onStart() {
+        super.onStart();
+        this.sensorList();
+    }
+
+    private void sensorList() {
 
         //データベースからセンサー情報を取得し,表示
         setContentView(R.layout.activity_sensor);
+
+
 
         //戻るボタン
         Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener( v -> {
             finish();
         });
-
-
-
 
     }
 }

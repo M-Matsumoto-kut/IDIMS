@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 //閲覧地域一覧モジュール
-public class RegionList extends AppCompatActivity {
+public class AreaList extends AppCompatActivity {
 
     //初動作時に実行
     @Override
@@ -18,7 +18,6 @@ public class RegionList extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
     //閲覧地域一覧モジュール

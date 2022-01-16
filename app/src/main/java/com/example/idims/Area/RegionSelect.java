@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,18 +18,33 @@ import java.util.Locale;
 //地方選択画面モジュール
 public class RegionSelect extends AppCompatActivity {
 
+    //private LinearLayout linearLayout;
     private TextView textView;
+    private ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //地方選択画面表示
+        setContentView(R.layout.activity_region_select);
+
+        ScrollView scrollView = new ScrollView(this);
+
+        // View に ScrollView を設定
+        setContentView(scrollView);
+
+
+
         //ボタン配列
-        Button[] buttons = new Button[47];
+        Button[] buttons = new Button[8];
 
         //リニアレイアウトの設定
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
+
+        // ScrollView に LinearLayout を追加
+        scrollView.addView(layout);
 
         layout.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -38,27 +54,32 @@ public class RegionSelect extends AppCompatActivity {
         layout.setGravity(Gravity.CENTER);
 
         // 背景色
-        layout.setBackgroundColor(Color.rgb(0xff, 0xff, 0xff));
+        layout.setBackgroundColor(Color.rgb(0x00, 0x00, 0x00));
 
         setContentView(layout);
+
 
         // dp単位を取得
         float dp = getResources().getDisplayMetrics().density;
         // Button 幅を250dpに設定
-        int buttonWidth = (int)(400 * dp);
+        int buttonWidth = (int)(420 * dp);
+        int buttonHeight = (int)(100 * dp);
+
         // マージン 10dp に設定
-        int margins = (int)(1 * dp);
+        int margins = (int)(0 * dp);
 
         // TextViewの設定
         textView = new TextView(this);
         String str = "TextView";
         textView.setText(str);
-        textView.setTextColor(0xff000000);
-        textView.setTextSize(20*dp);
+        textView.setTextColor(0xffffff);
+        textView.setTextSize(50 * dp);
         layout.addView(textView,
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+        );
 
         int i = 0;
         for(Button btn : buttons) {
@@ -70,8 +91,10 @@ public class RegionSelect extends AppCompatActivity {
             btn.setText(String.format(Locale.US, "Button %d", i));
 
             LinearLayout.LayoutParams buttonLayoutParams =
+                    //new LinearLayout.LayoutParams(buttonWidth,
+                    //        ViewGroup.LayoutParams.WRAP_CONTENT);
                     new LinearLayout.LayoutParams(buttonWidth,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
+                        buttonHeight);
             buttonLayoutParams.setMargins(margins, margins, margins, margins);
 
             btn.setLayoutParams(buttonLayoutParams);
@@ -85,7 +108,6 @@ public class RegionSelect extends AppCompatActivity {
                         "Button: %s", v.getTag().toString()));
             });
         }
-
     }
 
     @Override

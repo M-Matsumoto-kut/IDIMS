@@ -31,6 +31,7 @@ public class ResearcherLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.loginResearcher();
+
     }
 
     @Override
@@ -46,7 +47,7 @@ public class ResearcherLogin extends AppCompatActivity {
         }
          */
 
-        this.loginResearcher();
+        //this.loginResearcher();
     }
 
     //ログイン
@@ -64,13 +65,15 @@ public class ResearcherLogin extends AppCompatActivity {
 
         //戻るボタン
         Button backButton = findViewById(R.id.backActivity);
-        backButton.setOnClickListener( v -> {
-            finish();
-        });
+        backButton.setOnClickListener( v -> finish());
+
 
         //ログインボタンが押された時
-        Button changeButton = findViewById(R.id.changePassword);
-        changeButton.setOnClickListener( v -> {
+
+
+        Button loginButton = findViewById(R.id.login);
+        loginButton.setOnClickListener( v -> {
+
 
             //入力したIDを数値に変換
             userIdInt = Integer.parseInt(String.valueOf(userId.getText()));
@@ -81,27 +84,31 @@ public class ResearcherLogin extends AppCompatActivity {
             //userIdとPasswordが正しいか
 
             if(Authenticate.loginAuthenticate(userIdInt, passwordStr)) {
-                /*
-                    loginTypeを2（研究者）に更新
-                    IDをを保存し，自動ログインを実現
-                 */
+
+                    //loginTypeを2（研究者）に更新
+                    //IDをを保存し，自動ログインを実現
+
                 StatusFlag flag = (StatusFlag) getApplication();
                 flag.setLoginTypeRes();
                 flag.setId(userIdInt);
 
                 //設定画面に移動
-                Intent intent = new Intent(ResearcherLogin.this, UserSetUp.class);
+                Intent intent = new Intent(getApplication(), UserSetUp.class);
                 startActivity(intent);
             } else {
                 //再入力を求める
-                this.loginResearcher();
+                Intent intent = new Intent(getApplication(), ResearcherLogin.class);
+                startActivity(intent);
+
             }
 
+
             //テスト----------------------------------------
-            Intent intent = new Intent(ResearcherLogin.this, Sensor.class);
+            Intent intent = new Intent(getApplication(), ResearcherPage.class);
             startActivity(intent);
             //テスト----------------------------------------
         });
+
     }
 
     //パスワードの表示・非表示
