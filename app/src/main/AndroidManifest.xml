@@ -18,7 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".SelectAreaActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -41,7 +41,7 @@
             android:exported="false" />
         <activity
             android:name=".DisasterSearchActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Researcher.ResearcherLogin"
             android:exported="false" />

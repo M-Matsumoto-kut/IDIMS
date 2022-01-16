@@ -14,6 +14,18 @@
     <string name="一般の方">一般の方</string>
     <string name="selectArea">地域を選択</string>
     <string name="Hokkaido">北海道</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="made">まで</string>
+    <string name="search">検索</string>
+    <string name="area">地域</string>
+    <string name="content">種類</string>
+    <string name="landsride">土砂崩れ</string>
+    <string name="wave">津波</string>
+    <string name="thounder">雷</string>
+    <string name="constant">一定期間</string>
+    <string name="free">自由期間</string>
+    <string name="kara">から</string>
 
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
     <string-array name="spinner_Constant">

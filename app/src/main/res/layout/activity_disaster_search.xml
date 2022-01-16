@@ -30,7 +30,7 @@
         android:id="@+id/textView_Area"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="地域"
+        android:text="@string/area"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:id="@+id/textView_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="種類"
+        android:text="@string/content"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/toolbar3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,7 @@
         android:id="@+id/checkBox_Landsride"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="土砂崩れ"
+        android:text="@string/landsride"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:text="津波"
+        android:text="@string/wave"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
@@ -92,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
-        android:text="雷"
+        android:text="@string/thounder"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
@@ -114,13 +114,13 @@
             android:id="@+id/radioButton_Constant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="一定期間" />
+            android:text="@string/constant" />
 
         <RadioButton
             android:id="@+id/radioButton_free"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="自由期間" />
+            android:text="@string/free" />
     </RadioGroup>
 
     <Spinner
@@ -148,7 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:entries="@array/spinner_Year"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
     </LinearLayout>
 
     <LinearLayout
@@ -163,7 +163,7 @@
             android:id="@+id/textView_Year"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="年"
+            android:text="@string/year"
             android:textAlignment="center"
             android:textSize="24sp" />
     </LinearLayout>
@@ -181,7 +181,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:entries="@array/spinner_Month"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
     </LinearLayout>
 
     <LinearLayout
@@ -196,7 +196,7 @@
             android:id="@+id/textView_Month"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="月"
+            android:text="@string/month"
             android:textAlignment="center"
             android:textSize="24sp" />
     </LinearLayout>
@@ -215,7 +215,7 @@
             android:id="@+id/textView_Kara"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="から"
+            android:text="@string/kara"
             android:textAlignment="textEnd"
             android:textSize="20sp" />
     </LinearLayout>
@@ -248,7 +248,7 @@
             android:id="@+id/textView_Year3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="年"
+            android:text="@string/year"
             android:textAlignment="center"
             android:textSize="24sp" />
     </LinearLayout>
@@ -281,7 +281,7 @@
             android:id="@+id/textView_Month4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="月"
+            android:text="@string/month"
             android:textAlignment="center"
             android:textSize="24sp" />
     </LinearLayout>
@@ -299,7 +299,7 @@
             android:id="@+id/textView_Made"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="まで"
+            android:text="@string/made"
             android:textAlignment="textEnd"
             android:textSize="20sp" />
     </LinearLayout>
@@ -309,7 +309,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
-        android:text="検索"
+        android:text="@string/search"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
