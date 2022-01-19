@@ -37,7 +37,7 @@ public class ResearcherLogin extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        /*
+        ///*
         StatusFlag flag = (StatusFlag) this.getApplication();
         int loginType = flag.getLoginType();
         if(loginType == 2) {
@@ -45,7 +45,7 @@ public class ResearcherLogin extends AppCompatActivity {
             Intent intent = new Intent(ResearcherLogin.this, ResearcherPage.class);
             startActivity(intent);
         }
-         */
+         //*/
 
         this.loginResearcher();
     }
