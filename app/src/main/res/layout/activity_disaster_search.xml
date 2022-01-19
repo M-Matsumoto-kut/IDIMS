@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#000000"
     tools:context=".DisasterSearchActivity">
 
 
@@ -22,8 +24,11 @@
             android:id="@+id/button_SelectArea"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
             android:text="@string/selectArea"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            app:backgroundTint="#454545" />
     </FrameLayout>
 
     <TextView
@@ -52,7 +57,7 @@
         android:id="@+id/toolbar3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="#454545"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -114,13 +119,18 @@
             android:id="@+id/radioButton_Constant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/constant" />
+            android:background="#454545"
+            android:backgroundTint="#454545"
+            android:text="@string/constant"
+            android:textColor="#FFFFFF" />
 
         <RadioButton
             android:id="@+id/radioButton_free"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/free" />
+            android:background="#454545"
+            android:text="@string/free"
+            android:textColor="#FFFFFF" />
     </RadioGroup>
 
     <Spinner
@@ -128,6 +138,8 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="84dp"
+        android:background="#454545"
+        android:backgroundTint="#454545"
         android:entries="@array/spinner_constant"
         android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
@@ -147,6 +159,7 @@
             android:id="@+id/spinner_FreeYear_Start"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#454545"
             android:entries="@array/spinner_year"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
@@ -163,6 +176,7 @@
             android:id="@+id/textView_Year"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#454545"
             android:text="@string/year"
             android:textAlignment="center"
             android:textSize="24sp" />
@@ -179,6 +193,7 @@
             android:id="@+id/spinner_FreeMonth_Start"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#454545"
             android:entries="@array/spinner_month"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
@@ -195,6 +210,7 @@
             android:id="@+id/textView_Month"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#454545"
             android:text="@string/month"
             android:textAlignment="center"
             android:textSize="24sp" />
@@ -213,6 +229,7 @@
             android:id="@+id/textView_Kara"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#454545"
             android:text="@string/kara"
             android:textAlignment="textEnd"
             android:textSize="20sp" />
@@ -229,6 +246,7 @@
             android:id="@+id/spinner_FreeYear_End"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#454545"
             android:entries="@array/spinner_year"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -245,6 +263,7 @@
             android:id="@+id/textView_Year3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#454545"
             android:text="@string/year"
             android:textAlignment="center"
             android:textSize="24sp" />
@@ -261,6 +280,7 @@
             android:id="@+id/spinner_FreeMonth_End"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#454545"
             android:entries="@array/spinner_month"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -277,6 +297,7 @@
             android:id="@+id/textView_Month4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#454545"
             android:text="@string/month"
             android:textAlignment="center"
             android:textSize="24sp" />
@@ -295,6 +316,7 @@
             android:id="@+id/textView_Made"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#454545"
             android:text="@string/made"
             android:textAlignment="textEnd"
             android:textSize="20sp" />
@@ -307,6 +329,8 @@
         android:layout_marginBottom="56dp"
         android:text="@string/search"
         android:textSize="20sp"
+        app:backgroundTint="#FF00BCD4"
+        app:iconTint="#00BCD4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
