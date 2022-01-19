@@ -59,6 +59,7 @@ public class Setting extends AppCompatActivity {
 
                     //ここに位置情報をOFFにするコードを入れたい
 
+
                 }
             }
         });
