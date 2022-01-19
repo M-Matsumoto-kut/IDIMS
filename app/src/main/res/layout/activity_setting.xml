@@ -188,7 +188,7 @@
         app:layout_constraintVertical_bias="0.65" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBox1"
         android:layout_width="143dp"
         android:layout_height="60dp"
         android:layout_marginBottom="200dp"
@@ -203,7 +203,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/checkBox2"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginBottom="200dp"
@@ -213,12 +213,12 @@
         android:textSize="20sp"
         app:backgroundTint="#454545"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/checkBox2"
+        app:layout_constraintEnd_toEndOf="@+id/checkBox3"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/checkBox3"
         android:layout_width="134dp"
         android:layout_height="60dp"
         android:layout_marginBottom="200dp"
