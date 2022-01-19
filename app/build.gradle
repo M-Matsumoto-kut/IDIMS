@@ -43,6 +43,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    //GoogleMap表示用のライブラリ
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
     //単体テスト用のライブラリ
     testImplementation 'junit:junit:4.12';
     testImplementation 'com.android.support:support=annotations:24.0.0'
