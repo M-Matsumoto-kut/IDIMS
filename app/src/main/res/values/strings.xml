@@ -40,11 +40,11 @@
     <string name="November">１１月</string>
     <string name="December">１２月</string>
 
-    <string name = "all">全て</string>
-    <string name = "before1month">過去１か月</string>
-    <string name = "beforehalfyear">過去半年</string>
-    <string name = "before1year">過去１年</string>
-    <string name = "before5year">過去５年</string>
+    <string name="all">全て</string>
+    <string name="before1month">過去１か月</string>
+    <string name="beforehalfyear">過去半年</string>
+    <string name="before1year">過去１年</string>
+    <string name="before5year">過去５年</string>
 
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
     <string-array name="spinner_constant">
@@ -75,4 +75,6 @@
         <item>１２月</item>
     </string-array>
     <!-- ここまで-->
+
+    <!-- APIキーの記述場所-->
 </resources>

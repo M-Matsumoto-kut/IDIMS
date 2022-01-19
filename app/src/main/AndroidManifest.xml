@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IDIMS">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Setting"
             android:exported="false" />
         <activity
