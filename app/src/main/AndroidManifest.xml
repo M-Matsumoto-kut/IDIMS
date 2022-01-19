@@ -13,6 +13,11 @@
         <activity
             android:name=".HomeActivity"
             android:exported="true" />
+        <!-- APIキーの記述-->
+        <meta-data
+            android:name ="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCSscTm5HPrZOghQqxXn7fwJgY4t4SrM0s"/>
+
         <activity
             android:name=".Setting"
             android:exported="false" />
@@ -67,5 +72,6 @@
             android:name=".Area.RegionSelect"
             android:exported="false" />
     </application>
+
 
 </manifest>
