@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         tools:ignore="SpeakableTextPresentCheck"
-        android:apiKey="AIzaSyCSscTm5HPrZOghQqxXn7fwJgY4t4SrM0s"/>
+        android:apiKey="AIzaSyDy8LqOFFXeRlbf-0eZEQWwFwVJleCfxHg"/>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"

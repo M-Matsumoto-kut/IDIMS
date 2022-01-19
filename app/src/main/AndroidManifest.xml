@@ -16,7 +16,7 @@
         <!-- APIキーの記述-->
         <meta-data
             android:name ="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCSscTm5HPrZOghQqxXn7fwJgY4t4SrM0s"/>
+            android:value="AIzaSyDy8LqOFFXeRlbf-0eZEQWwFwVJleCfxHg"/>
 
         <activity
             android:name=".Setting"
