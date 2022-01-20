@@ -15,12 +15,13 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
 
 
 //災害検索アクティビティ
 public class DisasterSearchActivity extends AppCompatActivity {
 
-    int areaNum = 0; //地方を選択する
+    public int areaNum; //地方を選択する
     int disasterCount = 0; //災害の数が選択されている数を表す
     static final int RESULT_AREA = 1000; //getexistを使用するのに必要
 
@@ -110,7 +111,15 @@ public class DisasterSearchActivity extends AppCompatActivity {
                 if(radio.isChecked() == true){//ラジオボタンのどちらかが押されている場合
                     switch(checkedId){
                         case R.id.radioButton_Constant://一定期間が押されている場合
-                            String str = spinner_Constant.getSelectedItem().toString();//期間の取得
+                            //一定期間スピナーのクリックを有効にする
+                            spinner_Constant.setClickable(true);
+                            //自由期間スピナーのクリックを無効にする
+                            spinner_Free_YearStart.setClickable(false);
+                            spinner_Free_MonthStart.setClickable(false);
+                            spinner_Free_YearEnd.setClickable(false);
+                            spinner_Free_MonthEnd.setClickable(false);
+                            //期間の取得
+                            String str = spinner_Constant.getSelectedItem().toString();
                             search.settingConstant(str);
                             break;
                         case R.id.radioButton_free://自由期間が押されている場合
@@ -185,6 +194,28 @@ public class DisasterSearchActivity extends AppCompatActivity {
             return 0;
         }
         return 1;
+    }
+
+    //現在の地域選択状況をボタンに設定する
+    protected void textSetSelectAreaButton(){
+        Button button = (Button) findViewById(R.id.button_SelectArea);
+        if(areaNum == 1){
+            button.setText(getString(R.string.Hokkaido));
+        }else if(areaNum == 2){
+            button.setText(getString(R.string.Touhoku));
+        }else if(areaNum == 3){
+            button.setText(getString(R.string.Kantou));
+        }else if(areaNum == 4){
+            button.setText(getString(R.string.Chubu));
+        }else if(areaNum == 5){
+            button.setText(getString(R.string.Kinki));
+        }else if(areaNum == 6){
+            button.setText(getString(R.string.ChugokuShikoku));
+        }else if(areaNum == 7){
+            button.setText(getString(R.string.Kyushu));
+        }else{
+            button.setText(getString(R.string.selectArea));
+        }
     }
 
 

@@ -45,6 +45,12 @@
     <string name="beforehalfyear">過去半年</string>
     <string name="before1year">過去１年</string>
     <string name="before5year">過去５年</string>
+    <string name="Touhoku">東北</string>
+    <string name="Kantou">関東</string>
+    <string name="Chubu">中部</string>
+    <string name="Kinki">近畿</string>
+    <string name="ChugokuShikoku">中国・四国</string>
+    <string name="Kyushu">九州</string>
 
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
     <string-array name="spinner_constant">

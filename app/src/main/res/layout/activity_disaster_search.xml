@@ -26,9 +26,9 @@
             android:layout_height="match_parent"
             android:background="#FFFFFF"
             android:backgroundTint="#FFFFFF"
-            android:text="@string/selectArea"
             android:textSize="24sp"
-            app:backgroundTint="#454545" />
+            app:backgroundTint="#454545"
+            tools:ignore="TextContrastCheck" />
     </FrameLayout>
 
     <TextView
