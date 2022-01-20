@@ -100,6 +100,13 @@ public class DisasterSearchActivity extends AppCompatActivity {
         Spinner spinner_Free_YearEnd = (Spinner) findViewById(R.id.spinner_FreeYear_End);
         Spinner spinner_Free_MonthEnd = (Spinner) findViewById(R.id.spinner_FreeMonth_End);
 
+        //期間設定がどちらも選択されていない場合スピナーのクリックを無効にする
+        spinner_Constant.setClickable(false);
+        spinner_Free_YearStart.setClickable(false);
+        spinner_Free_MonthStart.setClickable(false);
+        spinner_Free_YearEnd.setClickable(false);
+        spinner_Free_MonthEnd.setClickable(false);
+
 
 
         //期間設定の挙動の処理
@@ -123,6 +130,14 @@ public class DisasterSearchActivity extends AppCompatActivity {
                             search.settingConstant(str);
                             break;
                         case R.id.radioButton_free://自由期間が押されている場合
+                            //自由期間スピナーのクリックを有効にする
+                            spinner_Free_YearStart.setClickable(true);
+                            spinner_Free_MonthStart.setClickable(true);
+                            spinner_Free_YearEnd.setClickable(true);
+                            spinner_Free_MonthEnd.setClickable(true);
+                            //一定期間スピナーのクリックを無効にする
+                            spinner_Constant.setClickable(false);
+                            //文字列の取得
                             String startYear = spinner_Free_YearStart.getSelectedItem().toString();
                             String startMonth = spinner_Free_MonthStart.getSelectedItem().toString();
                             String endYear = spinner_Free_YearEnd.getSelectedItem().toString();

@@ -27,18 +27,18 @@
     <string name="free">自由期間</string>
     <string name="kara">から</string>
 
-    <string name="January">１月</string>
-    <string name="February">２月</string>
-    <string name="March">３月</string>
-    <string name="April">４月</string>
-    <string name="May">５月</string>
-    <string name="June">６月</string>
-    <string name="July">７月</string>
-    <string name="August">８月</string>
-    <string name="September">９月</string>
-    <string name="October">１０月</string>
-    <string name="November">１１月</string>
-    <string name="December">１２月</string>
+    <string name="January">1</string>
+    <string name="February">2</string>
+    <string name="March">3</string>
+    <string name="April">4</string>
+    <string name="May">5</string>
+    <string name="June">6</string>
+    <string name="July">7</string>
+    <string name="August">8</string>
+    <string name="September">9</string>
+    <string name="October">10</string>
+    <string name="November">11</string>
+    <string name="December">12</string>
 
     <string name="all">全て</string>
     <string name="before1month">過去１か月</string>
@@ -67,18 +67,18 @@
     </string-array>
 
     <string-array name="spinner_month">
-        <item>１月</item>
-        <item>２月</item>
-        <item>３月</item>
-        <item>４月</item>
-        <item>５月</item>
-        <item>６月</item>
-        <item>７月</item>
-        <item>８月</item>
-        <item>９月</item>
-        <item>１０月</item>
-        <item>１１月</item>
-        <item>１２月</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
     </string-array>
     <!-- ここまで-->
 
