@@ -1,5 +1,6 @@
 package com.example.idims;
 
+import androidx.activity.result.ActivityResult;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -31,6 +32,9 @@ public class DisasterSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //画面の表示
         setContentView(R.layout.activity_disaster_search);
+
+        //地域選択ボタンのテキスト表示
+        //textSetSelectAreaButton();
 
         //検索条件を格納するSearchConditionsの宣言
         SearchConditions search = new SearchConditions();
@@ -115,7 +119,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId){
                 RadioButton radio = (RadioButton)findViewById(checkedId);
-                if(radio.isChecked() == true){//ラジオボタンのどちらかが押されている場合
+                if(radio.isChecked()){//ラジオボタンのどちらかが押されている場合
                     switch(checkedId){
                         case R.id.radioButton_Constant://一定期間が押されている場合
                             //一定期間スピナーのクリックを有効にする
@@ -193,11 +197,14 @@ public class DisasterSearchActivity extends AppCompatActivity {
         });
     }
 
+    private ActivityResult activityResult;
+
     //地域選択アクティビティから結果を受け取る
     protected void OnActivityResult(int requestCode, int resultCode, Intent intent){
         super.onActivityResult(requestCode, resultCode, intent);
         if(resultCode == RESULT_OK && requestCode == RESULT_AREA && intent != null){
             areaNum = intent.getIntExtra("areaNumber", 0);
+            textSetSelectAreaButton();
         }
     }
 
