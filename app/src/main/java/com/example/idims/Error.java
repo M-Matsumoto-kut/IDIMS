@@ -1,33 +1,47 @@
 package com.example.idims;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.idims.Area.AreaList;
 import com.example.idims.databinding.FragmentFirstBinding;
 
-public class FirstFragment extends Fragment {
+public class Error extends AppCompatActivity {
 
-    private FragmentFirstBinding binding;
+    //private FragmentFirstBinding binding;
 
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        /*
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
+         */
+        setContentView(R.layout.activity_area_list);
+
     }
 
+    //毎動作時に実行
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setContentView(R.layout.activity_area_list);
+    }
+
+    /*
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,12 +50,10 @@ public class FirstFragment extends Fragment {
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
+
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+     */
+
 
 }

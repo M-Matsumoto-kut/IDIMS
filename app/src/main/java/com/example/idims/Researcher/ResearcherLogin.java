@@ -84,12 +84,9 @@ public class ResearcherLogin extends AppCompatActivity {
 
             if(Authenticate.loginAuthenticate(userIdInt, passwordStr)) {
 
-                    //loginTypeを2（研究者）に更新
-                    //IDをを保存し，自動ログインを実現
-
                 StatusData flag = (StatusData) getApplication();
-                flag.setLoginTypeRes();
-                flag.setId(userIdInt);
+                flag.setLoginTypeRes();         //loginTypeを2（研究者）に更新
+                flag.setId(userIdInt);          //IDをを保存し，自動ログインを実現
 
                 //設定画面に移動
                 Intent intent = new Intent(getApplication(), Setting.class);

@@ -18,7 +18,6 @@ public class Authenticate extends AppCompatActivity {
         //入力されたパスワードとpasswordが一致しているか
         return inputPassword.equals(password);
 
-
     }
 
     //現在のパスワードが一致しているか検証(true：一致，false:不一致)

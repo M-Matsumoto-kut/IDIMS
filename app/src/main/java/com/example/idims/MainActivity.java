@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import android.content.Intent;
 
+import com.example.idims.Researcher.ResearcherPage;
 import com.example.idims.databinding.ActivityMainBinding;
 
 import android.widget.Button;
@@ -19,8 +20,8 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     //なにこれ
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    //private AppBarConfiguration appBarConfiguration;
+    //private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,26 +39,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
 
-        //status（Activity状態）を取得
+        //loginType（ログイン状態）を取得
         StatusData flag = (StatusData) this.getApplication();
-        int status = flag.getActivityStatus();
+        int loginType = flag.getLoginType();
 
-        /*
-        statusの値によってActivityを変える（予定）
 
-        switch(status) {
-            case 1: //初回ログイン
+        //loginTypeの値によってActivityを変える（予定）
+        Intent intent;
+        switch(loginType) {
+            case 0: //初回ログイン
                 this.userTypeSelect();
                 break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            default:
-        }
+            case 1: //２回目以降のログイン(一般ユーザ）
+                intent = new Intent(getApplication(), HomeActivity.class);
+                startActivity(intent);
+                break;
+            case 2: //２回目以降のログイン(一般ユーザ）
+                intent = new Intent(getApplication(), ResearcherPage.class);
+                startActivity(intent);
+                break;
+            default: //エラー
+            intent = new Intent(getApplication(), Error.class);
+            startActivity(intent);
 
-         */
+        }
     }
 
     //ユーザタイプ選択
@@ -78,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 設定画面に移行
                 ただし，自動ログイン機能が実現できない場合はメニュー画面に移行
              */
-
             /*
             Intent intent = new Intent(getApplication(), Setting.class);
             startActivity(intent);
