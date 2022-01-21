@@ -42,26 +42,18 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMapView.getMapAsync(this);
 
         //災害状況の発生有無を表示するテキスト表示
-
+        setTextdisasterOccurrences();
         //避難勧告のテキスト表示を行う
         setTextevacuationAdvisory();
     }
 
     //画面上部の災害発生状況を表すテキストのセット
     protected void setTextdisasterOccurrences(){
-        TextView textView = (TextView) findViewById(R.id.textView_DisasterOccurrence);
+        TextView textViewEva = (TextView) findViewById(R.id.textView_DisasterOccurrence);
         if(do_Wave == false && do_Landsride == false && do_Thounder == false){
-            textView.setText("");
-        }
-    }
-
-    //画面下部の避難勧告表示のテキストのセット
-    protected void setTextevacuationAdvisory(){
-        TextView textViewEva = (TextView) findViewById(R.id.textView_Eva);
-        if(do_Wave == true || do_Landsride == true){
-            textViewEva.setText("避難勧告が発生しています");
+            textViewEva.setText("24時間以内の災害発生はありません");
         }else{
-            textViewEva.setText("避難勧告は発生していません");
+            textViewEva.setText("災害が発生しています");
         }
 
         //検知時刻のテキスト表示
@@ -69,8 +61,17 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm");
         String str = sdf.format(date);
-        textViewTime.setText(str);
+        textViewTime.setText(str + "現在");
+    }
 
+    //画面下部の避難勧告表示のテキストのセット
+    protected void setTextevacuationAdvisory(){
+        TextView textView = (TextView) findViewById(R.id.textView_Eva);
+        if(do_Wave == true || do_Landsride == true){
+            textView.setText("避難勧告が発生しています");
+        }else{
+            textView.setText("避難勧告は発生していません");
+        }
     }
 
 
