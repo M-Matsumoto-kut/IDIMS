@@ -1,6 +1,7 @@
 package com.example.idims;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -17,13 +18,15 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationRequest;
 import android.nfc.FormatException;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     //マップ表示用のクラス
     private MapView mMapView;
@@ -45,7 +48,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //Mapviewの使用に重要
         Bundle mapViewBundle = null;
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
         mMapView = (MapView) findViewById(R.id.mapView);
@@ -55,12 +58,24 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         //現在位置の測定
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         //測位の精度を上げる
+        /*
         LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_SCCURACY);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        */
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                if(location != null){
+                if (location != null) {
 
                 }
             }
