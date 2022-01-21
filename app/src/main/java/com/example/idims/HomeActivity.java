@@ -1,31 +1,42 @@
 package com.example.idims;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 
 import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 
+import android.location.Location;
+import android.location.LocationRequest;
 import android.nfc.FormatException;
 import android.os.Bundle;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback{
 
+    //マップ表示用のクラス
     private MapView mMapView;
-
+    //マップ表示に必要な文字列
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
 
     //通知を行う災害が発生しているかを表す
     public boolean do_Wave;
     public boolean do_Landsride;
     public boolean do_Thounder;
+
+    //現在位置の位置情報を取得するために必要なクラス
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +51,20 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMapView = (MapView) findViewById(R.id.mapView);
         mMapView.onCreate(mapViewBundle);
         mMapView.getMapAsync(this);
+
+        //現在位置の測定
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        //測位の精度を上げる
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_SCCURACY);
+        fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if(location != null){
+
+                }
+            }
+        });
 
         //災害状況の発生有無を表示するテキスト表示
         setTextdisasterOccurrences();
