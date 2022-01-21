@@ -16,7 +16,6 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 
 //災害検索アクティビティ
@@ -200,7 +199,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
     private ActivityResult activityResult;
 
     //地域選択アクティビティから結果を受け取る
-    protected void OnActivityResult(int requestCode, int resultCode, Intent intent){
+    private void OnActivityResult(int requestCode, int resultCode, Intent intent){
         super.onActivityResult(requestCode, resultCode, intent);
         if(resultCode == RESULT_OK && requestCode == RESULT_AREA && intent != null){
             areaNum = intent.getIntExtra("areaNumber", 0);
@@ -210,6 +209,9 @@ public class DisasterSearchActivity extends AppCompatActivity {
 
     //検索範囲の開始日時が終了日時より未来の場合0を返す
     protected int overTime(String startTime, String endTime){
+        if(startTime == null || endTime == null){
+            return 1;
+        }
         int sTime = Integer.parseInt(startTime);
         int eTime = Integer.parseInt(endTime);
         if(sTime > eTime){
