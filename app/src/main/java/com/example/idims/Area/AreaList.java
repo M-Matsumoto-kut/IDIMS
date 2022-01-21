@@ -11,12 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.idims.MainActivity;
 import com.example.idims.R;
-import com.example.idims.StatusFlag;
+import com.example.idims.StatusData;
 
 //閲覧地域一覧モジュール
 public class AreaList extends AppCompatActivity {
 
-    private StatusFlag status;
+    private StatusData status;
     private int region;
     private int prefecture;
     private int areaNum;
@@ -29,7 +29,7 @@ public class AreaList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.status = (StatusFlag) getApplication();
+        this.status = (StatusData) getApplication();
 
         //インスタンス初期化
         region = 0;
@@ -67,14 +67,13 @@ public class AreaList extends AppCompatActivity {
             startActivity(intent);
         });
 
-        TextView textView[] = new TextView[47];
+        TextView[] textView = new TextView[47];
 
         float dp = getResources().getDisplayMetrics().density;
-        textWidth = (int)(380 * dp);;
+        textWidth = (int)(380 * dp);
         textHeight = (int)(60 * dp);
 
         LinearLayout linearLayout = findViewById(R.id.AreaListLinear);
-
 
         linearLayout.setGravity(Gravity.CENTER);
 
@@ -108,7 +107,5 @@ public class AreaList extends AppCompatActivity {
                                 textHeight));
             }
         }
-
     }
-
 }

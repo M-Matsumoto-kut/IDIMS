@@ -7,21 +7,18 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.idims.MainActivity;
-import com.example.idims.R;
-import com.example.idims.StatusFlag;
+import com.example.idims.StatusData;
 
 import java.util.Locale;
 
 //地方選択画面モジュール
 public class RegionSelect extends AppCompatActivity {
     private TextView textView;
-    private StatusFlag status;
+    private StatusData status;
 
     private final String[] regions = {"北海道地方", "東北地方", "関東地方", "中部地方", "近畿地方",
             "中国地方", "四国地方", "九州地方"};
@@ -33,7 +30,7 @@ public class RegionSelect extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.status = (StatusFlag) getApplication();
+        this.status = (StatusData) getApplication();
     }
 
     @Override
@@ -116,7 +113,7 @@ public class RegionSelect extends AppCompatActivity {
 
 
                     //選択したボタンに対応する地方をStatusFlagに記録
-                    status.setAddSel(addSel);
+                    status.setSelRegion(addSel);
                     //都道府県選択画面へ移行
                     Intent intent = new Intent(getApplication(), PrefectureSelect.class);
                     startActivity(intent);

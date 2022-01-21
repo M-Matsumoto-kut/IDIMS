@@ -12,13 +12,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 //import com.example.idims.MainActivity;
-import com.example.idims.StatusFlag;
+import com.example.idims.StatusData;
 
 import java.util.Locale;
 
 public class PrefectureSelect extends AppCompatActivity {
     private TextView textView;
-    private StatusFlag status;
+    private StatusData status;
 
     private final String[] prefectures = { "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県",
             "福島県", "東京都", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県",
@@ -40,7 +40,7 @@ public class PrefectureSelect extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.status = (StatusFlag) getApplication();
+        this.status = (StatusData) getApplication();
     }
 
     @Override
@@ -101,7 +101,7 @@ public class PrefectureSelect extends AppCompatActivity {
         int num = 0;
 
         //StatusFlagに記録したaddSel(記録した地方に対応した番号）を取得する
-        addSel = status.getAddSel();
+        addSel = status.getSelRegion();
 
         //地方によって表示する都道府県の範囲を選択
         switch(addSel){

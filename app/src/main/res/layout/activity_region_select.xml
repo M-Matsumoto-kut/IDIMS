@@ -14,7 +14,7 @@
         android:layout_height="50dp"
         android:background="#03A9F4"
         android:gravity="center"
-        android:text="地方地域選択"
+        android:text="@string/region_select"
         android:textColor="#FBFAFD"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
 
         android:background="#03A9F4"
         android:backgroundTint="#03A9F4"
-        android:text="戻る"
+        android:text="@string/back"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:backgroundTint="#03A9F4"
@@ -53,7 +53,7 @@
 
         <LinearLayout
             android:id="@+id/regionLinear"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:orientation="vertical">
 

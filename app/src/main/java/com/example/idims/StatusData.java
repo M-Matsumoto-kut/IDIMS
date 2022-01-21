@@ -4,11 +4,10 @@ import android.app.Application;
 import java.util.Arrays;
 
 //　全てモジュールにおいて，保持する必要があるデータを格納するクラス
-public class StatusFlag extends Application {
+public class StatusData extends Application {
     private int activityStatus;     // 起動時のActivityの状態
     private int loginType;          // login時のユーザのタイプ
     private int id;                 // (研究者)ログイン後IDを記録する
-    private int[] selectRegionNum = new int[8];       //　選択地方を番号で格納（添字がregionsと対応)
     final private String[] regions = {"北海道地方", "東北地方", "関東地方", "中部地方", "近畿地方",
             "中国地方", "四国地方", "九州地方"};
     private int[] selectPrefectureNum = new int[47]; //　選択都道府県を番号で格納
@@ -20,9 +19,8 @@ public class StatusFlag extends Application {
                                      "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県",
                                     "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県", "大分県",
                                     "熊本県", "宮崎県", "鹿児島県", "沖縄県"};
-    private int countReg; // 選択地方数をカウント
     private int countPre; // 選択都道府県数をカウント
-    private int addSel; //　どの地方を選択したか記録
+    private int selRegion; //　どの地方を選択したか記録
 
 
     @Override
@@ -30,11 +28,11 @@ public class StatusFlag extends Application {
         super.onCreate();
 
         //値の初期化
-        Arrays.fill(selectRegionNum, 99);
+        //Arrays.fill(selectRegionNum, 99);
         Arrays.fill(selectPrefectureNum,99);
         countPre = 0;
-        countReg = 0;
-        addSel = 99;
+        loginType = 0;
+        selRegion = 99;
 
         this.setActivityStatus(1);
     }
@@ -56,8 +54,9 @@ public class StatusFlag extends Application {
 
     /*
         loginTypeの値を返す
-        1:generalUser
-        2:researcherUser
+        0:nonSelect（未選択）
+        1:generalUser(一般ユーザ)
+        2:researcherUser(研究者ユーザ)
      */
     public int getLoginType() {
         return this.loginType;
@@ -73,46 +72,23 @@ public class StatusFlag extends Application {
         this.loginType = 2;
     }
 
-    //idを返す
+    //研究者ユーザのidを返す
     public int getId() {
         return this.id;
     }
 
-    //idの値を更新
+    //研究者ユーザのidの値を更新
     public void setId(int id) { this.id = id; }
 
-    //regions（地方リスト）から特定の地方名を返す
+    //regions（地方リスト）から番号に対応した地方名を返す
     public String getRegionName(int num) { return regions[num]; };
 
-    //設定されている地域の番号を返す,値が99=格納されていない
-    public int getSelectRegionNum(int num) {
-        return this.selectRegionNum[num];
-    };
 
-    /*
-    選択地域を設定(selectRegionNumに地方に対応した配列番号numを格納）
-    例：北海道 -> 0, ~, 九州 -> 7
-     */
-    public void setRegion(int num) {
-        this.selectRegionNum[this.countReg] = num;
-        this.countReg ++; //カウント
-    }
-
-
-    //prefectures（都道府県リスト）から特定の都道府県名を返す
+    //prefectures（都道府県リスト）から番号に対応した都道府県名を返す
     public String getPrefectureName(int num) { return prefectures[num]; };
 
     /*
-    選択地域を設定(selectPrefectureNumに都道府県に対応した配列番号numを格納）
-    例：北海道 -> 0, ~, 沖縄県 -> 46
-     */
-    public void setPrefectureNum(int num) {
-        this.selectPrefectureNum[this.countPre] = num;
-        this.countPre ++; //カウント
-    }
-
-    /*
-        addSel
+        selRegion
         0:北海道
         1:東北
         2:関東
@@ -123,17 +99,26 @@ public class StatusFlag extends Application {
         7:九州
      */
 
-    //addSelを返す
-    public int getAddSel() {
-        return this.addSel;
+    //selRegionを返す
+    public int getSelRegion() {
+        return this.selRegion;
     }
 
-    //addSelを更新
-    public void setAddSel(int addSel) { this.addSel = addSel; }
+    //selRegionを更新
+    public void setSelRegion(int selRegion) { this.selRegion = selRegion; }
 
-    //prefectureNumを返す
+    //selectPrefectureNum(選択した都道府県の番号）を返す
     public int getPrefectureNum(int i) {
         return this.selectPrefectureNum[i];
+    }
+
+    /*
+    選択地域を設定(selectPrefectureNumに都道府県に対応した配列番号numを格納）
+    例：北海道 -> 0, ~, 沖縄県 -> 46
+     */
+    public void setPrefectureNum(int num) {
+        this.selectPrefectureNum[this.countPre] = num;
+        this.countPre ++; //カウント
     }
 
 }

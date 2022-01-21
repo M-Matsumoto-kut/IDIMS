@@ -1,12 +1,9 @@
 package com.example.idims;
 
-import android.hardware.Camera;
 import android.os.Bundle;
 
 import com.example.idims.Area.AreaList;
-import com.example.idims.Area.RegionSelect;
 import com.example.idims.Researcher.ResearcherLogin;
-import com.example.idims.Researcher.ResearcherPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //status（Activity状態）を取得
-        StatusFlag flag = (StatusFlag) getApplication();
+        StatusData flag = (StatusData) getApplication();
         this.userTypeSelect();
     }
 
@@ -42,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         //status（Activity状態）を取得
-        StatusFlag flag = (StatusFlag) this.getApplication();
+        StatusData flag = (StatusData) this.getApplication();
         int status = flag.getActivityStatus();
 
         /*
@@ -74,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             //loginTypeを1(一般人)に設定
-            StatusFlag flag = (StatusFlag) getApplication();
+            StatusData flag = (StatusData) getApplication();
             flag.setLoginTypeGen();
 
             /*

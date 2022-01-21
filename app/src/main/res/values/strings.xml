@@ -51,6 +51,31 @@
     <string name="Kinki">近畿</string>
     <string name="ChugokuShikoku">中国・四国</string>
     <string name="Kyushu">九州</string>
+    <string name="prefecture_select">都道府県選択</string>
+    <string name="region_select">地方選択</string>
+    <string name="back">戻る</string>
+    <string name="set">設定</string>
+    <string name="gps">位置情報</string>
+    <string name="user_select">ユーザの選択</string>
+    <string name="general">一般の方</string>
+    <string name="researcher">研究者の方</string>
+    <string name="sensor_list">センサー異常一覧</string>
+    <string name="password_chenge">パスワード変更</string>
+    <string name="now_password">現在のパスワード</string>
+    <string name="input_now_password">現在のパスワードを入力してください</string>
+    <string name="new_password">新しいパスワード</string>
+    <string name="input_new_password">新しいパスワードを入力してください</string>
+    <string name="character＿limit">半角英数字8文字以上・記号不可</string>
+    <string name="change">変更</string>
+    <string name="researcher_page">研究者ページ</string>
+    <string name="sensor_error">センサー異常</string>
+    <string name="login">ログイン</string>
+    <string name="id">ID</string>
+    <string name="input_id">IDを入力してください</string>
+    <string name="password">パスワード</string>
+    <string name="input_password">パスワードを入力してください</string>
+    <string name="area_list">閲覧地域一覧</string>
+    <string name="add_area">地域を追加する</string>
 
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
     <string-array name="spinner_constant">

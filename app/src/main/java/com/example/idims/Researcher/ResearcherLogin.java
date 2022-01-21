@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.idims.Authenticate;
 import com.example.idims.R;
 import com.example.idims.Setting;
-import com.example.idims.StatusFlag;
+import com.example.idims.StatusData;
 
 //研究者ログインページモジュール
 public class ResearcherLogin extends AppCompatActivity {
@@ -38,7 +38,7 @@ public class ResearcherLogin extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         ///*
-        StatusFlag flag = (StatusFlag) this.getApplication();
+        StatusData flag = (StatusData) this.getApplication();
         int loginType = flag.getLoginType();
         if(loginType == 2) {
             //研究者ページに移行
@@ -87,7 +87,7 @@ public class ResearcherLogin extends AppCompatActivity {
                     //loginTypeを2（研究者）に更新
                     //IDをを保存し，自動ログインを実現
 
-                StatusFlag flag = (StatusFlag) getApplication();
+                StatusData flag = (StatusData) getApplication();
                 flag.setLoginTypeRes();
                 flag.setId(userIdInt);
 
