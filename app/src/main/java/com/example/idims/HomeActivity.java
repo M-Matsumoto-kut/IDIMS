@@ -87,6 +87,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         setTextevacuationAdvisory();
     }
 
+
     //画面上部の災害発生状況を表すテキストのセット
     protected void setTextdisasterOccurrences(){
         TextView textViewEva = (TextView) findViewById(R.id.textView_DisasterOccurrence);
