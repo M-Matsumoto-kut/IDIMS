@@ -97,5 +97,65 @@ public class Setting extends AppCompatActivity {
             }
         });
 
+        cb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if(cb1.isChecked()) {
+                    //チェックボックスがOFF->ONなら
+
+
+                    //ここに位置情報をONにするコードを入れたい
+
+
+                }else {
+                    //チェックボックスがON->OFFなら
+
+
+                    //ここに位置情報をOFFにするコードを入れたい
+
+
+                }
+            }
+        });
+
+        cb2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if(cb2.isChecked()) {
+                    //チェックボックスがOFF->ONなら
+
+
+                    //ここに位置情報をONにするコードを入れたい
+
+
+                }else {
+                    //チェックボックスがON->OFFなら
+
+
+                    //ここに位置情報をOFFにするコードを入れたい
+
+
+                }
+            }
+        });
+
+        cb3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if(cb3.isChecked()) {
+                    //スイッチがOFF->ONなら
+
+
+                    //ここに位置情報をONにするコードを入れたい
+
+
+                }else {
+                    //スイッチがON->OFFなら
+
+
+                    //ここに位置情報をOFFにするコードを入れたい
+
+
+                }
+            }
+        });
+
     }
 }
