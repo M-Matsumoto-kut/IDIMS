@@ -2,6 +2,7 @@ package com.example.idims;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.widget.TextView;
 
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -34,7 +35,11 @@ public class SearchResultListActivity extends AppCompatActivity {
         startTime = intentDisasterSearch.getStringExtra("startTime");
         endTime = intentDisasterSearch.getStringExtra("endTime");
 
+        //デバック用
+        debugGetData();
+
         //データベースに接続し結果を一覧で表示する
+        /*
         try{
             Connection con = DriverManager.getConnection("jdbc:mysql://idims-database-dev-1", "Numasa_89", "admin");
             Statement state = con.createStatement();
@@ -63,9 +68,23 @@ public class SearchResultListActivity extends AppCompatActivity {
 
         }
 
+        */
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result_list);
+    }
+
+    //データ受け取りが出来ているかのデバッグ
+    private void debugGetData(){
+        TextView textView = (TextView) findViewById(R.id.textView_DebugSR);
+        if(landsrideOn == true || waveOn == true || thounderOn == true){
+            if(startTime == null || endTime == null){
+                textView.setText("areaNumber: " + areaNumber +", ALLTime");
+            }else{
+                textView.setText("areaNumber: " + areaNumber + "StartTime:" + startTime + "Endtime" + endTime);
+            }
+        }
     }
 
 }

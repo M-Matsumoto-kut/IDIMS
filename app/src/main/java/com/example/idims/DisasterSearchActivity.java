@@ -23,9 +23,12 @@ import android.widget.TextView;
 //災害検索アクティビティ
 public class DisasterSearchActivity extends AppCompatActivity {
 
-    public int areaNum; //地方を選択する
-    int disasterCount = 0; //災害の数が選択されている数を表す
+    private int areaNum; //地方を選択する
+    private int disasterCount = 0; //災害の数が選択されている数を表す
     static final int RESULT_AREA = 1000; //getexistを使用するのに必要
+
+    //期間設定が一度もされていないかを表す
+    private boolean notSelectPeriod = true;
 
     public static final String SEARCHCONDITIONS_DATA = "com.example.idims.SearchConditions.java";//検索結果アクティビティに検索条件を引き渡すのに必要
     @Override
@@ -150,6 +153,8 @@ public class DisasterSearchActivity extends AppCompatActivity {
                             search.settingFree(startYear, startMonth, endYear, endMonth);
                             break;
                     }
+                    //期間選択がされた
+                    notSelectPeriod = false;
                 }
             }
         });
@@ -163,13 +168,40 @@ public class DisasterSearchActivity extends AppCompatActivity {
                 if(areaNum > 7 || areaNum < 1){ //地域が選択されていない場合
                     TextView textView = (TextView) findViewById(R.id.textView_Error);
                     textView.setText("地域を選択してください");
-                }else if(disasterCount > 1){ //災害の種類が一つも選択されていない場合
+                }else if(disasterCount < 1){ //災害の種類が一つも選択されていない場合
                     TextView textView = (TextView) findViewById(R.id.textView_Error);
                     textView.setText("災害を1種類以上選んでください");
+                }else if(notSelectPeriod){ //期間設定がどちらもされていない場合
+                    TextView textView = (TextView) findViewById(R.id.textView_Error);
+                    textView.setText("どちらかの期間を選んでください");
                 }else if(overTime(search.startDate, search.endDate) == 0){ //自由設定期間が正しく設定されていない場合
                     TextView textView = (TextView) findViewById(R.id.textView_Error);
                     textView.setText("開始時刻が終了時刻より先にならないよう設定してください");
                 }else{
+                    //期間選択を検索し、期間を返す
+                    group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                                                         @Override
+                                                         public void onCheckedChanged(RadioGroup group, int checkedId) {
+                                                             RadioButton radio = (RadioButton) findViewById(checkedId);
+                                                             if (radio.isChecked()) {//ラジオボタンのどちらかが押されている場合
+                                                                 switch (checkedId) {
+                                                                     case R.id.radioButton_Constant://一定期間が押されている場合
+                                                                         //期間の取得
+                                                                         String str = spinner_Constant.getSelectedItem().toString();
+                                                                         search.settingConstant(str);
+                                                                         break;
+                                                                     case R.id.radioButton_free://自由期間が押されている場合
+                                                                         //文字列の取得
+                                                                         String startYear = spinner_Free_YearStart.getSelectedItem().toString();
+                                                                         String startMonth = spinner_Free_MonthStart.getSelectedItem().toString();
+                                                                         String endYear = spinner_Free_YearEnd.getSelectedItem().toString();
+                                                                         String endMonth = spinner_Free_MonthEnd.getSelectedItem().toString();
+                                                                         search.settingFree(startYear, startMonth, endYear, endMonth);
+                                                                         break;
+                                                                 }
+                                                             }
+                                                         }
+                                                     });
                     //検索結果画面へ移動
                     Intent intent = new Intent(DisasterSearchActivity.this, SearchResultListActivity.class);
                     //検索結果の条件を一つずつ引き渡す
@@ -228,13 +260,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
         }else{
             button.setText(getString(R.string.selectArea));
         }
-        //デバッグ用
-        TextView textView = (TextView) findViewById(R.id.textView_Debug);
-        if(areaNum==0){
-            textView.setText("null");
-        }else{
-            textView.setText("Now number is " + areaNum);
-        }
+
     }
 
 
