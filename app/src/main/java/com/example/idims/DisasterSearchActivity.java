@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 
 
+
+
 //災害検索アクティビティ
 public class DisasterSearchActivity extends AppCompatActivity {
 
@@ -33,7 +35,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_disaster_search);
 
         //地域選択ボタンのテキスト表示
-        //textSetSelectAreaButton();
+        textSetSelectAreaButton();
 
         //検索条件を格納するSearchConditionsの宣言
         SearchConditions search = new SearchConditions();
@@ -199,7 +201,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
     private ActivityResult activityResult;
 
     //地域選択アクティビティから結果を受け取る
-    private void OnActivityResult(int requestCode, int resultCode, Intent intent){
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
         super.onActivityResult(requestCode, resultCode, intent);
         if(resultCode == RESULT_OK && requestCode == RESULT_AREA && intent != null){
             areaNum = intent.getIntExtra("areaNumber", 0);
@@ -239,6 +241,13 @@ public class DisasterSearchActivity extends AppCompatActivity {
             button.setText(getString(R.string.Kyushu));
         }else{
             button.setText(getString(R.string.selectArea));
+        }
+        //デバッグ用
+        TextView textView = (TextView) findViewById(R.id.textView_Debug);
+        if(areaNum==0){
+            textView.setText("null");
+        }else{
+            textView.setText("Now number is " + areaNum);
         }
     }
 

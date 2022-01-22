@@ -46,15 +46,6 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //Mapviewの使用に重要
-        Bundle mapViewBundle = null;
-        if (savedInstanceState != null) {
-            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
-        }
-        mMapView = (MapView) findViewById(R.id.mapView);
-        mMapView.onCreate(mapViewBundle);
-        mMapView.getMapAsync(this);
-
         //現在位置の測定
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         //測位の精度を上げる
@@ -80,6 +71,17 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         });
+
+        //Mapviewの使用に重要
+        Bundle mapViewBundle = null;
+        if (savedInstanceState != null) {
+            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
+        }
+        mMapView = (MapView) findViewById(R.id.mapView);
+        mMapView.onCreate(mapViewBundle);
+        mMapView.getMapAsync(this);
+
+
 
         //災害状況の発生有無を表示するテキスト表示
         setTextdisasterOccurrences();

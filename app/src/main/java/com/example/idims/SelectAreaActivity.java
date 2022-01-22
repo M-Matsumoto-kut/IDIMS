@@ -11,9 +11,10 @@ import android.os.Bundle;
 
 
 //災害検索画面内の地域選択画面アクティビティ
-public class SelectAreaActivity extends AppCompatActivity {
+public class SelectAreaActivity extends DisasterSearchActivity {
 
-    int areaNum = 0;
+    private int areaNum = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class SelectAreaActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 RadioButton radioButton = (RadioButton) findViewById(i);
-                if(radioButton.isChecked() == true){
+                if(radioButton.isChecked()){
                     switch(i){
                         case R.id.radioButton_Hokkaido:
                             areaNum = 1;

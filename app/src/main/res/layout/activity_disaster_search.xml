@@ -28,7 +28,7 @@
             android:backgroundTint="#FFFFFF"
             android:textSize="24sp"
             app:backgroundTint="#454545"
-            tools:ignore="TextContrastCheck" />
+            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
     </FrameLayout>
 
     <TextView
@@ -344,5 +344,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_Search" />
+
+    <TextView
+        android:id="@+id/textView_Debug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="108dp"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
