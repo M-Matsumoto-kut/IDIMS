@@ -160,45 +160,31 @@ public class DisasterSearchActivity extends AppCompatActivity {
         resultButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 //検索条件を満たさない場合エラーを起こす
-                //地域が選択されていない場合
-                switch(areaNum){
-                    case 0:
-                        TextView textView = (TextView) findViewById(R.id.textView_Error);
-                        textView.setText("地域を選択してください");
-                        break;
+                if(areaNum > 7 || areaNum < 1){ //地域が選択されていない場合
+                    TextView textView = (TextView) findViewById(R.id.textView_Error);
+                    textView.setText("地域を選択してください");
+                }else if(disasterCount > 1){ //災害の種類が一つも選択されていない場合
+                    TextView textView = (TextView) findViewById(R.id.textView_Error);
+                    textView.setText("災害を1種類以上選んでください");
+                }else if(overTime(search.startDate, search.endDate) == 0){ //自由設定期間が正しく設定されていない場合
+                    TextView textView = (TextView) findViewById(R.id.textView_Error);
+                    textView.setText("開始時刻が終了時刻より先にならないよう設定してください");
+                }else{
+                    //検索結果画面へ移動
+                    Intent intent = new Intent(DisasterSearchActivity.this, SearchResultListActivity.class);
+                    //検索結果の条件を一つずつ引き渡す
+                    intent.putExtra("AreaNumber", areaNum);
+                    intent.putExtra("Wave", search.getWave_On());
+                    intent.putExtra("Landsride", search.getLandsride_On());
+                    intent.putExtra("Thounder", search.getThounder_On());
+                    intent.putExtra("startTime", search.getStartDate());
+                    intent.putExtra("endTime", search.getEndDate());
+                    startActivity(intent);
                 }
-                //災害の種類が一つも選択されていない場合
-                switch(disasterCount){
-                    case 0:
-                        TextView textView = (TextView) findViewById(R.id.textView_Error);
-                        textView.setText("災害を1種類以上選んでください");
-                        break;
-                }
-
-                //自由設定期間が正しく設定されていない場合
-                switch(overTime(search.startDate, search.endDate)){
-                    case 0:
-                        TextView textView = (TextView) findViewById(R.id.textView_Error);
-                        textView.setText("開始時刻が終了時刻より先にならないよう設定してください");
-                        break;
-                }
-                //検索結果画面へ移動
-                Intent intent = new Intent(DisasterSearchActivity.this, SearchResultListActivity.class);
-                //検索結果の条件を一つずつ引き渡す
-                intent.putExtra("AreaNumber", areaNum);
-                intent.putExtra("Wave", search.getWave_On());
-                intent.putExtra("Landsride", search.getLandsride_On());
-                intent.putExtra("Thounder", search.getThounder_On());
-                intent.putExtra("startTime", search.getStartDate());
-                intent.putExtra("endTime", search.getEndDate());
-                startActivity(intent);
-
 
             }
         });
     }
-
-    private ActivityResult activityResult;
 
     //地域選択アクティビティから結果を受け取る
     protected void onActivityResult(int requestCode, int resultCode, Intent intent){
