@@ -82,7 +82,7 @@ public class SearchResultListActivity extends AppCompatActivity {
             if(startTime == null || endTime == null){
                 textView.setText("areaNumber: " + areaNumber +", ALLTime");
             }else{
-                textView.setText("areaNumber: " + areaNumber + "StartTime:" + startTime + "Endtime" + endTime);
+                textView.setText("areaNumber: " + areaNumber);
             }
         }
     }
