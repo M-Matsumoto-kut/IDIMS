@@ -210,14 +210,14 @@ public class DisasterSearchActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radio = (RadioButton) findViewById(checkedId);
-                if (radio.isChecked()) {//ラジオボタンのどちらかが押されている場合
+                if (radio.isChecked()) { //ラジオボタンのどちらかが押されている場合
                     switch (checkedId) {
-                        case R.id.radioButton_Constant://一定期間が押されている場合
+                        case R.id.radioButton_Constant: //一定期間が押されている場合
                             //期間の取得
                             String str = spCon.getSelectedItem().toString();
                             search.settingConstant(str);
                             break;
-                        case R.id.radioButton_free://自由期間が押されている場合
+                        case R.id.radioButton_free: //自由期間が押されている場合
                             //文字列の取得
                             String startYear = spFreeYS.getSelectedItem().toString();
                             String startMonth = spFreeMS.getSelectedItem().toString();
