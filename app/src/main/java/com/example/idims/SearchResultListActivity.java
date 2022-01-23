@@ -25,13 +25,15 @@ public class SearchResultListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search_result_list);
 
         //DisasterSearchActivityから検索条件を受け取る
         Intent intentDisasterSearch = getIntent();
-        areaNumber = intentDisasterSearch.getIntExtra("areaNumber", 0);
+        areaNumber = intentDisasterSearch.getIntExtra("AreaNumber", 0);
         waveOn = intentDisasterSearch.getBooleanExtra("Wave", false);
-        landsrideOn = intentDisasterSearch.getBooleanExtra("landsride", false);
-        thounderOn = intentDisasterSearch.getBooleanExtra("thounder", false);
+        landsrideOn = intentDisasterSearch.getBooleanExtra("Landsride", false);
+        thounderOn = intentDisasterSearch.getBooleanExtra("Thounder", false);
         startTime = intentDisasterSearch.getStringExtra("startTime");
         endTime = intentDisasterSearch.getStringExtra("endTime");
 
@@ -71,8 +73,7 @@ public class SearchResultListActivity extends AppCompatActivity {
         */
 
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_result_list);
+
     }
 
     //データ受け取りが出来ているかのデバッグ
