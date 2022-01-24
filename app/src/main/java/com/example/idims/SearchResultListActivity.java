@@ -157,8 +157,7 @@ public class SearchResultListActivity extends AppCompatActivity {
                 Address address = (Address) geocoder.getFromLocation(lat, lng, 1);
                 //都道府県を取得
                 String addressStr = address.getAdminArea();
-                if(checkAdminArea(addressStr)){ //割り出した都道府県が検索条件を満たす場合
-
+                if(checkAdminArea(addressStr, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -172,9 +171,10 @@ public class SearchResultListActivity extends AppCompatActivity {
     }
 
     //都道府県が検索条件内に入っているかを確認するメソッド
-    private boolean checkAdminArea(String str){
-
-
+    private boolean checkAdminArea(String str, ArrayList<String> prefList){
+        for(int i = 0; i < prefList.size(); i++){
+            if(str.equals(prefList.get(i))){return true;} //同じ文字列が入っていた場合その地方に該当するので真を返す
+        }
         return false;
     }
 
