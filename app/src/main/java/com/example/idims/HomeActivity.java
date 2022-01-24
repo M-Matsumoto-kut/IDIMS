@@ -42,6 +42,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     //現在位置の位置情報を取得するために必要なクラス
     private FusedLocationProviderClient fusedLocationClient;
 
+    //パーミッションの許可コード
+    static final int REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +67,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         setTextdisasterOccurrences();
         //避難勧告のテキスト表示を行う
         setTextevacuationAdvisory();
+
+        Log.d("テストでここまでは行けてる", "つまり処理自体は行けるのだが...");
     }
 
 
@@ -135,6 +140,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap map) {
         //現在位置の測定
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        Log.d("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         //測位の精度を上げる
         /*
         LocationRequest locationRequest = new LocationRequest();
@@ -144,8 +150,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
             return;
@@ -154,10 +160,13 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onSuccess(Location location) {
                 if (location != null) {
+                    Log.d("処理直前", "どこまで行ったのかな？");
                     map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("NowLocation"));
+                    Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                     Log.d("Home", "onSuccess: " + location.getLatitude() + " , " + location.getLongitude());
                 }else{
                     cantGetLocation();
+                    Log.d("馬鹿垂", "失敗だよ");
                 }
             }
         });
