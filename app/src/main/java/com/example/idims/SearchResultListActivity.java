@@ -61,7 +61,6 @@ public class SearchResultListActivity extends AppCompatActivity {
         debugGetData();
 
         //データベースに接続し検索結果を格納する
-
         try{
             Connection con = DriverManager.getConnection("jdbc:mysql://idims-database-dev-1", "Numasa_89", "admin");
             Statement state = con.createStatement();
@@ -131,6 +130,11 @@ public class SearchResultListActivity extends AppCompatActivity {
         }catch(SQLException ex){
             TextView textView = (TextView) findViewById(R.id.textView_ErrorDBCon);
             textView.setText("エラー:データベースに接続できませんでした。");
+        }
+
+        //格納した検索結果の緯度経度から住所を割り出し、該当する場所であるかを検索する
+        for(int i = 0; i < selectLat.size(); i++){
+            Geocoder geocoder = new Geocoder(this);
         }
 
 
