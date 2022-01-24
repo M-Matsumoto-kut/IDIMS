@@ -117,4 +117,8 @@ public class SearchConditions {
         return this.endDate;
     }
 
+    public boolean getAllConstant(){
+        return this.allConstant;
+    }
+
 }

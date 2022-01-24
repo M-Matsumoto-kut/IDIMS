@@ -187,6 +187,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
                     intent.putExtra("Thounder", search.getThounder_On());
                     intent.putExtra("startTime", search.getStartDate());
                     intent.putExtra("endTime", search.getEndDate());
+                    intent.putExtra("allTime", search.getAllConstant());
                     startActivity(intent);
                 }
 
