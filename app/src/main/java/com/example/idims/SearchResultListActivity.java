@@ -2,6 +2,7 @@ package com.example.idims;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.TextView;
 
 import android.os.Bundle;
@@ -158,11 +159,26 @@ public class SearchResultListActivity extends AppCompatActivity {
                 //都道府県を取得
                 String addressStr = address.getAdminArea();
                 if(checkAdminArea(addressStr, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
+                    resultLat.add(selectLat.get(i));
+                    resultLng.add(selectLng.get(i));
+                    resultLevel.add(selectLevel.get(i));
+                    resultConDis.add(selectConDis.get(i));
+                    resultTime.add(selectTime.get(i));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+        //リストで表示する
+        ArrayList<Button> button = new ArrayList<>(); //ボタンのリスト表示
+        for(int i = 0; i < resultLat.size(); i++){
+
+        }
+
+        //検索条件画面に戻る(初期化するため新しいインテントを渡す)
+
+        //マップ表示にする
 
 
 
