@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.widget.TextView;
 
-import android.location.Geocoder;
 import android.os.Bundle;
 
+import java.io.IOException;
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +14,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import android.location.Address;
+import android.location.Geocoder;
+
 
 
 
@@ -134,13 +138,50 @@ public class SearchResultListActivity extends AppCompatActivity {
 
         //格納した検索結果の緯度経度から住所を割り出し、該当する場所であるかを検索する
         for(int i = 0; i < selectLat.size(); i++){
+            //緯度経度を取得
+            Double lat = selectLat.get(i);
+            Double lng = selectLng.get(i);
+            //住所を取得するジオコーダークラスの宣言
             Geocoder geocoder = new Geocoder(this);
+            //住所を取得
+            try {
+                //住所を取得
+                Address address = (Address) geocoder.getFromLocation(lat, lng, 1);
+                //都道府県を取得
+                String addressStr = address.getAdminArea();
+                if(checkAdminArea(addressStr)){ //割り出した都道府県が検索条件を満たす場合
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
 
 
 
 
+    }
+
+    //都道府県が検索条件内に入っているかを確認するメソッド
+    private boolean checkAdminArea(String str){
+        if(areaNumber == 1){ //北海道である場合
+
+        }else if(areaNumber == 2){ //東北
+
+        }else if(areaNumber == 3){ //関東
+
+        }else if (areaNumber == 4) { //中部
+
+        }else if (areaNumber == 5){ //近畿
+
+        }else if(areaNumber == 6){ //中国・四国
+
+        }else if(areaNumber == 7){ //九州
+
+        }
+
+        return false;
     }
 
     //データ受け取りが出来ているかのデバッグ
