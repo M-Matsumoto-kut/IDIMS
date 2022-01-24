@@ -23,6 +23,7 @@ public class SearchResultListActivity extends AppCompatActivity {
     private boolean waveOn;
     private boolean landsrideOn;
     private boolean thounderOn;
+    private boolean allTime;
     private String startTime;
     private String endTime;
 
@@ -46,6 +47,7 @@ public class SearchResultListActivity extends AppCompatActivity {
         thounderOn = intentDisasterSearch.getBooleanExtra("Thounder", false);
         startTime = intentDisasterSearch.getStringExtra("startTime");
         endTime = intentDisasterSearch.getStringExtra("endTime");
+        allTime = intentDisasterSearch.getBooleanExtra("allTime", false);
 
         //データベース検索用のArrayList 発生場所により不要な情報もあるので消去するため一時的な保存個所として置いておく
         ArrayList<Double> selectLat = new ArrayList<>();
@@ -67,8 +69,14 @@ public class SearchResultListActivity extends AppCompatActivity {
             ResultSet resultLandsride = null;
             ResultSet resultThounder = null;
             if(waveOn){
-                String sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_time FROM disaster WHERE disaster_class = 1 AND disaster_time >= " +
-                        startTime + "% AND disaster_time <= " + endTime + "%;";
+                String sql = null;
+                if(allTime){ //全時間が対象の場合
+                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 1";
+
+                }else{ //そうでない場合時間を指定
+                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 1 AND disaster_time >= " + startTime + " AND disaster_time <= " + endTime;
+                }
+
                 resultWave = state.executeQuery(sql); //データの取得
                 while(resultWave.next()){
                     //検索結果を格納していく
@@ -80,14 +88,49 @@ public class SearchResultListActivity extends AppCompatActivity {
                 }
             }
             if(landsrideOn){
+                String sql = null;
+                if(allTime){ //全時間が対象の場合
+                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 2";
+
+                }else{ //そうでない場合時間を指定
+                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 2 AND disaster_time >= " + startTime + " AND disaster_time <= " + endTime;
+                }
+
+                resultLandsride = state.executeQuery(sql); //データの取得
+                while(resultLandsride.next()){
+                    //検索結果を格納していく
+                    selectLat.add(resultLandsride.getDouble("disaster_x")); //緯度
+                    selectLng.add(resultLandsride.getDouble("disaster_y")); //経度
+                    selectLevel.add(resultLandsride.getInt("disaster_level")); //災害レベル
+                    selectConDis.add(resultLandsride.getInt("disaster_class")); //災害種類
+                    selectTime.add(resultLandsride.getDouble("disaster_time")); //発生時刻
+                }
 
             }
             if(thounderOn){
+                String sql = null;
+                if(allTime){ //全時間が対象の場合
+                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 3";
+
+                }else{ //そうでない場合時間を指定
+                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 3 AND disaster_time >= " + startTime + " AND disaster_time <= " + endTime;
+                }
+
+                resultThounder = state.executeQuery(sql); //データの取得
+                while(resultThounder.next()){
+                    //検索結果を格納していく
+                    selectLat.add(resultThounder.getDouble("disaster_x")); //緯度
+                    selectLng.add(resultThounder.getDouble("disaster_y")); //経度
+                    selectLevel.add(resultThounder.getInt("disaster_level")); //災害レベル
+                    selectConDis.add(resultThounder.getInt("disaster_class")); //災害種類
+                    selectTime.add(resultThounder.getDouble("disaster_time")); //発生時刻
+                }
 
             }
 
         }catch(SQLException ex){
-
+            TextView textView = (TextView) findViewById(R.id.textView_ErrorDBCon);
+            textView.setText("エラー:データベースに接続できませんでした。");
         }
 
 
