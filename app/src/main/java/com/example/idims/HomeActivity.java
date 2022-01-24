@@ -24,6 +24,7 @@ import android.location.Location;
 import android.location.LocationRequest;
 import android.nfc.FormatException;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -46,31 +47,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //現在位置の測定
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        //測位の精度を上げる
-        /*
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        */
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
 
-                }
-            }
-        });
 
         //Mapviewの使用に重要
         Bundle mapViewBundle = null;
@@ -117,6 +94,12 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    //位置情報が取得できなかった時にテキストを表示する
+    protected void cantGetLocation(){
+        TextView textView = (TextView) findViewById(R.id.textView_LocErr);
+        textView.setText("位置情報が取得できません");
+    }
+
 
     //ここから下は地図の表示に必要
     @Override
@@ -150,7 +133,34 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap map) {
-        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        //現在位置の測定
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        //測位の精度を上げる
+        /*
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        */
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("NowLocation"));
+                    Log.d("Home", "onSuccess: " + location.getLatitude() + " , " + location.getLongitude());
+                }else{
+                    cantGetLocation();
+                }
+            }
+        });
     }
 
     @Override
