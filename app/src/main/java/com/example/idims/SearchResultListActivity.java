@@ -38,10 +38,14 @@ public class SearchResultListActivity extends AppCompatActivity {
     public ArrayList<Integer> resultConDis = new ArrayList<>(); //災害種類
     public ArrayList<Double> resultTime = new ArrayList<>(); //発生時刻
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result_list);
+
+        //地域を参照して県を格納する
+        ArrayList<String> prefList = new ArrayList<>(); //県が格納されているリスト
 
         //DisasterSearchActivityから検索条件を受け取る
         Intent intentDisasterSearch = getIntent();
@@ -59,6 +63,9 @@ public class SearchResultListActivity extends AppCompatActivity {
         ArrayList<Integer> selectLevel = new ArrayList<>();
         ArrayList<Integer> selectConDis = new ArrayList<>();
         ArrayList<Double> selectTime = new ArrayList<>();
+
+        //地域を参照して県をリストに格納する
+        addPrefFromAreaNum(areaNumber, prefList);
 
 
         //デバック用
@@ -165,23 +172,29 @@ public class SearchResultListActivity extends AppCompatActivity {
 
     //都道府県が検索条件内に入っているかを確認するメソッド
     private boolean checkAdminArea(String str){
-        if(areaNumber == 1){ //北海道である場合
 
-        }else if(areaNumber == 2){ //東北
-
-        }else if(areaNumber == 3){ //関東
-
-        }else if (areaNumber == 4) { //中部
-
-        }else if (areaNumber == 5){ //近畿
-
-        }else if(areaNumber == 6){ //中国・四国
-
-        }else if(areaNumber == 7){ //九州
-
-        }
 
         return false;
+    }
+
+    //選択地方から県をリストに格納するメソッド
+    private void addPrefFromAreaNum(int areaNum, ArrayList<String> prefList){
+        if(areaNum == 1){ //北海道である場合
+            prefList.add("Hokkaido");
+
+        }else if(areaNum == 2){ //東北
+
+        }else if(areaNum == 3){ //関東
+
+        }else if (areaNum == 4) { //中部
+
+        }else if (areaNum == 5){ //近畿
+
+        }else if(areaNum == 6){ //中国・四国
+
+        }else if(areaNum == 7){ //九州
+
+        }
     }
 
     //データ受け取りが出来ているかのデバッグ
