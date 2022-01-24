@@ -144,6 +144,7 @@ public class SearchResultListActivity extends AppCompatActivity {
         }
 
         //格納した検索結果の緯度経度から住所を割り出し、該当する場所であるかを検索する
+        //メモ:nullで帰ってくる場合は緯度経度に小数点以下が含まれている場合がある。それらがあると無理なのか？
         for(int i = 0; i < selectLat.size(); i++){
             //緯度経度を取得
             Double lat = selectLat.get(i);
@@ -181,18 +182,65 @@ public class SearchResultListActivity extends AppCompatActivity {
     private void addPrefFromAreaNum(int areaNum, ArrayList<String> prefList){
         if(areaNum == 1){ //北海道である場合
             prefList.add("Hokkaido");
-
         }else if(areaNum == 2){ //東北
+            prefList.add("Aomori");
+            prefList.add("Iwate");
+            prefList.add("Miyagi");
+            prefList.add("Akita");
+            prefList.add("Yamagata");
+            prefList.add("Hukushima");
 
         }else if(areaNum == 3){ //関東
+            prefList.add("Ibaraki");
+            prefList.add("Tochigi");
+            prefList.add("Gunma");
+            prefList.add("Saitama");
+            prefList.add("Chiba");
+            prefList.add("Tokyo");
+            prefList.add("Kanagawa");
+
 
         }else if (areaNum == 4) { //中部
+            prefList.add("Niigata");
+            prefList.add("Toyama");
+            prefList.add("Ishikawa");
+            prefList.add("Fukui");
+            prefList.add("Yamanashi");
+            prefList.add("Nagano");
+            prefList.add("Gifu");
+            prefList.add("Shizuoka");
+            prefList.add("Aichi");
 
         }else if (areaNum == 5){ //近畿
+            prefList.add("Mie");
+            prefList.add("Shiga");
+            prefList.add("Kyoto");
+            prefList.add("Osaka");
+            prefList.add("Hyogo");
+            prefList.add("Nara");
+            prefList.add("Wakayama");
 
         }else if(areaNum == 6){ //中国・四国
+            prefList.add("Tottori");
+            prefList.add("Shimane");
+            prefList.add("Okayama");
+            prefList.add("Hiroshima");
+            prefList.add("Yamaguchi");
+            prefList.add("Tokushima");
+            prefList.add("Kagawa");
+            prefList.add("Ehime");
+            prefList.add("Kochi");
+
 
         }else if(areaNum == 7){ //九州
+            prefList.add("Fukuoka");
+            prefList.add("Saga");
+            prefList.add("Nagasaki");
+            prefList.add("Kumamoto");
+            prefList.add("Oita");
+            prefList.add("Miyazaki");
+            prefList.add("Kagoshima");
+            prefList.add("Okinawa");
 
         }
     }
