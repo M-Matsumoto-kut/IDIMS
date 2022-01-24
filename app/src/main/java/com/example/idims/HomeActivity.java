@@ -8,6 +8,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -68,7 +70,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         //避難勧告のテキスト表示を行う
         setTextevacuationAdvisory();
 
-        Log.d("テストでここまでは行けてる", "つまり処理自体は行けるのだが...");
+
     }
 
 
@@ -137,7 +139,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onMapReady(GoogleMap map) {
+    public void onMapReady(GoogleMap map) { //マップのセッティング
         //現在位置の測定
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         Log.d("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
@@ -150,7 +152,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
-
+            //Android専用のダイアログで位置情報の使用許可を求める
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
@@ -161,8 +163,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onSuccess(Location location) {
                 if (location != null) {
                     Log.d("処理直前", "どこまで行ったのかな？");
-                    map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("NowLocation"));
+                    map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("NowLocation").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                     Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                    //デバッグ用のピン map.addMarker(new MarkerOptions().position(new LatLng(33, 133)));
                     Log.d("Home", "onSuccess: " + location.getLatitude() + " , " + location.getLongitude());
                 }else{
                     cantGetLocation();
