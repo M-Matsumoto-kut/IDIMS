@@ -74,7 +74,7 @@ public class SearchResultListActivity extends AppCompatActivity {
 
         //データベースに接続し検索結果を格納する
         try{
-            Connection con = DriverManager.getConnection("jdbc:mysql://idims-database-dev-1", "Numasa_89", "admin");
+            Connection con = DriverManager.getConnection("jdbc:mysql://idims-database-dev-1", "admin", "Numasa_89");
             Statement state = con.createStatement();
             ResultSet resultWave = null;
             ResultSet resultLandsride = null;

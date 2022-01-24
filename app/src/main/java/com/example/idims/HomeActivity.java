@@ -15,6 +15,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
@@ -44,6 +49,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     //現在位置の位置情報を取得するために必要なクラス
     private FusedLocationProviderClient fusedLocationClient;
 
+    //現在地付近を表示しているかを表すbool型
+    public boolean currentLoc = true;
+
     //パーミッションの許可コード
     static final int REQUEST_CODE = 1;
 
@@ -70,7 +78,51 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         //避難勧告のテキスト表示を行う
         setTextevacuationAdvisory();
 
+        //現在地付近の災害情報を検索する
+        if(currentLoc){searchCurrentDisaster();}
 
+
+    }
+
+    //現在地付近の災害情報を検索するメソッド
+    protected void searchCurrentDisaster(){
+        //現在時刻と24時間前の時間を取得
+        String currentTime = getToday();
+        String beforeTime = getYesterday();
+        //データベースに接続
+        try{
+            Connection con = DriverManager.getConnection("jdbc:mysql://idims-database-dev-1", "admin", "Numasa_89");
+            Statement state = con.createStatement();
+            String sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_time >=" + beforeTime;
+            ResultSet rs = state.executeQuery(sql);
+            while(rs.next()){
+
+            }
+
+        }catch (SQLException ex){
+
+        }
+
+    }
+
+    //現在日時の取得
+    public String getToday(){
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd"); //年月日のみのデータに変換
+        String str = sdf.format(date); //文字型に変換
+        return str.replace("/", "");         //文字列にスラッシュ(//)が入っているので除去して返す
+    }
+
+    //24時間前の時間を取得
+    protected String getYesterday(){
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance(); //24時間前の時間を取得するためにCalendarクラスに渡す
+        calendar.setTime(date);
+        calendar.add(Calendar.HOUR, -24); //24時間前の時間を取得
+        Date pastDate = calendar.getTime(); //Date型に戻す
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd"); //年月日のみのデータに変換
+        String str = sdf.format(pastDate); //文字型に変換
+        return str.replace("/", "");         //文字列にスラッシュ(//)が入っているので除去して返す
     }
 
 
@@ -163,7 +215,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onSuccess(Location location) {
                 if (location != null) {
                     Log.d("処理直前", "どこまで行ったのかな？");
-                    map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("NowLocation").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                    map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).snippet("NowLocation /n " + location.getLatitude() + " , " + location.getLongitude()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                     Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                     //デバッグ用のピン map.addMarker(new MarkerOptions().position(new LatLng(33, 133)));
                     Log.d("Home", "onSuccess: " + location.getLatitude() + " , " + location.getLongitude());
