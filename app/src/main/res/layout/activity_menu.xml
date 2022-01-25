@@ -7,30 +7,6 @@
     tools:context=".Menu.MenuActivity">
 
     <Button
-        android:id="@+id/buttonToResearcherPage"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="研究者ページ"
-        tools:layout_editor_absoluteX="193dp"
-        tools:layout_editor_absoluteY="421dp" />
-
-    <Button
-        android:id="@+id/buttonToAboutAppPage"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="アプリについて"
-        tools:layout_editor_absoluteX="193dp"
-        tools:layout_editor_absoluteY="469dp" />
-
-    <Button
-        android:id="@+id/buttonToArchivePage"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="アーカイブ"
-        tools:layout_editor_absoluteX="193dp"
-        tools:layout_editor_absoluteY="372dp" />
-
-    <Button
         android:id="@+id/buttonToCloseMenuPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,5 +29,29 @@
         android:text="設定"
         tools:layout_editor_absoluteX="193dp"
         tools:layout_editor_absoluteY="157dp" />
+
+    <Button
+        android:id="@+id/buttonToArchivePage"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="アーカイブ"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="372dp" />
+
+    <Button
+        android:id="@+id/buttonToResearcherPage"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="研究者ページ"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="421dp" />
+
+    <Button
+        android:id="@+id/buttonToAboutAppPage"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="アプリについて"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="469dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
