@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,11 +29,14 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
     //マップ表示に必要な文字列
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result_map);
 
+        //MapViewを使用するのに必要
         Bundle mapViewBundle = null;
         if(savedInstanceState != null){
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
@@ -38,6 +44,25 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
         mMapView = (MapView) findViewById(R.id.mapView_Result);
         mMapView.onCreate(mapViewBundle);
         mMapView.getMapAsync(this);
+
+        //結果リストに戻る
+        Button backResultList = (Button) findViewById(R.id.button_BackList);
+        backResultList.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                finish(); //一応そのまま戻ってほしいのでこうした
+            }
+        });
+
+        //検索条件画面に戻る
+        Button backDisasterSearch = (Button) findViewById(R.id.button_DisasterSA);
+        backDisasterSearch.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(SearchResultMapActivity.this, DisasterSearchActivity.class);
+                startActivity(intent); //新しいインテントを開始する
+            }
+        });
 
     }
 
