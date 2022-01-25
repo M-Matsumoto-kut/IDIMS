@@ -204,7 +204,9 @@ public class SearchResultListActivity extends AppCompatActivity {
 
             //ボタンにテキストを設定
             buttonResult.setTextSize(20); //ボタンのテキストサイズ設定
-            //buttonResult.setText(getDisasterName(resultConDis.)); //ボタンにテキストをセット
+            buttonResult.setTextColor(0xffffffff); //ボタンのテキスト色設定
+            buttonResult.setText(getDisasterName(resultConDis.get(i)) + " [レベル" + resultLevel.get(i) + "] " + resultArea.get(i) + "\n " + getNowTimeString(resultTime.get(i))); //ボタンにテキストをセット
+
 
             //ボタンレイアウトを追加
             buttonResultRayout.addView(buttonResult);
@@ -244,6 +246,27 @@ public class SearchResultListActivity extends AppCompatActivity {
         });
 
 
+
+    }
+
+    //引数に渡された数字に応じて災害名の文字列を返すメソッド
+    private String getDisasterName(int num){
+        if(num == 1){return "津波";}
+        else if(num == 2){return "土砂崩れ";}
+        else if(num == 3){return "雷";}
+        else{return "識別エラー";}
+    }
+
+    //~年~月~日~:~の表記として返すメソッド
+    private String getNowTimeString(Double time){
+        String before = String.valueOf(time); //ダブル型を文字列型に変換
+        String year = before.substring(0, 3); //年を取得
+        String month = before.substring(4, 5); //月
+        String day = before.substring(6, 7); //日
+        String hour = before.substring(8, 9); //時
+        String minute = before.substring(10, 11); //分
+        StringBuffer str = new StringBuffer().append(year).append("年").append(month).append("月").append(day).append("日").append(hour).append(":").append(minute); //結合
+        return String.valueOf(str);
 
     }
 
