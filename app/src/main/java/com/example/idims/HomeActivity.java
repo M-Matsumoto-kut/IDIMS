@@ -199,10 +199,10 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
             Log.d("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             //測位の精度を上げる
-        /*
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        */
+            /*
+            LocationRequest locationRequest = new LocationRequest();
+            locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+            */
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
@@ -230,11 +230,18 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 }
             });
+            //現在地から近い災害の情報を探す
+                //sql文による探索
+                //緯度経度から距離を計算し、範囲内である場合マーカーをマップに追加、災害情報もそこに追加
+                //sql文により取得した災害が変数maxlevelを超えていた場合画面上部のテキストも更新
             //避難所の表示
+                //sql文による探索
+                //緯度経度から距離を計算し、範囲内である場合かつ一定以上の災害が発生している場合マーカーをマップに追加(spinpet?も使用して災害情報を入力する,あとcliclmarkerのやつも。)
 
         }else { //現在地を表示しないのでそのまま検索する
             //sqlを検索
                 //住所を検索し、該当箇所に災害が発生している場合情報を追加する
+                //災害が発生していた場合に上のテキストに表示する
         }
 
 
