@@ -58,6 +58,12 @@ public class SearchResultListActivity extends AppCompatActivity {
         endTime = intentDisasterSearch.getStringExtra("endTime");
         allTime = intentDisasterSearch.getBooleanExtra("allTime", false);
 
+        //ArrayListの引き渡しテスト
+        /*
+        ArrayList<Integer> intTest = intentDisasterSearch.getIntegerArrayListExtra("testArrayInt");
+        ArrayList<String> stringTest = intentDisasterSearch.getStringArrayListExtra("testArrayStr");
+         */
+
         //データベース検索用のArrayList 発生場所により不要な情報もあるので消去するため一時的な保存個所として置いておく
         ArrayList<Double> selectLat = new ArrayList<>();
         ArrayList<Double> selectLng = new ArrayList<>();
@@ -72,6 +78,7 @@ public class SearchResultListActivity extends AppCompatActivity {
         //デバック用
         debugGetData();
 
+        /*
         //データベースに接続し検索結果を格納する
         try{
             Connection con = DriverManager.getConnection("jdbc:mysql://idims-database-dev-1", "admin", "Numasa_89");
@@ -181,6 +188,8 @@ public class SearchResultListActivity extends AppCompatActivity {
         //マップ表示にする
 
 
+         */
+
 
 
 
@@ -260,6 +269,10 @@ public class SearchResultListActivity extends AppCompatActivity {
 
         }
     }
+
+    //Android搭載の戻るボタンの無効化 処理を書かないことにより無効化される
+    @Override
+    public void onBackPressed(){}
 
     //データ受け取りが出来ているかのデバッグ
     private void debugGetData(){
