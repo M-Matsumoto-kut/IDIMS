@@ -36,12 +36,12 @@ public class SearchResultListActivity extends AppCompatActivity {
     private String endTime;
 
     //DBの検索結果を格納する
-    public ArrayList<Double> resultLat = new ArrayList<>(); //緯度
-    public ArrayList<Double> resultLng = new ArrayList<>(); //経度
-    public ArrayList<Integer> resultLevel = new ArrayList<>(); //災害レベル
-    public ArrayList<Integer> resultConDis = new ArrayList<>(); //災害種類
-    public ArrayList<Double> resultTime = new ArrayList<>(); //発生時刻
-    public ArrayList<String> resultArea = new ArrayList<>(); //発生地域
+    private ArrayList<Double> resultLat = new ArrayList<>(); //緯度
+    private ArrayList<Double> resultLng = new ArrayList<>(); //経度
+    private ArrayList<Integer> resultLevel = new ArrayList<>(); //災害レベル
+    private ArrayList<Integer> resultConDis = new ArrayList<>(); //災害種類
+    private ArrayList<Double> resultTime = new ArrayList<>(); //発生時刻
+    private ArrayList<String> resultArea = new ArrayList<>(); //発生地域
 
 
     @Override
@@ -227,6 +227,7 @@ public class SearchResultListActivity extends AppCompatActivity {
                     intent.putExtra("resultTime", resultTime); //発生時刻
                     intent.putStringArrayListExtra("resultArea", resultArea); //発生地域
                     intent.putIntegerArrayListExtra("disasterNumber", disasterNum); //災害番号
+                    intent.putExtra("areaNumber", areaNumber); //検索地域
                     startActivity(intent);
 
 
