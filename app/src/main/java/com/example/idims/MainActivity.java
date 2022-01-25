@@ -2,7 +2,7 @@ package com.example.idims;
 
 import android.os.Bundle;
 
-import com.example.idims.Area.AreaList;
+import com.example.idims.Area.AreaListActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         Button researchUser = findViewById(R.id.researcherType);
         researchUser.setOnClickListener( v -> {
             //研究者ユーザログイン画面に移行
-            Intent intent = new Intent(getApplication(), AreaList.class);
+            Intent intent = new Intent(getApplication(), AreaListActivity.class);
             startActivity(intent);
         });
     }

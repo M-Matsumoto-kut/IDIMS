@@ -15,7 +15,7 @@ import com.example.idims.R;
 import com.example.idims.StatusFlag;
 
 //閲覧地域一覧モジュール
-public class AreaList extends AppCompatActivity {
+public class AreaListActivity extends AppCompatActivity {
 
     private StatusFlag status;
     private int areaNum;

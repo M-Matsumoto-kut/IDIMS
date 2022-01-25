@@ -74,7 +74,7 @@
             android:name=".Area.PrefectureSelectActivity"
             android:exported="false" />
         <activity
-            android:name=".Area.AreaList"
+            android:name=".Area.AreaListActivity"
             android:exported="false" />
         <activity
             android:name=".Area.RegionSelectActivity"

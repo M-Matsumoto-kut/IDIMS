@@ -179,10 +179,10 @@ public class PrefectureSelectActivity extends AppCompatActivity {
 
                 if(this.registerArea(selectPreNumber)) {
                     status.setPrefectureNum(selectPreNumber);
-                    Intent intent = new Intent(getApplication(), AreaList.class);
+                    Intent intent = new Intent(getApplication(), AreaListActivity.class);
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(getApplication(), AreaList.class);
+                    Intent intent = new Intent(getApplication(), AreaListActivity.class);
                     startActivity(intent);
                 }
             });

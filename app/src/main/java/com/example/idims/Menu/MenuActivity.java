@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.idims.Area.AreaList;
+import com.example.idims.Area.AreaListActivity;
 import com.example.idims.DisasterSearchActivity;
 import com.example.idims.HomeActivity;
 import com.example.idims.MainActivity;
@@ -33,7 +34,7 @@ public class MenuActivity extends AppCompatActivity {
         //災害通知地域一覧へ遷移するボタン
         Button TolistSetArea = findViewById(R.id.buttonToListSetAreaPage);
         TolistSetArea.setOnClickListener( v -> {
-            Intent intent = new Intent(getApplication(), AreaList.class);
+            Intent intent = new Intent(getApplication(), AreaListActivity.class);
             startActivity(intent);
         });
 
