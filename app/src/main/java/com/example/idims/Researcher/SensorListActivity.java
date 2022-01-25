@@ -52,7 +52,7 @@ public class SensorListActivity extends AppCompatActivity {
         //戻るボタン->研究者ページ
         Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener( v -> {
-            Intent intent = new Intent(getApplication(), ResearcherPage.class);
+            Intent intent = new Intent(getApplication(), ResearcherPageActivity.class);
             startActivity(intent);
         });
 

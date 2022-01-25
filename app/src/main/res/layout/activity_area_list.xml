@@ -23,6 +23,22 @@
         tools:ignore="TextContrastCheck" />
 
     <Button
+        android:id="@+id/deleteArea"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="#03A9F4"
+        android:backgroundTint="#03A9F4"
+        android:text="@string/delete"
+        android:textColor="#F44336"
+        android:textSize="20sp"
+        app:backgroundTint="#03A9F4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
         android:id="@+id/backActivity"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"

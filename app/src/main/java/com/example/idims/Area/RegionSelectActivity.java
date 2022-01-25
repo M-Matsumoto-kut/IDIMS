@@ -51,7 +51,6 @@ public class RegionSelectActivity extends AppCompatActivity {
 
 
         layout.setOrientation(LinearLayout.VERTICAL);
-
         layout.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
@@ -61,7 +60,6 @@ public class RegionSelectActivity extends AppCompatActivity {
 
         // 背景色
         layout.setBackgroundColor(Color.rgb(0x00, 0x00, 0x00));
-
 
         setContentView(layout);
 

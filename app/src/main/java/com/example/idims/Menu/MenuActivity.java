@@ -7,14 +7,11 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.idims.Area.AreaListActivity;
-import com.example.idims.Area.AreaListActivity;
 import com.example.idims.DisasterSearchActivity;
 import com.example.idims.HomeActivity;
-import com.example.idims.MainActivity;
 import com.example.idims.R;
 
-import com.example.idims.R;
-import com.example.idims.Researcher.ResearcherPage;
+import com.example.idims.Researcher.ResearcherPageActivity;
 import com.example.idims.Setting;
 
 public class MenuActivity extends AppCompatActivity {
@@ -55,7 +52,7 @@ public class MenuActivity extends AppCompatActivity {
         //研究者ページへ遷移するボタン
         Button toResearcherPage = findViewById(R.id.buttonToResearcherPage);
         toResearcherPage.setOnClickListener( v -> {
-            Intent intent = new Intent(getApplication(), ResearcherPage.class);
+            Intent intent = new Intent(getApplication(), ResearcherPageActivity.class);
             startActivity(intent);
         });
 

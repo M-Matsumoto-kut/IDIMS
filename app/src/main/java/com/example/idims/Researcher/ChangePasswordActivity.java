@@ -84,7 +84,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
 
                     //研究者ページに戻る
-                    Intent intent = new Intent(ChangePasswordActivity.this, ResearcherPage.class);
+                    Intent intent = new Intent(ChangePasswordActivity.this, ResearcherPageActivity.class);
                     startActivity(intent);
                 } else {
                     //再入力を求める
@@ -97,7 +97,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             }
 
             //test-------------------------------------------------------------
-            Intent intent = new Intent(ChangePasswordActivity.this, ResearcherPage.class);
+            Intent intent = new Intent(ChangePasswordActivity.this, ResearcherPageActivity.class);
             startActivity(intent);
             //test-------------------------------------------------------------
         });

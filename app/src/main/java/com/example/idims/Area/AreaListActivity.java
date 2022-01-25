@@ -62,7 +62,7 @@ public class AreaListActivity extends AppCompatActivity {
         });
 
 
-        TextView[] textView = new TextView[47];
+        TextView[] areaView = new TextView[47];
 
         float dp = getResources().getDisplayMetrics().density;
         textHeight = (int)(60 * dp);
@@ -83,23 +83,31 @@ public class AreaListActivity extends AppCompatActivity {
                 areaName = status.getPrefectureName(areaNum);
 
                 //表示
-                textView[i] = new TextView(this);
-                textView[i].setTextColor(0xffffffff);
-                textView[i].setTextSize(10 * dp);
+                areaView[i] = new TextView(this);
+                areaView[i].setTextColor(0xffffffff);
+                areaView[i].setTextSize(10 * dp);
 
                 if (i % 2 == 1) {
-                    textView[i].setBackgroundColor(0xFF575757);
+                    areaView[i].setBackgroundColor(0xFF575757);
                 } else {
-                    textView[i].setBackgroundColor(0xFF454545);
+                    areaView[i].setBackgroundColor(0xFF454545);
                 }
 
-                textView[i].setText(areaName);
-                textView[i].setGravity(Gravity.CENTER);
-                linearLayout.addView(textView[i],
+                areaView[i].setText(areaName);
+                areaView[i].setGravity(Gravity.CENTER);
+                linearLayout.addView(areaView[i],
                         new LinearLayout.LayoutParams(
                                 ViewGroup.LayoutParams.MATCH_PARENT,
                                 textHeight));
             }
         }
+
+
+
+        //削除ボタンを押したら，各地域ごとに削除ボタンを生成
+        Button deleteButton = findViewById(R.id.deleteArea);
+        deleteButton.setOnClickListener( v -> {
+            Button[] button = new Button[47];
+        });
     }
 }

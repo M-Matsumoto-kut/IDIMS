@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 
-import com.example.idims.Researcher.ResearcherPage;
+import com.example.idims.Researcher.ResearcherPageActivity;
 import com.example.idims.Researcher.SensorListActivity;
 
 import android.widget.Button;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case 2: //２回目以降のログイン(一般ユーザ）
-                intent = new Intent(getApplication(), ResearcherPage.class);
+                intent = new Intent(getApplication(), ResearcherPageActivity.class);
                 startActivity(intent);
                 break;
             default: //エラー

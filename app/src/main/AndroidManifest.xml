@@ -53,7 +53,7 @@
             android:name=".Researcher.SensorListActivity"
             android:exported="false" />
         <activity
-            android:name=".Researcher.ResearcherPage"
+            android:name=".Researcher.ResearcherPageActivity"
             android:exported="false" />
         <activity
             android:name=".DisasterSearchActivity"

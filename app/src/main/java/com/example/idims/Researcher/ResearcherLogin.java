@@ -42,7 +42,7 @@ public class ResearcherLogin extends AppCompatActivity {
         int loginType = flag.getLoginType();
         if(loginType == 2) {
             //研究者ページに移行
-            Intent intent = new Intent(ResearcherLogin.this, ResearcherPage.class);
+            Intent intent = new Intent(ResearcherLogin.this, ResearcherPageActivity.class);
             startActivity(intent);
         }
          //*/
@@ -99,7 +99,7 @@ public class ResearcherLogin extends AppCompatActivity {
             }
 
             //テスト----------------------------------------
-            Intent intent = new Intent(getApplication(), ResearcherPage.class);
+            Intent intent = new Intent(getApplication(), ResearcherPageActivity.class);
             startActivity(intent);
             //テスト----------------------------------------
         });

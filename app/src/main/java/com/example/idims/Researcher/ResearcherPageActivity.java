@@ -8,23 +8,45 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.idims.R;
+import com.example.idims.StatusFlag;
 
 /*
     研究者ページモジュール
  */
-public class ResearcherPage extends AppCompatActivity {
-
+public class ResearcherPageActivity extends AppCompatActivity {
+    private StatusFlag status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.status = (StatusFlag) getApplication();
+    }
+
+    //毎動作時に実行
+    @Override
+    protected void onStart() {
+        super.onStart();
+        /*
+        研究者ユーザなら研究者ページへ
+        そうでなければ研究者ログイン画面へ移行
+         */
+        int loginType = status.getLoginType();
+        if(loginType == 2) {
+            this.ResearcherPage();
+        } else {
+            Intent intent = new Intent(ResearcherPageActivity.this, ResearcherLogin.class);
+            startActivity(intent);
+        }
+    }
+
+    private void ResearcherPage() {
         setContentView(R.layout.activity_researcherpage);
 
         //センサー異常の画面に移動
         Button button1 = findViewById(R.id.next1Activity);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(ResearcherPage.this, SensorListActivity.class);
+                Intent intent = new Intent(ResearcherPageActivity.this, SensorListActivity.class);
                 startActivity(intent);
             }
         });
@@ -33,16 +55,15 @@ public class ResearcherPage extends AppCompatActivity {
         Button button2 = findViewById(R.id.next2Activity);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(ResearcherPage.this, ChangePasswordActivity.class);
+                Intent intent = new Intent(ResearcherPageActivity.this, ChangePasswordActivity.class);
                 startActivity(intent);
             }
         });
 
         //戻るボタン　
         Button backButton = findViewById(R.id.backActivity);
-        backButton.setOnClickListener( v -> {
+        backButton.setOnClickListener(v -> {
             finish();
         });
-
     }
 }
