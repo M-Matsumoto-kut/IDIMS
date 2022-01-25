@@ -185,10 +185,25 @@ public class SearchResultListActivity extends AppCompatActivity {
         }
 
         //リストで表示する
-        ArrayList<Button> button = new ArrayList<>(); //ボタンのリスト表示
+        //ArrayList<Button> buttonResult = new ArrayList<>(); //ボタンのリスト表示
         for(int i = 0; i < resultLat.size(); i++){
+            //ボタンを追加するビューの追加
             LinearLayout buttonResultRayout = new LinearLayout(this);
-            buttonResultRayout.setOrientation(LinearLayout.VERTICAL); //垂直にビューを追加
+            buttonResultRayout.setOrientation(LinearLayout.VERTICAL); //垂直にビューを追加する
+            setContentView(buttonResultRayout);
+
+            //ボタンの追加
+            Button buttonResult = new Button(this);
+            LinearLayout.LayoutParams buttonLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            buttonLayoutParams.height = 100; //ボタン高さのセット
+            buttonLayoutParams.width = 200; //ボタン幅のセット
+
+            buttonResult.setLayoutParams(buttonLayoutParams); //レイアウトにボタンをセット
+            //buttonResult.setBackground(getDrawable());
+
+            //ボタンにテキストを設定
+            buttonResult.setTextSize(20); //ボタンのテキストサイズ設定
+            //buttonResult.setText(getDisasterName(resultConDis.)); //ボタンにテキストをセット
 
         }
 
