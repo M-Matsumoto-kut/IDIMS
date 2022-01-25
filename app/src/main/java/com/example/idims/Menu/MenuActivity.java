@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.example.idims.Area.AreaList;
+import com.example.idims.Area.AreaListActivity;
 import com.example.idims.Area.AreaListActivity;
 import com.example.idims.DisasterSearchActivity;
 import com.example.idims.HomeActivity;
