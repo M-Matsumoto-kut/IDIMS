@@ -2,6 +2,7 @@ package com.example.idims;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -205,15 +206,42 @@ public class SearchResultListActivity extends AppCompatActivity {
             buttonResult.setTextSize(20); //ボタンのテキストサイズ設定
             //buttonResult.setText(getDisasterName(resultConDis.)); //ボタンにテキストをセット
 
+            //ボタンレイアウトを追加
+            buttonResultRayout.addView(buttonResult);
+
+            //ボタンの挙動追加(マップ表示を行う画面へ遷移)
+            buttonResult.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View view){
+                    //マップ出力時に必要となる識別番号リストの作成
+                    ArrayList<Integer> disasterNum = new ArrayList<>();
+                    for(int j = 0; j < resultLat.size(); j++){ //数字をループで代入させ、
+                        disasterNum.add(j);
+                    }
+                    Intent intent = new Intent(SearchResultListActivity.this, SearchResultMapActivity.class);
+                    intent.putExtra("resultLat", resultLat); //緯度
+                    intent.putExtra("resultLng", resultLng); //経度
+                    intent.putIntegerArrayListExtra("resultLevel", resultLevel); //災害レベル
+                    intent.putIntegerArrayListExtra("resultConDis", resultConDis); //災害種類
+                    intent.putExtra("resultTime", resultTime); //発生時刻
+                    intent.putStringArrayListExtra("resultArea", resultArea); //発生地域
+                    intent.putIntegerArrayListExtra("disasterNumber", disasterNum); //災害番号
+                    startActivity(intent);
+
+
+                }
+            });
+
         }
 
         //検索条件画面に戻る(初期化するため新しいインテントを渡す)
-
-        //マップ表示にする
-
-
-
-
+        Button backSearchCon = (Button) findViewById(R.id.button_BackDS);
+        backSearchCon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchResultListActivity.this, DisasterSearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 

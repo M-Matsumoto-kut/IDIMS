@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.idims">
-
     <!-- GPSの許可 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,15 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IDIMS">
+        <activity
+            android:name=".SearchResultMapActivity"
+            android:exported="false" />
         <!-- なんかうまく許可をとってくれないので追記 -->
         <!-- <uses-library android:name="org.apache.http.legacy" android:required="false"/> -->
         <activity
             android:name=".HomeActivity"
-            android:exported="true" />
-        <!-- APIキーの記述-->
+            android:exported="true" /> <!-- APIキーの記述 -->
         <meta-data
-            android:name ="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDy8LqOFFXeRlbf-0eZEQWwFwVJleCfxHg"/>
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDy8LqOFFXeRlbf-0eZEQWwFwVJleCfxHg" />
 
         <activity
             android:name=".Setting"
@@ -77,6 +78,5 @@
             android:name=".Area.RegionSelect"
             android:exported="false" />
     </application>
-
 
 </manifest>
