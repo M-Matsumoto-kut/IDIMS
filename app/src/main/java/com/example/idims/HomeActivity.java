@@ -192,42 +192,52 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onMapReady(GoogleMap map) { //マップのセッティング
-        //現在位置の測定
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        Log.d("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        //測位の精度を上げる
+    public void onMapReady(GoogleMap map) { //マップのセッティングを行う 災害発生個所の表示、避難所の表示を主にここで行う
+        //現在地付近の災害の表示
+        if(currentLoc){
+            //現在位置の測定
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+            Log.d("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            //測位の精度を上げる
         /*
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         */
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //Android専用のダイアログで位置情報の使用許可を求める
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
-                    Log.d("処理直前", "どこまで行ったのかな？");
-                    Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).snippet("NowLocation \n " + location.getLatitude() + " , " + location.getLongitude()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                    Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                    marker.showInfoWindow();
-
-                    //デバッグ用のピン map.addMarker(new MarkerOptions().position(new LatLng(33, 133)));
-                    Log.d("Home", "onSuccess: " + location.getLatitude() + " , " + location.getLongitude());
-                }else{
-                    cantGetLocation();
-                    Log.d("馬鹿垂", "失敗だよ");
-                }
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //Android専用のダイアログで位置情報の使用許可を求める
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
             }
-        });
+            fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null) {
+                        Log.d("処理直前", "どこまで行ったのかな？");
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).snippet("NowLocation \n " + location.getLatitude() + " , " + location.getLongitude()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                        Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                        marker.showInfoWindow();
+
+                        //デバッグ用のピン map.addMarker(new MarkerOptions().position(new LatLng(33, 133)));
+                        Log.d("Home", "onSuccess: " + location.getLatitude() + " , " + location.getLongitude());
+                    }else{
+                        cantGetLocation();
+                        Log.d("馬鹿垂", "失敗だよ");
+                    }
+                }
+            });
+            //避難所の表示
+
+        }else { //現在地を表示しないのでそのまま検索する
+            //sqlを検索
+                //住所を検索し、該当箇所に災害が発生している場合情報を追加する
+        }
+
+
     }
 
     @Override
