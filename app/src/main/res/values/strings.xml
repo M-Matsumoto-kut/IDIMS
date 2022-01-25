@@ -77,6 +77,7 @@
     <string name="area_list">閲覧地域一覧</string>
     <string name="add_area">地域を追加する</string>
     <string name="changeCon">条件を変える</string>
+    <string name="back">戻る</string>
 
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
     <string-array name="spinner_constant">
