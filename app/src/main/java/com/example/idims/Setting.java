@@ -25,133 +25,131 @@ public class Setting extends AppCompatActivity {
             finish();
         });
 
-        //スイッチ、チェックボックス
-        Switch sw1 = findViewById(R.id.switch1);
-        Switch sw2 = findViewById(R.id.switch2);
-        Switch sw3 = findViewById(R.id.switch3);
-        CheckBox cb1 = findViewById(R.id.checkBox1);
-        CheckBox cb2 = findViewById(R.id.checkBox2);
-        CheckBox cb3 = findViewById(R.id.checkBox3);
+        //各種スイッチ、チェックボックス
+        Switch gpsSw = findViewById(R.id.gpsSwitch);
+        Switch noticeSw = findViewById(R.id.noticeSwitch);
+        Switch alertSw = findViewById(R.id.alertSwitch);
+        CheckBox tsunamiCb = findViewById(R.id.tsunamiCheckBox);
+        CheckBox landslideCb = findViewById(R.id.landslideCheckBox);
+        CheckBox thunderCb = findViewById(R.id.thunderCheckBox);
 
-// スイッチ、チェックボックスをオンにする
-        sw1.setChecked(true);
-        sw2.setChecked(true);
-        sw3.setChecked(true);
-        sw3.setClickable(false);
-        cb1.setChecked(true);
-        cb2.setChecked(true);
-        cb3.setChecked(true);
+        // 各種スイッチ、チェックボックスをONの状態にする
+        gpsSw.setChecked(true);
+        noticeSw.setChecked(true);
+        alertSw.setChecked(true);
+        alertSw.setClickable(false);
+        tsunamiCb.setChecked(true);
+        landslideCb.setChecked(true);
+        thunderCb.setChecked(true);
 
-// イベント
-        // スイッチの状態が変化
-        sw1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        // GPSスイッチ
+        gpsSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                if(sw1.isChecked()) {
+                if(gpsSw.isChecked()) {
                     //スイッチがOFF->ONなら
                     Toast.makeText(getApplication(), "位置情報ON", Toast.LENGTH_LONG).show();
 
-                    //ここに位置情報をONにするコードを入れたい
+                    //スイッチをONにした場合に起こる動作
 
 
                 }else {
                     //スイッチがON->OFFなら
                     Toast.makeText(getApplication(), "位置情報OFF", Toast.LENGTH_LONG).show();
 
-                    //ここに位置情報をOFFにするコードを入れたい
+                    //スイッチをOFFにした場合に起こる動作
 
 
                 }
             }
         });
 
-        sw2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        // 通知、アラートスイッチ
+        noticeSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                if(sw2.isChecked()) {
+                if(noticeSw.isChecked()) {
                     //スイッチがOFF->ONなら
                     Toast.makeText(getApplication(), "通知、アラートON", Toast.LENGTH_LONG).show();
 
-                    //ここに通知、アラートをONにするコードを入れたい
-                    sw3.setChecked(true);
-                    cb1.setChecked(true);
-                    cb2.setChecked(true);
-                    cb3.setChecked(true);
-                    cb1.setClickable(true);
-                    cb2.setClickable(true);
-                    cb3.setClickable(true);
+                    //アラートスイッチと全てのチェックボックスがONになる
+                    alertSw.setChecked(true);
+                    tsunamiCb.setChecked(true);
+                    landslideCb.setChecked(true);
+                    thunderCb.setChecked(true);
+
+                    //全てのチェックボックスが動くようになる
+                    tsunamiCb.setClickable(true);
+                    landslideCb.setClickable(true);
+                    thunderCb.setClickable(true);
+
+                    //スイッチをONにした場合に起こる動作
 
 
                 }else {
                     //スイッチがON->OFFなら
                     Toast.makeText(getApplication(), "通知、アラートOFF", Toast.LENGTH_LONG).show();
 
-                    //ここに通知、アラートをOFFにするコードを入れたい
-                    sw3.setChecked(false);
-                    cb1.setChecked(false);
-                    cb2.setChecked(false);
-                    cb3.setChecked(false);
-                    cb1.setClickable(false);
-                    cb2.setClickable(false);
-                    cb3.setClickable(false);
+                    //アラートスイッチと全てのチェックボックスがOFFになる
+                    alertSw.setChecked(false);
+                    tsunamiCb.setChecked(false);
+                    landslideCb.setChecked(false);
+                    thunderCb.setChecked(false);
+
+                    //全てのチェックボックスが動かなくなる
+                    tsunamiCb.setClickable(false);
+                    landslideCb.setClickable(false);
+                    thunderCb.setClickable(false);
+
+                    //スイッチをOFFにした場合に起こる動作
 
                 }
             }
         });
 
-        cb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        tsunamiCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                if(cb1.isChecked()) {
+                if(tsunamiCb.isChecked()) {
                     //チェックボックスがOFF->ONなら
+                    //スイッチをONにした場合に起こる動作
 
-
-                    //ここに位置情報をONにするコードを入れたい
 
 
                 }else {
                     //チェックボックスがON->OFFなら
-
-
-                    //ここに位置情報をOFFにするコードを入れたい
+                    //チェックボックスをOFFにした場合に起こる動作
 
 
                 }
             }
         });
 
-        cb2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        landslideCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                if(cb2.isChecked()) {
+                if(landslideCb.isChecked()) {
                     //チェックボックスがOFF->ONなら
+                    //スイッチをONにした場合に起こる動作
 
-
-                    //ここに位置情報をONにするコードを入れたい
 
 
                 }else {
                     //チェックボックスがON->OFFなら
-
-
-                    //ここに位置情報をOFFにするコードを入れたい
+                    //チェックボックスをOFFにした場合に起こる動作
 
 
                 }
             }
         });
 
-        cb3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        thunderCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                if(cb3.isChecked()) {
-                    //スイッチがOFF->ONなら
+                if(thunderCb.isChecked()) {
+                    //チェックボックスがOFF->ONなら
+                    //スイッチをONにした場合に起こる動作
 
-
-                    //ここに位置情報をONにするコードを入れたい
 
 
                 }else {
-                    //スイッチがON->OFFなら
-
-
-                    //ここに位置情報をOFFにするコードを入れたい
-
+                    //チェックボックスがON->OFFなら
+                    //チェックボックスをOFFにした場合に起こる動作
 
                 }
             }
