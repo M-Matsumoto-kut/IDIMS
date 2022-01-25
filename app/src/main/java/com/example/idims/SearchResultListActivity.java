@@ -3,6 +3,7 @@ package com.example.idims;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.location.Address;
 import android.location.Geocoder;
@@ -38,6 +40,7 @@ public class SearchResultListActivity extends AppCompatActivity {
     public ArrayList<Integer> resultLevel = new ArrayList<>(); //災害レベル
     public ArrayList<Integer> resultConDis = new ArrayList<>(); //災害種類
     public ArrayList<Double> resultTime = new ArrayList<>(); //発生時刻
+    public ArrayList<String> resultArea = new ArrayList<>(); //発生地域
 
 
     @Override
@@ -78,7 +81,7 @@ public class SearchResultListActivity extends AppCompatActivity {
         //デバック用
         debugGetData();
 
-        /*
+
         //データベースに接続し検索結果を格納する
         try{
             Connection con = DriverManager.getConnection("jdbc:mysql://idims-database-dev-1", "admin", "Numasa_89");
@@ -162,15 +165,19 @@ public class SearchResultListActivity extends AppCompatActivity {
             //住所を取得
             try {
                 //住所を取得
-                Address address = (Address) geocoder.getFromLocation(lat, lng, 1);
+                List<Address> address = geocoder.getFromLocation(lat, lng, 1);
                 //都道府県を取得
-                String addressStr = address.getAdminArea();
-                if(checkAdminArea(addressStr, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
-                    resultLat.add(selectLat.get(i));
-                    resultLng.add(selectLng.get(i));
-                    resultLevel.add(selectLevel.get(i));
-                    resultConDis.add(selectConDis.get(i));
-                    resultTime.add(selectTime.get(i));
+                String addressAdm = address.get(0).getAdminArea(); //県名を取得
+                if(checkAdminArea(addressAdm, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
+                    //市町村名を獲得して結合
+                    String addressLoc = address.get(0).getLocality();
+                    StringBuffer sb = new StringBuffer().append(addressAdm).append(addressLoc);
+                    resultLat.add(selectLat.get(i)); //緯度
+                    resultLng.add(selectLng.get(i)); //経度
+                    resultLevel.add(selectLevel.get(i)); //災害レベル
+                    resultConDis.add(selectConDis.get(i)); //災害種類
+                    resultTime.add(selectTime.get(i)); //災害時間
+                    resultArea.add(String.valueOf(sb)); //場所
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -180,6 +187,8 @@ public class SearchResultListActivity extends AppCompatActivity {
         //リストで表示する
         ArrayList<Button> button = new ArrayList<>(); //ボタンのリスト表示
         for(int i = 0; i < resultLat.size(); i++){
+            LinearLayout buttonResultRayout = new LinearLayout(this);
+            buttonResultRayout.setOrientation(LinearLayout.VERTICAL); //垂直にビューを追加
 
         }
 
@@ -188,7 +197,7 @@ public class SearchResultListActivity extends AppCompatActivity {
         //マップ表示にする
 
 
-         */
+
 
 
 
@@ -204,6 +213,7 @@ public class SearchResultListActivity extends AppCompatActivity {
     }
 
     //選択地方から県をリストに格納するメソッド
+    /////////////////もしかしたら日本語も入れる必要性があるかもしれない
     private void addPrefFromAreaNum(int areaNum, ArrayList<String> prefList){
         if(areaNum == 1){ //北海道である場合
             prefList.add("Hokkaido");
