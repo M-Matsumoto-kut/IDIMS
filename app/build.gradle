@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdk 32 //default:32
@@ -51,4 +52,6 @@ dependencies {
     testImplementation 'junit:junit:4.12';
     testImplementation 'com.android.support:support=annotations:24.0.0'
     testImplementation 'com.android.support.test:runner:0.5'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
