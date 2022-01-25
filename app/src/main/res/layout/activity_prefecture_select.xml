@@ -40,25 +40,6 @@
         tools:ignore="TextContrastCheck" />
 
 
-    <Button
-        android:id="@+id/addSelectArea"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-
-        android:layout_marginStart="328dp"
-        android:background="#03A9F4"
-        android:backgroundTint="#03A9F4"
-        android:text="追加"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:backgroundTint="#03A9F4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextContrastCheck" />
-
     <ListView
         android:id="@+id/regionList"
         android:layout_width="match_parent"

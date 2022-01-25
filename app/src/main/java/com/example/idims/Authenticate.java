@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//認証モジュール
 public class Authenticate extends AppCompatActivity {
 
     //IDとパスワードが一致しているか検証(true：一致，false:不一致)

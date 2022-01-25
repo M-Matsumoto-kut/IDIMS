@@ -7,12 +7,10 @@ import com.example.idims.Researcher.ResearcherLogin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.navigation.ui.AppBarConfiguration;
-
 import android.content.Intent;
 
 import com.example.idims.Researcher.ResearcherPage;
-import com.example.idims.databinding.ActivityMainBinding;
+import com.example.idims.Researcher.Sensor;
 
 import android.widget.Button;
 
@@ -27,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //status（Activity状態）を取得
-        StatusData flag = (StatusData) getApplication();
+        StatusFlag flag = (StatusFlag) getApplication();
         this.userTypeSelect();
     }
 
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         //loginType（ログイン状態）を取得
-        StatusData flag = (StatusData) this.getApplication();
+        StatusFlag flag = (StatusFlag) this.getApplication();
         int loginType = flag.getLoginType();
 
 
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             //loginTypeを1(一般人)に設定
-            StatusData flag = (StatusData) getApplication();
+            StatusFlag flag = (StatusFlag) getApplication();
             flag.setLoginTypeGen();
 
             /*
@@ -89,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
              */
 
             //テスト-------------------------------------------------------
-            Intent intent = new Intent(getApplication(), AreaList.class);
+            Intent intent = new Intent(getApplication(), Sensor.class);
             startActivity(intent);
             //テスト-------------------------------------------------------
         });
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         Button researchUser = findViewById(R.id.researcherType);
         researchUser.setOnClickListener( v -> {
             //研究者ユーザログイン画面に移行
-            Intent intent = new Intent(getApplication(), ResearcherLogin.class);
+            Intent intent = new Intent(getApplication(), AreaList.class);
             startActivity(intent);
         });
     }

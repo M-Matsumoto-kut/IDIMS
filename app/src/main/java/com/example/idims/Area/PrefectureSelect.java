@@ -1,5 +1,6 @@
 package com.example.idims.Area;
 
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,15 +11,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-//import com.example.idims.MainActivity;
-import com.example.idims.StatusData;
+import com.example.idims.StatusFlag;
 
 import java.util.Locale;
 
 public class PrefectureSelect extends AppCompatActivity {
     private TextView textView;
-    private StatusData status;
+    private StatusFlag status;
+    //private AddArea addArea;
 
     private final String[] prefectures = { "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県",
             "福島県", "東京都", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県",
@@ -34,13 +34,17 @@ public class PrefectureSelect extends AppCompatActivity {
     private int start;  //都道府県表示の初めの位置
     private int end;    //都道府県表示の最後の位置
     private int addedSell;
+    //int tagNumber;
+    int preNumber;
+    int selectPreNumber;
 
     private ViewGroup Linearlayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.status = (StatusData) getApplication();
+        this.status = (StatusFlag) getApplication();
+        //this.addArea = (AddArea) getApplication();
     }
 
     @Override
@@ -97,8 +101,6 @@ public class PrefectureSelect extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
 
-        int i = 0;
-        int num = 0;
 
         //StatusFlagに記録したaddSel(記録した地方に対応した番号）を取得する
         addSel = status.getSelRegion();
@@ -141,64 +143,64 @@ public class PrefectureSelect extends AppCompatActivity {
                 finish();
         }
 
+        //tagNumber = 0;
+        preNumber = start;
+        selectPreNumber = 0;
+
         for(Button btn : button) {
             btn = new Button(this);
 
-            num = i;
+            //preNumber = tagNumber;
             // Tag を設定する
 
-
             //表示する都道府県の表示範囲を選択
-            if (start <= num && num <= end) {
+            if (start <= preNumber && preNumber <= end) {
                 // Tag を設定する
-                btn.setTag(String.valueOf(i));
-                btn.setText(String.format(Locale.US, "%s", prefectures[num]));
-                //btn.setTextColor(0xffffff);
+                btn.setTag(String.valueOf(preNumber));
+                btn.setText(String.format(Locale.US, "%s", prefectures[preNumber]));
 
                 LinearLayout.LayoutParams buttonLayoutParams =
                         new LinearLayout.LayoutParams(buttonWidth,
                                 buttonHeight);
                 buttonLayoutParams.setMargins(margins, margins, margins, margins);
 
-                //ViewGroup.LayoutParams.WRAP_CONTENT
-
                 btn.setLayoutParams(buttonLayoutParams);
                 layout.addView(btn);
             }
 
+            //都道府県ボタンが押されたとき
             btn.setOnClickListener( v -> {
                 // View からTagを取り出す
                 //textView.setText(String.format(Locale.US,
                  //       "Button: %s", v.getTag().toString()));
 
                 //tagを数値で取得
+                selectPreNumber = Integer.parseInt(String.valueOf(v.getTag()));
 
-                addSel = Integer.parseInt(String.valueOf(v.getTag()));
-
-                this.registerArea(addSel);
+                if(this.registerArea(selectPreNumber)) {
+                    status.setPrefectureNum(selectPreNumber);
+                    Intent intent = new Intent(getApplication(), AreaList.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplication(), AreaList.class);
+                    startActivity(intent);
+                }
             });
-            i++;
+            preNumber++;
         }
     }
 
-    private void registerArea(int x) {
+
+    private boolean registerArea(int x) {
 
         for(int j = 0; j < 47; j++) {
             addedSell = status.getPrefectureNum(j);
 
             //すでに登録済み
             if(x == addedSell) {
-                finish();
+                return false;
             }
         }
-
-        finish();
-
-        //選択した都道府県を登録する
-        status.setPrefectureNum(addSel);
-        //都道府県選択画面へ移行
-        Intent intent = new Intent(getApplication(), AreaList.class);
-        startActivity(intent);
-
+        return true;
     }
 }

@@ -11,14 +11,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.idims.StatusData;
+import com.example.idims.StatusFlag;
 
 import java.util.Locale;
 
 //地方選択画面モジュール
 public class RegionSelect extends AppCompatActivity {
     private TextView textView;
-    private StatusData status;
+    private StatusFlag status;
 
     private final String[] regions = {"北海道地方", "東北地方", "関東地方", "中部地方", "近畿地方",
             "中国地方", "四国地方", "九州地方"};
@@ -30,7 +30,7 @@ public class RegionSelect extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.status = (StatusData) getApplication();
+        this.status = (StatusFlag) getApplication();
     }
 
     @Override

@@ -1,13 +1,16 @@
 package com.example.idims;
 
 import android.app.Application;
+import android.content.SharedPreferences;
+
 import java.util.Arrays;
 
 //　全てモジュールにおいて，保持する必要があるデータを格納するクラス
-public class StatusData extends Application {
-    private int activityStatus;     // 起動時のActivityの状態
-    private int loginType;          // login時のユーザのタイプ
-    private int id;                 // (研究者)ログイン後IDを記録する
+public class StatusFlag extends Application {
+    private int activityStatus;             // 起動時のActivityの状態
+    private int loginType;                  // login時のユーザのタイプ
+    private int id;
+    private static final int USER_ID = 0;   // (研究者)ログイン後IDを保存する
     final private String[] regions = {"北海道地方", "東北地方", "関東地方", "中部地方", "近畿地方",
             "中国地方", "四国地方", "九州地方"};
     private int[] selectPrefectureNum = new int[47]; //　選択都道府県を番号で格納
@@ -22,7 +25,6 @@ public class StatusData extends Application {
     private int countPre; // 選択都道府県数をカウント
     private int selRegion; //　どの地方を選択したか記録
 
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -33,19 +35,16 @@ public class StatusData extends Application {
         countPre = 0;
         loginType = 0;
         selRegion = 99;
-
+        id = 0;
         this.setActivityStatus(1);
     }
-
     /*
         activityStatusの値を返す
-        1:StartLogin
-        2:
-        3:
+            1:StartLogin
+            2:
+            3:
      */
-    public int getActivityStatus(){
-        return this.activityStatus;
-    }
+    public int getActivityStatus() { return this.activityStatus; }
 
     //Activityの状態を更新
     public void setActivityStatus(int status) {
@@ -54,9 +53,9 @@ public class StatusData extends Application {
 
     /*
         loginTypeの値を返す
-        0:nonSelect（未選択）
-        1:generalUser(一般ユーザ)
-        2:researcherUser(研究者ユーザ)
+            0:nonSelect（未選択）
+            1:generalUser(一般ユーザ)
+            2:researcherUser(研究者ユーザ)
      */
     public int getLoginType() {
         return this.loginType;
@@ -77,8 +76,12 @@ public class StatusData extends Application {
         return this.id;
     }
 
-    //研究者ユーザのidの値を更新
-    public void setId(int id) { this.id = id; }
+    //研究者ユーザのidの値を更新して保存
+    public void setId(int id) {
+        //SharedPreferences sharedPref = getPreferences(MODE_PRIVATE);
+        //SharedPreferences.Editor editor = sharedPref.edit();
+        this.id = id;
+    }
 
     //regions（地方リスト）から番号に対応した地方名を返す
     public String getRegionName(int num) { return regions[num]; };
@@ -88,23 +91,21 @@ public class StatusData extends Application {
     public String getPrefectureName(int num) { return prefectures[num]; };
 
     /*
-        selRegion
-        0:北海道
-        1:東北
-        2:関東
-        3:中部
-        4:近畿
-        5:中国
-        6:四国
-        7:九州
+        selRegion（選択した地方の番号）を返す
+            0:北海道
+            1:東北
+            2:関東
+            3:中部
+            4:近畿
+            5:中国
+            6:四国
+            7:九州
      */
-
-    //selRegionを返す
     public int getSelRegion() {
         return this.selRegion;
     }
 
-    //selRegionを更新
+    //selRegion（選択した地方の番号）を更新
     public void setSelRegion(int selRegion) { this.selRegion = selRegion; }
 
     //selectPrefectureNum(選択した都道府県の番号）を返す
@@ -114,7 +115,7 @@ public class StatusData extends Application {
 
     /*
     選択地域を設定(selectPrefectureNumに都道府県に対応した配列番号numを格納）
-    例：北海道 -> 0, ~, 沖縄県 -> 46
+        例：北海道 -> 0, ~, 沖縄県 -> 46
      */
     public void setPrefectureNum(int num) {
         this.selectPrefectureNum[this.countPre] = num;
