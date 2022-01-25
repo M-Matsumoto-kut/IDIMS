@@ -10,48 +10,62 @@
         android:id="@+id/buttonToCloseMenuPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="閉じる"
-        tools:layout_editor_absoluteX="307dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginTop="16dp"
+        android:text="@string/close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonToListSetAreaPage"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:text="設定地域一覧"
-        tools:layout_editor_absoluteX="195dp"
-        tools:layout_editor_absoluteY="91dp" />
+        android:text="@string/arealist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToCloseMenuPage" />
 
     <Button
         android:id="@+id/buttonToSettingPage"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:text="設定"
-        tools:layout_editor_absoluteX="193dp"
-        tools:layout_editor_absoluteY="157dp" />
+        android:text="@string/configuration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToListSetAreaPage" />
 
     <Button
         android:id="@+id/buttonToArchivePage"
         android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="アーカイブ"
-        tools:layout_editor_absoluteX="193dp"
-        tools:layout_editor_absoluteY="372dp" />
+        android:layout_height="50dp"
+        android:text="@string/archive"
+        app:layout_constraintBottom_toTopOf="@+id/buttonToResearcherPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonToResearcherPage"
         android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="研究者ページ"
-        tools:layout_editor_absoluteX="193dp"
-        tools:layout_editor_absoluteY="421dp" />
+        android:layout_height="50dp"
+        android:text="@string/researcherPage"
+        app:layout_constraintBottom_toTopOf="@+id/buttonToAboutAppPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonToAboutAppPage"
         android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="アプリについて"
-        tools:layout_editor_absoluteX="193dp"
-        tools:layout_editor_absoluteY="469dp" />
+        android:layout_height="50dp"
+        android:layout_marginBottom="236dp"
+        android:text="@string/howtoapp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

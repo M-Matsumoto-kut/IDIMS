@@ -78,6 +78,12 @@
     <string name="add_area">地域を追加する</string>
     <string name="changeCon">条件を変える</string>
     <string name="searchcondition">検索条件</string>
+    <string name="close">閉じる</string>
+    <string name="arealist">設定地域一覧</string>
+    <string name="configuration">設定</string>
+    <string name="howtoapp">アプリについて</string>
+    <string name="archive">アーカイブ</string>
+    <string name="researcherPage">研究者ページ</string>
 
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
     <string-array name="spinner_constant">
