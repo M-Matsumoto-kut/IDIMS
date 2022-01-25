@@ -13,9 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IDIMS">
         <activity
+            android:name=".Menu.MenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchResultMapActivity"
-            android:exported="true" />
-        <!-- なんかうまく許可をとってくれないので追記 -->
+            android:exported="true" /> <!-- なんかうまく許可をとってくれないので追記 -->
         <!-- <uses-library android:name="org.apache.http.legacy" android:required="false"/> -->
         <activity
             android:name=".HomeActivity"

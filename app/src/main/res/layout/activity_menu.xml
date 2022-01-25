@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu.MenuActivity">
+
+    <Button
+        android:id="@+id/buttonToResearcherPage"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="研究者ページ"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="421dp" />
+
+    <Button
+        android:id="@+id/buttonToAboutAppPage"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="アプリについて"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="469dp" />
+
+    <Button
+        android:id="@+id/buttonToArchivePage"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="アーカイブ"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="372dp" />
+
+    <Button
+        android:id="@+id/buttonToCloseMenuPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="閉じる"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/buttonToListSetAreaPage"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="設定地域一覧"
+        tools:layout_editor_absoluteX="195dp"
+        tools:layout_editor_absoluteY="91dp" />
+
+    <Button
+        android:id="@+id/buttonToSettingPage"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="設定"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="157dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
