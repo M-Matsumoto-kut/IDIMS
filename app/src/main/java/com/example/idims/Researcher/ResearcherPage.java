@@ -24,7 +24,7 @@ public class ResearcherPage extends AppCompatActivity {
         Button button1 = findViewById(R.id.next1Activity);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(ResearcherPage.this, Sensor.class);
+                Intent intent = new Intent(ResearcherPage.this, SensorListActivity.class);
                 startActivity(intent);
             }
         });
@@ -33,7 +33,7 @@ public class ResearcherPage extends AppCompatActivity {
         Button button2 = findViewById(R.id.next2Activity);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(ResearcherPage.this, ChangePassword.class);
+                Intent intent = new Intent(ResearcherPage.this, ChangePasswordActivity.class);
                 startActivity(intent);
             }
         });

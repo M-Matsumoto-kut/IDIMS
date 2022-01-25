@@ -17,7 +17,7 @@ import com.example.idims.R;
 /*
     パスワード更新モジュール
  */
-public class ChangePassword extends AppCompatActivity {
+public class ChangePasswordActivity extends AppCompatActivity {
 
     EditText nowPassword; //現在のパスワード
     EditText newPassword; //現在のパスワード
@@ -84,7 +84,7 @@ public class ChangePassword extends AppCompatActivity {
 
 
                     //研究者ページに戻る
-                    Intent intent = new Intent(ChangePassword.this, ResearcherPage.class);
+                    Intent intent = new Intent(ChangePasswordActivity.this, ResearcherPage.class);
                     startActivity(intent);
                 } else {
                     //再入力を求める
@@ -97,7 +97,7 @@ public class ChangePassword extends AppCompatActivity {
             }
 
             //test-------------------------------------------------------------
-            Intent intent = new Intent(ChangePassword.this, ResearcherPage.class);
+            Intent intent = new Intent(ChangePasswordActivity.this, ResearcherPage.class);
             startActivity(intent);
             //test-------------------------------------------------------------
         });

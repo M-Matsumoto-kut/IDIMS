@@ -15,7 +15,7 @@ import com.example.idims.StatusFlag;
 
 import java.util.Locale;
 
-public class PrefectureSelect extends AppCompatActivity {
+public class PrefectureSelectActivity extends AppCompatActivity {
     private TextView textView;
     private StatusFlag status;
     //private AddArea addArea;

@@ -3,14 +3,13 @@ package com.example.idims;
 import android.os.Bundle;
 
 import com.example.idims.Area.AreaList;
-import com.example.idims.Researcher.ResearcherLogin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 
 import com.example.idims.Researcher.ResearcherPage;
-import com.example.idims.Researcher.Sensor;
+import com.example.idims.Researcher.SensorListActivity;
 
 import android.widget.Button;
 
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
              */
 
             //テスト-------------------------------------------------------
-            Intent intent = new Intent(getApplication(), Sensor.class);
+            Intent intent = new Intent(getApplication(), SensorListActivity.class);
             startActivity(intent);
             //テスト-------------------------------------------------------
         });

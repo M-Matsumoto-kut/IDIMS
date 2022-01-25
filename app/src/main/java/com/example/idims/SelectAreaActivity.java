@@ -58,11 +58,6 @@ public class SelectAreaActivity extends DisasterSearchActivity {
                     finish();
                 }
             }
-
-
         });
     }
-
-
-
 }

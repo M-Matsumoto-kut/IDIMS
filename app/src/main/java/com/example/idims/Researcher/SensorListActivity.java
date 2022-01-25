@@ -16,7 +16,7 @@ import com.example.idims.StatusFlag;
 /*
     センサー確認モジュール
  */
-public class Sensor extends AppCompatActivity {
+public class SensorListActivity extends AppCompatActivity {
 
     private StatusFlag status;
     private int sensorNum;

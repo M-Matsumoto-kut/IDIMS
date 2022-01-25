@@ -45,10 +45,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Researcher.ChangePassword"
+            android:name=".Researcher.ChangePasswordActivity"
             android:exported="true" />
         <activity
-            android:name=".Researcher.Sensor"
+            android:name=".Researcher.SensorListActivity"
             android:exported="false" />
         <activity
             android:name=".Researcher.ResearcherPage"
@@ -69,13 +69,13 @@
             android:name=".Area.MunicipaliteSelect"
             android:exported="false" />
         <activity
-            android:name=".Area.PrefectureSelect"
+            android:name=".Area.PrefectureSelectActivity"
             android:exported="false" />
         <activity
             android:name=".Area.AreaList"
             android:exported="false" />
         <activity
-            android:name=".Area.RegionSelect"
+            android:name=".Area.RegionSelectActivity"
             android:exported="false" />
     </application>
 

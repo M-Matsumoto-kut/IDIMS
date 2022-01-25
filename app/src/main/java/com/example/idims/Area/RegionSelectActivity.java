@@ -16,7 +16,7 @@ import com.example.idims.StatusFlag;
 import java.util.Locale;
 
 //地方選択画面モジュール
-public class RegionSelect extends AppCompatActivity {
+public class RegionSelectActivity extends AppCompatActivity {
     private TextView textView;
     private StatusFlag status;
 
@@ -115,7 +115,7 @@ public class RegionSelect extends AppCompatActivity {
                     //選択したボタンに対応する地方をStatusFlagに記録
                     status.setSelRegion(addSel);
                     //都道府県選択画面へ移行
-                    Intent intent = new Intent(getApplication(), PrefectureSelect.class);
+                    Intent intent = new Intent(getApplication(), PrefectureSelectActivity.class);
                     startActivity(intent);
 
             });

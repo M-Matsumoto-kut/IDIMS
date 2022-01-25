@@ -57,7 +57,7 @@ public class AreaList extends AppCompatActivity {
         /* 追加ボタンが押された時→地方地域選択画面に移行 */
         Button addButton = findViewById(R.id.addArea);
         addButton.setOnClickListener( v -> {
-            Intent intent = new Intent(getApplication(), RegionSelect.class);
+            Intent intent = new Intent(getApplication(), RegionSelectActivity.class);
             startActivity(intent);
         });
 
