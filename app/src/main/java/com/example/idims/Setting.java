@@ -146,7 +146,6 @@ public class Setting extends AppCompatActivity {
                     //スイッチをONにした場合に起こる動作
 
 
-
                 }else {
                     //チェックボックスがON->OFFなら
                     //チェックボックスをOFFにした場合に起こる動作
