@@ -37,6 +37,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -86,7 +87,7 @@
             <TableLayout
                 android:id="@+id/tablelayout_List"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             </TableLayout>
 
@@ -94,5 +95,15 @@
 
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button_Map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mapGamen"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar4"
+        app:layout_constraintTop_toTopOf="@+id/toolbar4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

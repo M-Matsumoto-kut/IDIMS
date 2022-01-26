@@ -85,6 +85,7 @@
     <string name="archive">アーカイブ</string>
     <string name="researcherPage">研究者ページ</string>
     <string name="delete">削除</string>
+    <string name="mapGamen">マップ画面</string>
 
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
     <string-array name="spinner_constant">

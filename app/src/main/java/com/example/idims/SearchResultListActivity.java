@@ -349,6 +349,40 @@ public class SearchResultListActivity extends AppCompatActivity {
         }
         */
 
+        //マップ画面に移行する
+        Button mapButton = (Button) findViewById(R.id.button_Map);
+        mapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                //マップ出力時に必要となる識別番号リストの作成
+                ArrayList<Integer> disasterNum = new ArrayList<>();
+                for(int j = 0; j < resultLat.size(); j++){ //数字をループで代入させ、
+                    disasterNum.add(j);
+                }
+                //データを受け渡してアクティビティを移動する
+                Intent intent = new Intent(SearchResultListActivity.this, SearchResultMapActivity.class);
+                //その前に型変換を行う
+                ArrayList<String> castLat = new ArrayList<>(); //緯度
+                ArrayList<String> castLng = new ArrayList<>(); //経度
+                ArrayList<String> castTime = new ArrayList<>(); //発生時刻
+
+                for(int i = 0; i < resultLat.size(); i++){ //double型をstring型に変換して返す
+                    castLat.add(resultLat.get(i).toString());
+                    castLng.add(resultLng.get(i).toString());
+                    castTime.add(resultTime.get(i).toString());
+                }
+                intent.putStringArrayListExtra("resultLat", castLat); //緯度(型変換)
+                intent.putStringArrayListExtra("resultLng", castLng); //経度(型変換)
+                intent.putIntegerArrayListExtra("resultLevel", resultLevel); //災害レベル
+                intent.putIntegerArrayListExtra("resultConDis", resultConDis); //災害種類
+                intent.putStringArrayListExtra("resultTime", castTime); //発生時刻(型変換)
+                intent.putStringArrayListExtra("resultArea", resultArea); //発生地域
+                intent.putIntegerArrayListExtra("disasterNumber", disasterNum); //災害番号
+                intent.putExtra("areaNumber", areaNumber); //検索地域
+                startActivity(intent);
+            }
+        });
+
         //検索条件画面に戻る(初期化するため新しいインテントを渡す)
         Button backSearchCon = (Button) findViewById(R.id.button_BackDS);
         backSearchCon.setOnClickListener(new View.OnClickListener() {
