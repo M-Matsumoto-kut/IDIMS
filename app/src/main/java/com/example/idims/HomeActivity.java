@@ -295,11 +295,12 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             });
 
 
-        }else { //現在地を表示しないのでそのまま検索する
+        }/*カット部分 else { //現在地を表示しないのでそのまま検索する
             //sqlを検索
             //住所を検索し、該当箇所に災害が発生している場合情報を追加する
             //災害が発生していた場合に上のテキストに表示する
         }
+        */
 
 
     }

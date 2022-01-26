@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.util.Log;
 
 import android.os.Bundle;
 
@@ -73,6 +74,9 @@ public class SearchResultListActivity extends AppCompatActivity {
         ArrayList<String> stringTest = intentDisasterSearch.getStringArrayListExtra("testArrayStr");
          */
 
+        //デバッグ用のクラス宣言
+        debugDisasterSearchData debugData = new debugDisasterSearchData();
+
         //データベース検索用のArrayList 発生場所により不要な情報もあるので消去するため一時的な保存個所として置いておく
         ArrayList<Double> selectLat = new ArrayList<>();
         ArrayList<Double> selectLng = new ArrayList<>();
@@ -89,6 +93,7 @@ public class SearchResultListActivity extends AppCompatActivity {
         debugTimeLook(startTime, endTime);
 
 
+        /*
         //データベースに接続し検索結果を格納する
         try{
             Connection con = DriverManager.getConnection("jdbc:mysql://idims-database-dev-1", "admin", "Numasa_89");
@@ -189,6 +194,118 @@ public class SearchResultListActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        */
+
+        Log.d("debugDataOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "searching");
+
+        //デバッグ用:データを格納する
+        for(int i = 0; i < 20; i++){
+            if(waveOn){
+                if(debugData.getConDisList(i) == 1){
+                    if(Double.parseDouble(startTime) <= debugData.getTimeList(i) && Double.parseDouble(endTime) > debugData.getTimeList(i)){
+                        //緯度経度を取得
+                        Double lat = debugData.getLatList(i);
+                        Double lng = debugData.getLngList(i);
+                        //住所を取得するジオコーダークラスの宣言
+                        Geocoder geocoder = new Geocoder(this);
+                        //住所を取得
+                        try {
+                            //住所を取得
+                            List<Address> address = geocoder.getFromLocation(lat, lng, 1);
+                            //都道府県を取得
+                            String addressAdm = address.get(0).getAdminArea(); //県名を取得
+                            Log.d("テスト配列内のインデックスを表示しまーす..........", String.valueOf(i));
+                            Log.d("テスト配列内の文字列を表示しま―――――――ス", addressAdm);
+                            if(checkAdminArea(addressAdm, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
+                                //市町村名を獲得して結合
+                                String addressLoc = address.get(0).getLocality();
+                                StringBuffer sb = new StringBuffer().append(addressAdm).append(addressLoc);
+                                resultLat.add(debugData.getLatList(i)); //緯度
+                                resultLng.add(debugData.getLngList(i)); //経度
+                                resultLevel.add(debugData.getLevelList(i)); //災害レベル
+                                resultConDis.add(debugData.getConDisList(i)); //災害種類
+                                resultTime.add(debugData.getTimeList(i)); //災害時間
+                                resultArea.add(String.valueOf(sb)); //場所
+                                Log.d("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "setting");
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            }
+            if(landsrideOn){
+                if(debugData.getConDisList(i) == 2){
+                    if(Double.parseDouble(startTime) <= debugData.getTimeList(i) && Double.parseDouble(endTime) > debugData.getTimeList(i)){
+                        //緯度経度を取得
+                        Double lat = debugData.getLatList(i);
+                        Double lng = debugData.getLngList(i);
+                        //住所を取得するジオコーダークラスの宣言
+                        Geocoder geocoder = new Geocoder(this);
+                        //住所を取得
+                        try {
+                            //住所を取得
+                            List<Address> address = geocoder.getFromLocation(lat, lng, 1);
+                            //都道府県を取得
+                            String addressAdm = address.get(0).getAdminArea(); //県名を取得
+                            if(checkAdminArea(addressAdm, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
+                                //市町村名を獲得して結合
+                                String addressLoc = address.get(0).getLocality();
+                                StringBuffer sb = new StringBuffer().append(addressAdm).append(addressLoc);
+                                resultLat.add(debugData.getLatList(i)); //緯度
+                                resultLng.add(debugData.getLngList(i)); //経度
+                                resultLevel.add(debugData.getLevelList(i)); //災害レベル
+                                resultConDis.add(debugData.getConDisList(i)); //災害種類
+                                resultTime.add(debugData.getTimeList(i)); //災害時間
+                                resultArea.add(String.valueOf(sb)); //場所
+                                Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOO", "setting");
+
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            }
+            if(thounderOn){
+                if(debugData.getConDisList(i) == 3){
+                    if(Double.parseDouble(startTime) <= debugData.getTimeList(i) && Double.parseDouble(endTime) > debugData.getTimeList(i)){
+                        //緯度経度を取得
+                        Double lat = debugData.getLatList(i);
+                        Double lng = debugData.getLngList(i);
+                        //住所を取得するジオコーダークラスの宣言
+                        Geocoder geocoder = new Geocoder(this);
+                        //住所を取得
+                        try {
+                            //住所を取得
+                            List<Address> address = geocoder.getFromLocation(lat, lng, 1);
+                            //都道府県を取得
+                            String addressAdm = address.get(0).getAdminArea(); //県名を取得
+                            if(checkAdminArea(addressAdm, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
+                                //市町村名を獲得して結合
+                                String addressLoc = address.get(0).getLocality();
+                                StringBuffer sb = new StringBuffer().append(addressAdm).append(addressLoc);
+                                resultLat.add(debugData.getLatList(i)); //緯度
+                                resultLng.add(debugData.getLngList(i)); //経度
+                                resultLevel.add(debugData.getLevelList(i)); //災害レベル
+                                resultConDis.add(debugData.getConDisList(i)); //災害種類
+                                resultTime.add(debugData.getTimeList(i)); //災害時間
+                                resultArea.add(String.valueOf(sb)); //場所
+                                Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOO", "setting");
+
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            }
+
+
         }
 
         TableLayout mTableLayout = (TableLayout) findViewById(R.id.tablelayout_List);
@@ -420,8 +537,12 @@ public class SearchResultListActivity extends AppCompatActivity {
 
     //都道府県が検索条件内に入っているかを確認するメソッド
     private boolean checkAdminArea(String str, ArrayList<String> prefList){
+        //Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", str);
+        //Log.d("Prefを示せやこらあああああああああああああ", prefList.get(0));
         for(int i = 0; i < prefList.size(); i++){
+            Log.d("現在のprefを示していますうううううううううううう", prefList.get(i));
             if(str.equals(prefList.get(i))){return true;} //同じ文字列が入っていた場合その地方に該当するので真を返す
+            //Log.d("ループ回数を示しています......", String.valueOf(i));
         }
         return false;
     }
@@ -431,65 +552,112 @@ public class SearchResultListActivity extends AppCompatActivity {
     private void addPrefFromAreaNum(int areaNum, ArrayList<String> prefList){
         if(areaNum == 1){ //北海道である場合
             prefList.add("Hokkaido");
+            prefList.add("北海道");
         }else if(areaNum == 2){ //東北
             prefList.add("Aomori");
+            prefList.add("青森県");
             prefList.add("Iwate");
+            prefList.add("岩手県");
             prefList.add("Miyagi");
+            prefList.add("宮城県");
             prefList.add("Akita");
+            prefList.add("秋田県");
             prefList.add("Yamagata");
+            prefList.add("山形県");
             prefList.add("Hukushima");
+            prefList.add("福島県");
 
         }else if(areaNum == 3){ //関東
             prefList.add("Ibaraki");
+            prefList.add("茨城県");
             prefList.add("Tochigi");
+            prefList.add("栃木県");
             prefList.add("Gunma");
+            prefList.add("群馬県");
             prefList.add("Saitama");
+            prefList.add("埼玉県");
             prefList.add("Chiba");
+            prefList.add("千葉県");
             prefList.add("Tokyo");
+            prefList.add("東京都");
             prefList.add("Kanagawa");
+            prefList.add("神奈川県");
 
 
         }else if (areaNum == 4) { //中部
             prefList.add("Niigata");
+            prefList.add("新潟県");
             prefList.add("Toyama");
+            prefList.add("富山県");
             prefList.add("Ishikawa");
+            prefList.add("石川県");
             prefList.add("Fukui");
+            prefList.add("福井県");
             prefList.add("Yamanashi");
+            prefList.add("山口県");
             prefList.add("Nagano");
+            prefList.add("長野県");
             prefList.add("Gifu");
+            prefList.add("岐阜県");
             prefList.add("Shizuoka");
+            prefList.add("静岡県");
             prefList.add("Aichi");
+            prefList.add("愛知県");
 
         }else if (areaNum == 5){ //近畿
             prefList.add("Mie");
+            prefList.add("三重県");
             prefList.add("Shiga");
+            prefList.add("滋賀県");
             prefList.add("Kyoto");
+            prefList.add("京都府");
             prefList.add("Osaka");
+            prefList.add("大阪府");
             prefList.add("Hyogo");
+            prefList.add("兵庫県");
             prefList.add("Nara");
+            prefList.add("奈良県");
             prefList.add("Wakayama");
+            prefList.add("和歌山県");
 
         }else if(areaNum == 6){ //中国・四国
             prefList.add("Tottori");
+            prefList.add("鳥取県");
             prefList.add("Shimane");
+            prefList.add("島根県");
             prefList.add("Okayama");
+            prefList.add("岡山県");
             prefList.add("Hiroshima");
+            prefList.add("広島県");
             prefList.add("Yamaguchi");
+            prefList.add("山口県");
             prefList.add("Tokushima");
+            prefList.add("徳島県");
             prefList.add("Kagawa");
+            prefList.add("香川県");
             prefList.add("Ehime");
+            prefList.add("愛媛県");
             prefList.add("Kochi");
+            prefList.add("高知県");
 
 
         }else if(areaNum == 7){ //九州
             prefList.add("Fukuoka");
+            prefList.add("福岡県");
             prefList.add("Saga");
+            prefList.add("佐賀県");
             prefList.add("Nagasaki");
+            prefList.add("長崎県");
             prefList.add("Kumamoto");
+            prefList.add("熊本県");
             prefList.add("Oita");
+            prefList.add("大分県");
             prefList.add("Miyazaki");
+            prefList.add("宮崎県");
             prefList.add("Kagoshima");
+            prefList.add("鹿児島県");
             prefList.add("Okinawa");
+            prefList.add("沖縄県");
 
         }
     }
