@@ -9,7 +9,6 @@ import java.util.concurrent.Future;
 
 
 //非同期で定期的にDBにアクセスし，災害情報が更新されれば通知処理を行う
-
 public class Asynchronous implements Runnable {
 
     public void run(){
@@ -39,14 +38,13 @@ public class Asynchronous implements Runnable {
             Future<Integer> futureResult = ex.submit(new NewDisInfoSearch.newDisasterInfoSearch());
 
             try {
-                int newDisaster = futureResult.get();  //DBアクセス結果を取得(災害の種類の番号)
+                int newDisasterNum = futureResult.get();  //DBアクセス結果を取得(災害の種類の番号)
 
-                //通知クラスのインスタンス生成
-                DisasterNotification notification = new DisasterNotification();
 
                 //もし災害が発生したら通知
-                if(newDisaster < 99) {
-                    notification.disasterDetection(newDisaster);
+                if(newDisasterNum < 99) {
+                    DisasterNotification notification = new DisasterNotification();
+                    notification.disasterDetection(newDisasterNum);
                 }
 
             } catch (Exception e) {
