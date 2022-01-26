@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         //status（Activity状態）を取得
         StatusFlag flag = (StatusFlag) getApplication();
 
-        //災害検知モジュールを起動
 
     }
     /*
@@ -37,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
+
+        //災害検知モジュールを起動
+        Asynchronous r = new Asynchronous();
+        Thread t = new Thread(r); // Runnableをスレッドに渡してインスタンスを生成する
+        t.start();
 
         //loginType（ログイン状態）を取得
         StatusFlag flag = (StatusFlag) this.getApplication();
