@@ -105,9 +105,12 @@ public class AreaListActivity extends AppCompatActivity {
 
 
         //削除ボタンを押したら，各地域ごとに削除ボタンを生成
+        /*
         Button deleteButton = findViewById(R.id.deleteArea);
         deleteButton.setOnClickListener( v -> {
             Button[] button = new Button[47];
         });
+
+         */
     }
 }
