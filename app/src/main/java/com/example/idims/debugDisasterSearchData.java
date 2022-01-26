@@ -21,22 +21,22 @@ public class debugDisasterSearchData {
 
     private void setLatList(){
         latlist[0] = 33;
-        latlist[1] = 33.33;
+        latlist[1] = 33;
         latlist[2] = 33.33;
         latlist[3] = 40;
         latlist[4] = 35;
         latlist[5] = 35;
         latlist[6] = 32;
-        latlist[7] = 31;
-        latlist[8] = 31;
+        latlist[7] = 33;
+        latlist[8] = 33;
         latlist[9] = 33;
-        latlist[10] = 39;
-        latlist[11] = 43;
-        latlist[12] = 42;
-        latlist[13] = 38;
-        latlist[14] = 30;
-        latlist[15] = 38;
-        latlist[16] = 34.5;
+        latlist[10] = 33;
+        latlist[11] = 33;
+        latlist[12] = 33;
+        latlist[13] = 33;
+        latlist[14] = 33;
+        latlist[15] = 33;
+        latlist[16] = 33;
         latlist[17] = 33.33;
         latlist[18] = 33.33;
         latlist[19] = 33.33;
@@ -45,22 +45,22 @@ public class debugDisasterSearchData {
 
     private void setLngList(){
         lnglist[0] = 133;
-        lnglist[1] = 133.38;
+        lnglist[1] = 133;
         lnglist[2] = 133.38;
-        lnglist[3] = 142.3;
+        lnglist[3] = 142.1;
         lnglist[4] = 135;
         lnglist[5] = 137;
         lnglist[6] = 131.333;
         lnglist[7] = 132;
-        lnglist[8] = 134;
-        lnglist[9] = 133.333;
-        lnglist[10] = 142;
-        lnglist[11] = 142.22;
-        lnglist[12] = 142.55;
-        lnglist[13] = 139;
-        lnglist[14] = 130.333;
-        lnglist[15] = 143.58;
-        lnglist[16] = 143;
+        lnglist[8] = 133;
+        lnglist[9] = 133;
+        lnglist[10] = 133;
+        lnglist[11] = 133;
+        lnglist[12] = 133;
+        lnglist[13] = 133;
+        lnglist[14] = 133;
+        lnglist[15] = 133;
+        lnglist[16] = 133;
         lnglist[17] = 133;
         lnglist[18] = 133.33;
         lnglist[19] = 133;

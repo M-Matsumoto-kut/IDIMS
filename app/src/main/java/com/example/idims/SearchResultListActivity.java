@@ -49,14 +49,16 @@ public class SearchResultListActivity extends AppCompatActivity {
     private ArrayList<Double> resultTime = new ArrayList<>(); //発生時刻
     private ArrayList<String> resultArea = new ArrayList<>(); //発生地域
 
+    //地域を参照して県を格納する
+    private ArrayList<String> prefList = new ArrayList<>(); //県が格納されているリスト
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result_list);
 
-        //地域を参照して県を格納する
-        ArrayList<String> prefList = new ArrayList<>(); //県が格納されているリスト
 
         //DisasterSearchActivityから検索条件を受け取る
         Intent intentDisasterSearch = getIntent();
@@ -199,6 +201,7 @@ public class SearchResultListActivity extends AppCompatActivity {
 
         Log.d("debugDataOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "searching");
 
+        /*
         //デバッグ用:データを格納する
         for(int i = 0; i < 20; i++){
             if(waveOn){
@@ -217,7 +220,7 @@ public class SearchResultListActivity extends AppCompatActivity {
                             String addressAdm = address.get(0).getAdminArea(); //県名を取得
                             Log.d("テスト配列内のインデックスを表示しまーす..........", String.valueOf(i));
                             Log.d("テスト配列内の文字列を表示しま―――――――ス", addressAdm);
-                            if(checkAdminArea(addressAdm, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
+                            if(checkAdminArea(addressAdm)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
                                 //市町村名を獲得して結合
                                 String addressLoc = address.get(0).getLocality();
                                 StringBuffer sb = new StringBuffer().append(addressAdm).append(addressLoc);
@@ -250,7 +253,7 @@ public class SearchResultListActivity extends AppCompatActivity {
                             List<Address> address = geocoder.getFromLocation(lat, lng, 1);
                             //都道府県を取得
                             String addressAdm = address.get(0).getAdminArea(); //県名を取得
-                            if(checkAdminArea(addressAdm, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
+                            if(checkAdminArea(addressAdm)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
                                 //市町村名を獲得して結合
                                 String addressLoc = address.get(0).getLocality();
                                 StringBuffer sb = new StringBuffer().append(addressAdm).append(addressLoc);
@@ -284,7 +287,7 @@ public class SearchResultListActivity extends AppCompatActivity {
                             List<Address> address = geocoder.getFromLocation(lat, lng, 1);
                             //都道府県を取得
                             String addressAdm = address.get(0).getAdminArea(); //県名を取得
-                            if(checkAdminArea(addressAdm, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
+                            if(checkAdminArea(addressAdm)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
                                 //市町村名を獲得して結合
                                 String addressLoc = address.get(0).getLocality();
                                 StringBuffer sb = new StringBuffer().append(addressAdm).append(addressLoc);
@@ -307,7 +310,39 @@ public class SearchResultListActivity extends AppCompatActivity {
 
 
         }
+        */
 
+        //デバッグ:単なるデータセット
+        for(int i = 0; i < 20; i++){
+            Double lat = debugData.getLatList(i);
+            Double lng = debugData.getLngList(i);
+            //住所を取得するジオコーダークラスの宣言
+            Geocoder geocoder = new Geocoder(this);
+            //住所を取得
+            Log.d("テスト配列内の文字列を表示しま―――――――ス", String.valueOf(i));
+            try {
+                //住所を取得
+                List<Address> address = geocoder.getFromLocation(lat, lng, 1);
+                //都道府県を取得
+                String addressAdm = address.get(0).getAdminArea(); //県名を取得
+
+                    String addressLoc = address.get(0).getLocality();
+                    StringBuffer sb = new StringBuffer().append(addressAdm).append(addressLoc);
+                    resultLat.add(debugData.getLatList(i)); //緯度
+                    resultLng.add(debugData.getLngList(i)); //経度
+                    resultLevel.add(debugData.getLevelList(i)); //災害レベル
+                    resultConDis.add(debugData.getConDisList(i)); //災害種類
+                    resultTime.add(debugData.getTimeList(i)); //災害時間
+                    resultArea.add(String.valueOf(sb)); //場所
+                    Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOO", "setting");
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        /*
         TableLayout mTableLayout = (TableLayout) findViewById(R.id.tablelayout_List);
         //テーブルで表示
         for(int i = -1; i < resultLat.size(); i++){
@@ -399,7 +434,7 @@ public class SearchResultListActivity extends AppCompatActivity {
                 mTableLayout.addView(trSep, trParamsSep);
             }
         }
-
+        */
         /*
         //リストで表示する
         //ArrayList<Button> buttonResult = new ArrayList<>(); //ボタンのリスト表示
@@ -466,6 +501,22 @@ public class SearchResultListActivity extends AppCompatActivity {
         }
         */
 
+        //テキストビューで追加する
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlaytout_text);
+        for(int i = 0;i <resultLat.size(); i++){
+            TextView textView = new TextView(this);
+            textView.setTextSize(16);
+            textView.setText(getDisasterName(resultConDis.get(i)) + "  レベル: " + resultLevel.get(i) + ", " + resultArea.get(i) + "\n 発生時刻: " + resultTime.get(i));
+            linearLayout.addView(textView);
+            //空行を入力
+            if(i == resultLat.size() - 1){
+                TextView kara = new TextView(this);
+                kara.setTextSize(20);
+                kara.setText("\n \n");
+                linearLayout.addView(kara);
+            }
+        }
+
         //マップ画面に移行する
         Button mapButton = (Button) findViewById(R.id.button_Map);
         mapButton.setOnClickListener(new View.OnClickListener(){
@@ -528,15 +579,17 @@ public class SearchResultListActivity extends AppCompatActivity {
         String year = before.substring(0, 3); //年を取得
         String month = before.substring(4, 5); //月
         String day = before.substring(6, 7); //日
-        String hour = before.substring(8, 9); //時
-        String minute = before.substring(10, 11); //分
-        StringBuffer str = new StringBuffer().append(year).append("年").append(month).append("月").append(day).append("日").append(hour).append(":").append(minute); //結合
+        //String hour = before.substring(8, 9); //時
+        //String minute = before.substring(10, 11); //分
+        //StringBuffer str = new StringBuffer().append(year).append("年").append(month).append("月").append(day).append("日").append(hour).append(":").append(minute); //結合
+        StringBuffer str = new StringBuffer().append(year).append("年").append(month).append("月").append(day).append("日").append("00:00"); //結合
+
         return String.valueOf(str);
 
     }
 
     //都道府県が検索条件内に入っているかを確認するメソッド
-    private boolean checkAdminArea(String str, ArrayList<String> prefList){
+    private boolean checkAdminArea(String str){
         //Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", str);
         //Log.d("Prefを示せやこらあああああああああああああ", prefList.get(0));
         for(int i = 0; i < prefList.size(); i++){
