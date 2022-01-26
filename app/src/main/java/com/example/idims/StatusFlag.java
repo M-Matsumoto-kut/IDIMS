@@ -97,11 +97,11 @@ public class StatusFlag extends Application {
     }
 
     //regions（地方リスト）から番号に対応した地方名を返す
-    public String getRegionName(int num) { return regions[num]; };
+    public String getRegionName(int num) { return regions[num]; }
 
 
     //prefectures（都道府県リスト）から番号に対応した都道府県名を返す
-    public String getPrefectureName(int num) { return prefectures[num]; };
+    public String getPrefectureName(int num) { return prefectures[num]; }
 
     /*
         selRegion（選択した地方の番号）を返す

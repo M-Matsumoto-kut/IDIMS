@@ -17,7 +17,6 @@ public class DisasterDetection extends Application{
 
     private void disasterDetection() {
 
-
         final NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, IMPORTANCE_HIGH)
                     .setTicker("Oh.")
@@ -28,7 +27,6 @@ public class DisasterDetection extends Application{
                     .setContentText("bitch");
 
         //通知がタップされた時にホーム画面に遷移
-
         Intent intent = new Intent(this, HomeActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 this, 0, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -36,14 +34,10 @@ public class DisasterDetection extends Application{
         )
 
 
-
-
         //新しい災害情報を取得した時，通知を行う（DB)
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(MY_NOTIFICATION_ID, builder.build());
-
-
     }
 
 

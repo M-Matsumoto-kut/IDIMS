@@ -40,16 +40,18 @@ public class Setting extends AppCompatActivity {
         CheckBox landslideCb = findViewById(R.id.landslideCheckBox);
         CheckBox thunderCb = findViewById(R.id.thunderCheckBox);
 
-        // 各種スイッチ、チェックボックスのデフォルト(OFF)
+        // 各種スイッチ、チェックボックスのデフォルト
         gpsSw.setChecked(false);
         noticeSw.setChecked(false);
+
         alertSw.setChecked(false);
+        alertSw.setClickable(false);
+
         tsunamiCb.setChecked(false);
         landslideCb.setChecked(false);
         thunderCb.setChecked(false);
 
-        //アラートスイッチ，災害の種類は通知がオフのとき操作できない（デフォルト）
-        alertSw.setClickable(false);
+        //災害の種類は通知がオフのとき操作できない（デフォルト）
         tsunamiCb.setClickable(false);
         landslideCb.setClickable(false);
         thunderCb.setClickable(false);
@@ -61,6 +63,9 @@ public class Setting extends AppCompatActivity {
                     //スイッチがOFF->ONなら
                     Toast.makeText(getApplication(), "位置情報ON", Toast.LENGTH_LONG).show();
 
+                    status.setGpsPermission(1);
+
+                    /*
                     //スイッチをONにした場合に起こる動作
                     ActivityResultLauncher<String[]> locationPermissionRequest =
                             registerForActivityResult(new ActivityResultContracts()
@@ -88,6 +93,8 @@ public class Setting extends AppCompatActivity {
                             Manifest.permission.ACCESS_COARSE_LOCATION
                     });
 
+                     */
+
 
                 }else {
                     //スイッチがON->OFFなら
@@ -95,7 +102,6 @@ public class Setting extends AppCompatActivity {
 
                     //スイッチをOFFにした場合に起こる動作
                     status.setGpsPermission(0);
-
 
                 }
             }
@@ -106,7 +112,7 @@ public class Setting extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 if(noticeSw.isChecked()) {
                     //スイッチがOFF->ONなら
-                    Toast.makeText(getApplication(), "通知、アラートON", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(), "通知ON", Toast.LENGTH_LONG).show();
 
                     //スイッチをONにした場合に起こる動作
                     status.setNoticePermission(1);
@@ -126,7 +132,7 @@ public class Setting extends AppCompatActivity {
 
                 }else {
                     //スイッチがON->OFFなら
-                    Toast.makeText(getApplication(), "通知、アラートOFF", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(), "通知OFF", Toast.LENGTH_LONG).show();
 
                     //スイッチをOFFにした場合に起こる動作
                     status.setNoticePermission(0);
@@ -143,7 +149,6 @@ public class Setting extends AppCompatActivity {
                     landslideCb.setClickable(false);
                     thunderCb.setClickable(false);
 
-
                 }
             }
         });
@@ -153,16 +158,15 @@ public class Setting extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 if(alertSw.isChecked()) {
                     //チェックボックスがOFF->ONなら
+                    Toast.makeText(getApplication(), "アラートON", Toast.LENGTH_LONG).show();
+
                     //スイッチをONにした場合に起こる動作
                     status.setAlertPermission(1);
-
-
 
                 }else {
                     //チェックボックスがON->OFFなら
                     //チェックボックスをOFFにした場合に起こる動作
                     status.setAlertPermission(0);
-
 
                 }
             }
@@ -173,16 +177,15 @@ public class Setting extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 if(tsunamiCb.isChecked()) {
                     //チェックボックスがOFF->ONなら
+                    Toast.makeText(getApplication(), "アラートOFF", Toast.LENGTH_LONG).show();
+
                     //スイッチをONにした場合に起こる動作
                     status.setTsunamiStatus(1);
-
-
 
                 }else {
                     //チェックボックスがON->OFFなら
                     //チェックボックスをOFFにした場合に起こる動作
                     status.setTsunamiStatus(0);
-
 
                 }
             }
@@ -196,13 +199,10 @@ public class Setting extends AppCompatActivity {
                     //スイッチをONにした場合に起こる動作
                     status.setLandslideStatus(1);
 
-
-
                 }else {
                     //チェックボックスがON->OFFなら
                     //チェックボックスをOFFにした場合に起こる動作
                     status.setLandslideStatus(0);
-
 
                 }
             }
