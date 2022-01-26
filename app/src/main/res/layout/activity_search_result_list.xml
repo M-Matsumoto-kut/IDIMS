@@ -33,7 +33,7 @@
         android:id="@+id/toolbar4"
         android:layout_width="0dp"
         android:layout_height="75dp"
-        android:background="?attr/colorPrimary"
+        android:background="#03a9f4"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,9 +45,10 @@
         android:id="@+id/button_BackDS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#03a9f4"
         android:text="@string/back"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
@@ -56,6 +57,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar4"
         app:layout_constraintVertical_bias="0.592" />
+
+    <Button
+        android:id="@+id/button_Map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#03a9f4"
+        android:text="@string/mapGamen"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar4"
+        app:layout_constraintTop_toTopOf="@+id/toolbar4" />
 
     <TextView
         android:id="@+id/textView_timeSet"
@@ -95,15 +107,5 @@
 
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/button_Map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mapGamen"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar4"
-        app:layout_constraintTop_toTopOf="@+id/toolbar4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
