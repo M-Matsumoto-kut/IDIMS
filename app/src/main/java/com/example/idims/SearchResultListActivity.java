@@ -2,9 +2,13 @@ package com.example.idims;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import android.os.Bundle;
@@ -186,6 +190,65 @@ public class SearchResultListActivity extends AppCompatActivity {
             }
         }
 
+        //テーブルで表示
+        for(int i = -1; i < resultLat.size(); i++){
+
+            //一列目の名前の定義
+            final TextView textDisName = new TextView(this);
+            textDisName.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            textDisName.setGravity(Gravity.LEFT);
+            textDisName.setPadding(5, 15, 0, 15);
+            if(i == -1){ //もし最初の行なら列名を代入
+
+                textDisName.setText("災害名");
+                textDisName.setBackgroundColor(Color.parseColor("#202020"));
+                textDisName.setTextSize(16);
+
+            }else{ //そうでないならば災害名を代入
+                textDisName.setText(getDisasterName(resultConDis.get(i)));
+            }
+
+            //二列目の名前の定義
+            final TextView textLevel = new TextView(this);
+            textLevel.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            textLevel.setGravity(Gravity.LEFT);
+            textLevel.setPadding(5, 15, 0, 15);
+            if(i == -1){ //もし最初の行なら列名を代入
+                textLevel.setText("レベル");
+                textLevel.setBackgroundColor(Color.parseColor("#202020"));
+                textLevel.setTextSize(20);
+            }else{ //そうでないならば災害レベルを入力
+                textDisName.setText(resultLevel.get(i).toString());
+            }
+
+            //三列目の名前の定義
+            final TextView textArea = new TextView(this);
+            textArea.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            textArea.setGravity(Gravity.LEFT);
+            textArea.setPadding(5, 15, 0, 15);
+            if(i == -1){ //もし最初の行なら列名を代入
+                textArea.setText("場所");
+                textArea.setBackgroundColor(Color.parseColor("#202020"));
+                textArea.setTextSize(12);
+            }else{ //そうでないならば場所を入力
+                textArea.setText(resultArea.get(i));
+            }
+
+            //四列目の名前の定義
+            final TextView textTime = new TextView(this);
+            textTime.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            textTime.setGravity(Gravity.LEFT);
+            textTime.setPadding(5, 15, 0, 15);
+            if(i == -1){ //もし最初の行なら列名を代入
+                textTime.setText("レベル");
+                textTime.setBackgroundColor(Color.parseColor("#202020"));
+                textTime.setTextSize(12);
+            }else{ //そうでないならば緯度経度を入力
+                textTime.setText(getNowTimeString(resultTime.get(i)));
+            }
+        }
+
+        /*
         //リストで表示する
         //ArrayList<Button> buttonResult = new ArrayList<>(); //ボタンのリスト表示
         for(int i = 0; i < resultLat.size(); i++){
@@ -246,7 +309,10 @@ public class SearchResultListActivity extends AppCompatActivity {
                 }
             });
 
+
+
         }
+        */
 
         //検索条件画面に戻る(初期化するため新しいインテントを渡す)
         Button backSearchCon = (Button) findViewById(R.id.button_BackDS);

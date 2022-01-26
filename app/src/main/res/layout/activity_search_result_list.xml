@@ -60,9 +60,37 @@
         android:id="@+id/textView_timeSet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="316dp"
+        android:layout_marginBottom="112dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="347dp"
+        android:layout_height="612dp"
+        android:layout_marginTop="77dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar4"
+        app:layout_constraintVertical_bias="0.312">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
