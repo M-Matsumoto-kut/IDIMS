@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.ArraySet;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 
 
 //災害検索アクティビティ
-public class DisasterSearchActivity extends AppCompatActivity {
+public class DisasterSearchActivity extends AppCompatActivity{
 
     private int areaNum; //地方を選択する
     private int disasterCount = 0; //災害の数が選択されている数を表す
@@ -29,6 +31,8 @@ public class DisasterSearchActivity extends AppCompatActivity {
 
     //期間設定が一度もされていないかを表す
     private boolean notSelectPeriod = true;
+
+    SearchConditions search = new SearchConditions();
 
     public static final String SEARCHCONDITIONS_DATA = "com.example.idims.SearchConditions.java";//検索結果アクティビティに検索条件を引き渡すのに必要
     @Override
@@ -41,7 +45,6 @@ public class DisasterSearchActivity extends AppCompatActivity {
         textSetSelectAreaButton();
 
         //検索条件を格納するSearchConditionsの宣言
-        SearchConditions search = new SearchConditions();
 
         //検索地域選択ボタン押下時の処理
         Button serectAreaButton = (Button) findViewById(R.id.button_SelectArea);
@@ -136,6 +139,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
                             //期間の取得
                             String str = spinner_Constant.getSelectedItem().toString();
                             search.settingConstant(str);
+                            debugTimeSet(search);  //デバッグ用
                             break;
                         case R.id.radioButton_free://自由期間が押されている場合
                             //自由期間スピナーのクリックを有効にする
@@ -151,6 +155,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
                             String endYear = spinner_Free_YearEnd.getSelectedItem().toString();
                             String endMonth = spinner_Free_MonthEnd.getSelectedItem().toString();
                             search.settingFree(startYear, startMonth, endYear, endMonth);
+                            debugTimeSet(search); //デバッグ用
                             break;
                     }
                     //期間選択がされた
@@ -158,6 +163,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
                 }
             }
         });
+
 
 
         //検索結果表示ボタン押下時の処理
@@ -205,6 +211,7 @@ public class DisasterSearchActivity extends AppCompatActivity {
         });
     }
 
+
     //地域選択アクティビティから結果を受け取る
     protected void onActivityResult(int requestCode, int resultCode, Intent intent){
         super.onActivityResult(requestCode, resultCode, intent);
@@ -217,29 +224,17 @@ public class DisasterSearchActivity extends AppCompatActivity {
     //検索範囲の開始日時が終了日時より未来の場合0を返す
     protected int overTime(RadioGroup group, Spinner spCon, Spinner spFreeYS, Spinner spFreeMS, Spinner spFreeYE, Spinner spFreeME, SearchConditions search){
         //期間選択を検索し、期間を返す
-        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radio = (RadioButton) findViewById(checkedId);
-                if (radio.isChecked()) { //ラジオボタンのどちらかが押されている場合
-                    switch (checkedId) {
-                        case R.id.radioButton_Constant: //一定期間が押されている場合
-                            //期間の取得
-                            String str = spCon.getSelectedItem().toString();
-                            search.settingConstant(str);
-                            break;
-                        case R.id.radioButton_free: //自由期間が押されている場合
-                            //文字列の取得
-                            String startYear = spFreeYS.getSelectedItem().toString();
-                            String startMonth = spFreeMS.getSelectedItem().toString();
-                            String endYear = spFreeYE.getSelectedItem().toString();
-                            String endMonth = spFreeME.getSelectedItem().toString();
-                            search.settingFree(startYear, startMonth, endYear, endMonth);
-                            break;
-                    }
-                }
-            }
-        });
+        int checkedId = group.getCheckedRadioButtonId();
+        if(checkedId == R.id.radioButton_Constant){ //もし一定期間が選択されている場合
+            String str = spCon.getSelectedItem().toString(); //一定期間スピナーから選択物を取得
+            search.settingConstant(str); //期間のセット
+        }else if(checkedId == R.id.radioButton_free){ //もし自由期間が選択されている場合
+            String startYear = spFreeYS.getSelectedItem().toString();
+            String startMonth = spFreeMS.getSelectedItem().toString();
+            String endYear = spFreeYE.getSelectedItem().toString();
+            String endMonth = spFreeME.getSelectedItem().toString();
+            search.settingFree(startYear, startMonth, endYear, endMonth);
+        }
         String startTime = search.getStartDate();
         String endTime = search.getEndDate();
         if(startTime == null || endTime == null){
@@ -274,6 +269,14 @@ public class DisasterSearchActivity extends AppCompatActivity {
             button.setText(getString(R.string.selectArea));
         }
 
+    }
+
+    //デバッグ用:時間が正しく設定されているか
+    protected void debugTimeSet(SearchConditions search){
+        TextView start = (TextView) findViewById(R.id.textViewStartTime);
+        TextView end = (TextView) findViewById(R.id.textViewEndtime);
+        start.setText(search.getStartDate());
+        end.setText(search.getEndDate());
     }
 
 

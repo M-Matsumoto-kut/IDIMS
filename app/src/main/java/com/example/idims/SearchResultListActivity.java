@@ -81,6 +81,7 @@ public class SearchResultListActivity extends AppCompatActivity {
 
         //デバック用
         debugGetData();
+        debugTimeLook(startTime, endTime);
 
 
         //データベースに接続し検索結果を格納する
@@ -360,6 +361,13 @@ public class SearchResultListActivity extends AppCompatActivity {
             }else{
                 textView.setText("areaNumber: " + areaNumber);
             }
+        }
+    }
+
+    private void debugTimeLook(String start, String end){
+        TextView textView = (TextView) findViewById(R.id.textView_timeSet);
+        if(start != null && end != null){
+            textView.setText("StartTime: " + startTime + ", EndTime: " + endTime);
         }
     }
 

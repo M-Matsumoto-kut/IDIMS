@@ -160,7 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#454545"
-            android:entries="@array/spinner_year"
+            android:entries="@array/spinner_yearStart"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
     </LinearLayout>
@@ -194,7 +194,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#454545"
-            android:entries="@array/spinner_month"
+            android:entries="@array/spinner_monthStart"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
     </LinearLayout>
@@ -247,7 +247,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#454545"
-            android:entries="@array/spinner_year"
+            android:entries="@array/spinner_yearEnd"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
@@ -281,7 +281,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#454545"
-            android:entries="@array/spinner_month"
+            android:entries="@array/spinner_monthEnd"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
@@ -345,5 +345,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_Search" />
+
+    <TextView
+        android:id="@+id/textViewStartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="116dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewEndtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="104dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
