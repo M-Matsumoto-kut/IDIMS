@@ -221,11 +221,22 @@ public class SearchResultListActivity extends AppCompatActivity {
                         disasterNum.add(j);
                     }
                     Intent intent = new Intent(SearchResultListActivity.this, SearchResultMapActivity.class);
-                    intent.putExtra("resultLat", resultLat); //緯度
-                    intent.putExtra("resultLng", resultLng); //経度
+                    //データを受け渡してアクティビティを移動する
+                    //その前に型変換を行う
+                    ArrayList<String> castLat = new ArrayList<>(); //緯度
+                    ArrayList<String> castLng = new ArrayList<>(); //経度
+                    ArrayList<String> castTime = new ArrayList<>(); //発生時刻
+
+                    for(int i = 0; i < resultLat.size(); i++){ //double型をstring型に変換して返す
+                        castLat.add(resultLat.get(i).toString());
+                        castLng.add(resultLng.get(i).toString());
+                        castTime.add(resultTime.get(i).toString());
+                    }
+                    intent.putStringArrayListExtra("resultLat", castLat); //緯度(型変換)
+                    intent.putStringArrayListExtra("resultLng", castLng); //経度(型変換)
                     intent.putIntegerArrayListExtra("resultLevel", resultLevel); //災害レベル
                     intent.putIntegerArrayListExtra("resultConDis", resultConDis); //災害種類
-                    intent.putExtra("resultTime", resultTime); //発生時刻
+                    intent.putStringArrayListExtra("resultTime", castTime); //発生時刻(型変換)
                     intent.putStringArrayListExtra("resultArea", resultArea); //発生地域
                     intent.putIntegerArrayListExtra("disasterNumber", disasterNum); //災害番号
                     intent.putExtra("areaNumber", areaNumber); //検索地域

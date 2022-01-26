@@ -268,6 +268,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                 con.execute(url, value);
 
                 //緯度経度から距離を計算し、範囲内である場合マーカーをマップに追加、災害情報もそこに追加
+                double nowlat = location.getLatitude(); //現在地緯度
+                double nowlng = location.getLongitude(); //現在地経度
+
                 //sql文により取得した災害が変数maxlevelを超えていた場合画面上部のテキストも更新
 
             */

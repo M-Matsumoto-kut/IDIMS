@@ -25,6 +25,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SearchResultMapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener{
@@ -44,6 +45,11 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
     private ArrayList<String> listArea = new ArrayList<>(); //発生地域
     private ArrayList<Integer> disasterNum = new ArrayList<>(); //災害番号
 
+    //型変換を行う必要のあるリストの受け口
+    private ArrayList<String> getLat = new ArrayList<>(); //緯度
+    private ArrayList<String> getLng = new ArrayList<>(); //経度
+    private ArrayList<String> getTime = new ArrayList<>(); //発生時刻
+
     //マーカーのリスト
     private ArrayList<Marker> marker;
 
@@ -56,14 +62,22 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
 
         //検索結果リストからデータを受け取る
         Intent searchResultList = getIntent();
-        //listLat = searchResultList.getExtra("resultLat"); //緯度
-        //listLng = searchResultList.getExtra("resultLng"); //経度
+        getLat = searchResultList.getStringArrayListExtra("resultLat"); //緯度の受け取り
+        getLng = searchResultList.getStringArrayListExtra("resultLng"); //経度の受け取り
         listLevel = searchResultList.getIntegerArrayListExtra("resultLevel"); //災害レベル
         listConDis = searchResultList.getIntegerArrayListExtra("resultConDis"); //災害種類
-        //listTime = searchResultList.getExtra("resultTime"); //発生時刻
+        getTime = searchResultList.getStringArrayListExtra("resultTime"); //発生時刻の受け取り
         listArea = searchResultList.getStringArrayListExtra("resultArea"); //発生地域
         disasterNum = searchResultList.getIntegerArrayListExtra("disasterNumber"); //検索番号
         areaNumber = searchResultList.getIntExtra("areaNumber", 0); //検索地方
+
+        //型変換を行う
+        for(int i = 0; i < getLat.size(); i++){ //String型をdouble型に変換
+            listLat.add(Double.parseDouble(getLat.get(i))); //緯度
+            listLng.add(Double.parseDouble(getLng.get(i))); //経度
+            listTime.add(Double.parseDouble(getTime.get(i))); //発生時刻
+        }
+
 
 
         //MapViewを使用するのに必要
