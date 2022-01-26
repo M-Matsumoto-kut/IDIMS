@@ -56,6 +56,10 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     //パーミッションの許可コード
     static final int REQUEST_CODE = 1;
 
+    //災害を検知する距離と避難所の距離
+    static final double disasterDistance = 200; //200メートル
+    static final double shelterDistance = 50; //50メートル
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,6 +148,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         textViewTime.setText(str + "現在");
     }
 
+
     //画面下部の避難勧告表示のテキストのセット
     protected void setTextevacuationAdvisory(){
         TextView textView = (TextView) findViewById(R.id.textView_Eva);
@@ -158,6 +163,28 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void cantGetLocation(){
         TextView textView = (TextView) findViewById(R.id.textView_LocErr);
         textView.setText("位置情報が取得できません");
+    }
+
+    //現在地と災害との距離を図り、bool型を返すメソッド
+    protected boolean judgeDisasterDistance(double nowLat, double nowLng, double disLat, double disLng){ //左から現在地緯度,現在地経度、災害発生緯度、災害発生経度を表す
+        //結果を返す溜めの配列。1番目に2点間の距離、2番目に始点からみた方位角、3番目に終点から見た方位角が格納される
+        float[] result = new float[3];
+        Location.distanceBetween(nowLat, nowLng, disLat, disLng, result); //2点間の距離を緯度経度から割り出すメソッド(Locationクラスの標準搭載)
+        if(result[0] <= disasterDistance){ //もし　2点間の距離 <= 災害検知距離　ならば真を返す
+            return true;
+        }
+        return false;
+    }
+
+    //現在地と避難所との距離を図り、bool型を返すメソッド
+    protected boolean judgeShelterDistance(double nowLat, double nowLng, double disLat, double disLng){ //左から現在地緯度,現在地経度、避難所緯度、避難所経度を表す
+        //結果を返す溜めの配列。1番目に2点間の距離、2番目に始点からみた方位角、3番目に終点から見た方位角が格納される
+        float[] result = new float[3];
+        Location.distanceBetween(nowLat, nowLng, disLat, disLng, result); //2点間の距離を緯度経度から割り出すメソッド(Locationクラスの標準搭載)
+        if(result[0] <= shelterDistance){ //もし　2点間の距離 <= 避難所距離　ならば真を返す
+            return true;
+        }
+        return false;
     }
 
 
