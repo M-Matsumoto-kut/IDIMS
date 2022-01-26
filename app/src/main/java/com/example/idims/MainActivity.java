@@ -25,13 +25,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //status（Activity状態）を取得
         StatusFlag flag = (StatusFlag) getApplication();
-        this.userTypeSelect();
-    }
 
+        //災害検知モジュールを起動
+
+    }
     /*
         開始状態になると動作
         初起動時，flagはLoginStart(1)を返す
      */
+
     @Override
     protected void onStart(){
         super.onStart();
@@ -40,25 +42,13 @@ public class MainActivity extends AppCompatActivity {
         StatusFlag flag = (StatusFlag) this.getApplication();
         int loginType = flag.getLoginType();
 
-
         //loginTypeの値によってActivityを変える（予定）
         Intent intent;
-        switch(loginType) {
-            case 0: //初回ログイン
-                this.userTypeSelect();
-                break;
-            case 1: //２回目以降のログイン(一般ユーザ）
-                intent = new Intent(getApplication(), HomeActivity.class);
-                startActivity(intent);
-                break;
-            case 2: //２回目以降のログイン(一般ユーザ）
-                intent = new Intent(getApplication(), ResearcherPageActivity.class);
-                startActivity(intent);
-                break;
-            default: //エラー
-            intent = new Intent(getApplication(), Error.class);
+        if(loginType == 0) {
+            this.userTypeSelect();
+        } else {
+            intent = new Intent(getApplication(), HomeActivity.class);
             startActivity(intent);
-
         }
     }
 
@@ -76,18 +66,18 @@ public class MainActivity extends AppCompatActivity {
             StatusFlag flag = (StatusFlag) getApplication();
             flag.setLoginTypeGen();
 
+
             /*
                 設定画面に移行
                 ただし，自動ログイン機能が実現できない場合はメニュー画面に移行
              */
-            /*
             Intent intent = new Intent(getApplication(), Setting.class);
             startActivity(intent);
-             */
+
 
             //テスト-------------------------------------------------------
-            Intent intent = new Intent(getApplication(), SensorListActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(getApplication(), SensorListActivity.class);
+            //startActivity(intent);
             //テスト-------------------------------------------------------
         });
 
@@ -100,5 +90,4 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
 }
