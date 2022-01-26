@@ -16,6 +16,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -30,10 +35,22 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationRequest;
+import android.net.http.HttpResponseCache;
 import android.nfc.FormatException;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
+import org.json.JSONException;
+
+import org.apache.http.*;
+
+
+
 
 public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -257,7 +274,28 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
                         //現在地から近い災害の情報を探す
+                        try{
+                            String username = "3306";
+                            String passward = "Numasawa893";
+                            String link = "idims-database-dev-1.c7mcb340vges.us-east-1.rds.amazonaws.com:3306";
+
+                            URL url = new URL(link);
+                            HttpClient client = new DefaultHttpClient();
+                            HttpGet request = new HttpGet();
+                            request.setURI(new URI(link));
+                            HttpResponse response = client.execute(request);
+                            BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                            StringBuffer sb = new StringBuffer("");
+
+
+                        }catch(Exception e){
+                        }
+
+                        //パラメータをクエリに変換
+                        //HttpGet httpGet = new HttpGet("http://" + query);
+
              /*
+
                 //sql文による探索
                 AWSconnectの呼び出し
                 AWSconnect con = AWSconnect();
