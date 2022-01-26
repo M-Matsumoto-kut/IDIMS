@@ -3,6 +3,7 @@ package com.example.idims;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.idims.Menu.MenuActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.MapView;
@@ -32,6 +33,7 @@ import java.text.SimpleDateFormat;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationRequest;
@@ -39,6 +41,8 @@ import android.net.http.HttpResponseCache;
 import android.nfc.FormatException;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.apache.http.client.HttpClient;
@@ -102,6 +106,16 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //現在地付近の災害情報を検索する
         if(currentLoc){searchCurrentDisaster();}
+
+        //メニュー画面への遷移
+        Button menuButton = (Button) findViewById(R.id.button_Menu);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -274,6 +288,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
                         //現在地から近い災害の情報を探す
+                        /*
                         try{
                             String username = "3306";
                             String passward = "Numasawa893";
@@ -290,6 +305,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                         }catch(Exception e){
                         }
+                        */
 
                         //パラメータをクエリに変換
                         //HttpGet httpGet = new HttpGet("http://" + query);
