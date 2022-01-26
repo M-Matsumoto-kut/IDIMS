@@ -82,7 +82,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:ignore="SpeakableTextPresentCheck">
+
             <TableLayout
+                android:id="@+id/tablelayout_List"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

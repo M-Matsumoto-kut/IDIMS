@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -190,6 +191,7 @@ public class SearchResultListActivity extends AppCompatActivity {
             }
         }
 
+        TableLayout mTableLayout = (TableLayout) findViewById(R.id.tablelayout_List);
         //テーブルで表示
         for(int i = -1; i < resultLat.size(); i++){
 
@@ -245,6 +247,39 @@ public class SearchResultListActivity extends AppCompatActivity {
                 textTime.setTextSize(12);
             }else{ //そうでないならば緯度経度を入力
                 textTime.setText(getNowTimeString(resultTime.get(i)));
+            }
+
+            //テーブルに行を追加
+            final TableRow tr = new TableRow(this);
+            tr.setId(i + 1);
+            LinearLayout.LayoutParams trParams = new LinearLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT);
+            trParams.setMargins(0,0,0,0);
+            tr.setPadding(0, 0, 0, 0);
+            tr.setLayoutParams(trParams);
+            tr.addView(textDisName); //災害名セット
+            tr.addView(textLevel); //レベルセット
+            tr.addView(textArea); //地名セット
+            tr.addView(textTime); //時間セット
+
+            //罫線を追加する
+            if(i > -1){
+                final TableRow trSep = new TableRow(this);
+                TableLayout.LayoutParams trParamsSep = new
+                        TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+                        TableLayout.LayoutParams.WRAP_CONTENT);
+                trParamsSep.setMargins(0, 0, 0, 0);
+                trSep.setLayoutParams(trParamsSep);
+                TextView tvSep = new TextView(this);
+                TableRow.LayoutParams tvSepLay = new
+                        TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                        TableRow.LayoutParams.WRAP_CONTENT);
+                tvSepLay.span = 4;
+                tvSep.setLayoutParams(tvSepLay);
+                tvSep.setBackgroundColor(Color.parseColor("#d9d9d9"));
+                tvSep.setHeight(1);
+                trSep.addView(tvSep);
+                mTableLayout.addView(trSep, trParamsSep);
             }
         }
 
