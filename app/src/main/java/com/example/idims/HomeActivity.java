@@ -42,8 +42,8 @@ import android.widget.TextView;
 
 
 
-
-public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback {
+//AWSコールバックを使用するため、インターフェースを使用
+public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback, AWSConnect.CallBackTask {
 
     //マップ表示用のクラス
     private MapView mMapView;
@@ -130,7 +130,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
-        con.setOnCallBack((AWSConnect.CallBackTask) this);
+        con.setOnCallBack(this);
         //AWSConnectを実行する
         con.execute(url, value);
 
