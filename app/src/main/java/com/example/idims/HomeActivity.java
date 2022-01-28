@@ -99,6 +99,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
+
         //災害状況の発生有無を表示するテキスト表示
         setTextdisasterOccurrences();
         //避難勧告のテキスト表示を行う
