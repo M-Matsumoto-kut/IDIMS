@@ -17,16 +17,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
@@ -36,22 +33,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationRequest;
-import android.net.http.HttpResponseCache;
-import android.nfc.FormatException;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONObject;
-import org.json.JSONException;
-
-import org.apache.http.*;
 
 
 
@@ -81,6 +68,12 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     static final double disasterDistance = 200; //200メートル
     static final double shelterDistance = 50; //50メートル
 
+    //現在から24時間前までの緯度、経度、レベルと種類を格納する
+    private ArrayList<Double> disLat; //緯度
+    private ArrayList<Double> disLng; //経度
+    private ArrayList<Integer> disCon; //災害種類
+    private ArrayList<Integer> dislevel; //レベル
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,13 +93,15 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
+
+
         //災害状況の発生有無を表示するテキスト表示
         setTextdisasterOccurrences();
         //避難勧告のテキスト表示を行う
         setTextevacuationAdvisory();
 
         //現在地付近の災害情報を検索する
-        if(currentLoc){searchCurrentDisaster();}
+        //if(currentLoc){searchCurrentDisaster();}
 
         //メニュー画面への遷移
         Button menuButton = (Button) findViewById(R.id.button_Menu);
@@ -126,19 +121,18 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         //現在時刻と24時間前の時間を取得
         String currentTime = getToday();
         String beforeTime = getYesterday();
-        //データベースに接続
-        try{
-            Connection con = DriverManager.getConnection("jdbc:mysql://idims-database-dev-1", "admin", "Numasa_89");
-            Statement state = con.createStatement();
-            String sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_time >=" + beforeTime;
-            ResultSet rs = state.executeQuery(sql);
-            while(rs.next()){
+        //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
+        AWSConnect con = new AWSConnect(); //AWSConnectインスタンスの呼び出し
+        //URLの設定
+        String url = "";  //phpファイルの置いてある場所の指定
+        //データベースに転送する文字列の転送
+        String value = "";
 
-            }
 
-        }catch (SQLException ex){
-
-        }
+        //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
+        con.setOnCallBack((AWSConnect.CallBackTask) this);
+        //AWSConnectを実行する
+        con.execute(url, value);
 
     }
 
@@ -288,57 +282,17 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Marker markerNow = map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).snippet("NowLocation \n " + location.getLatitude() + " , " + location.getLongitude()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                         Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
-                        //現在地から近い災害の情報を探す
-                        /*
-                        try{
-                            String username = "3306";
-                            String passward = "Numasawa893";
-                            String link = "idims-database-dev-1.c7mcb340vges.us-east-1.rds.amazonaws.com:3306";
-
-                            URL url = new URL(link);
-                            HttpClient client = new DefaultHttpClient();
-                            HttpGet request = new HttpGet();
-                            request.setURI(new URI(link));
-                            HttpResponse response = client.execute(request);
-                            BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-                            StringBuffer sb = new StringBuffer("");
-
-
-                        }catch(Exception e){
+                        //現在地付近の災害情報を検索する
+                        searchCurrentDisaster();
+                        //格納した災害情報から近くにあるかを検索し、マップに表示
+                        for(int i = 0; i < disLat.size(); i++){
+                            if(judgeDisasterDistance(location.getLatitude(), location.getLongitude(), disLat.get(i), disLng.get(i))){ //現在地から近ければ真となりそこにマーカーを入れる
+                                map.addMarker(new MarkerOptions().position(new LatLng(disLat.get(i), disLat.get(i))).title(getDisasterName(disCon.get(i)) + ", レベル:" + String.valueOf(dislevel.get(i))));
+                                //if(dislevel.get(i) > 3){ //災害レベルが一定以上なら表示する                                }
+                            }
                         }
-                        */
 
-                        //パラメータをクエリに変換
-                        //HttpGet httpGet = new HttpGet("http://" + query);
 
-             /*
-
-                //sql文による探索
-                AWSconnectの呼び出し
-                AWSconnect con = AWSconnect();
-                String url = "" //AWSのデータベースurlを入力する
-                String sql = new StringBuffer().append("select disaster_x, disaster_y, disaster_level, disaster_time from disaster where disaster_time >= ").append(getYesterday());
-                con.setOnCallBack(this);
-                con.execute(url, value);
-
-                //緯度経度から距離を計算し、範囲内である場合マーカーをマップに追加、災害情報もそこに追加
-                double nowLat = location.getLatitude(); //現在地緯度
-                double nowLng = location.getLongitude(); //現在地経度
-                double disLat = //災害情報の緯度を代入
-                double disLng = //災害情報の経度を代入
-                if(judgeDisasterDistance(nowLat, nowLng, disLat, disLng){
-                    Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(nowLat, nowLng)).title("災害;" + getDisasterNum(//災害番号) + "レベル:" + //災害レベル ).snippet.("緯度:" + disLat + " , 経度:" + disLng))
-                }
-
-                //sql文により取得した災害が変数maxlevelを超えていた場合画面上部のテキストも更新
-
-            */
-                        //避難所の表示
-            /*
-                //sql文による探索
-                //緯度経度から距離を計算し、範囲内である場合かつ一定以上の災害が発生している場合マーカーをマップに追加(spinpet?も使用して災害情報を入力する,あとcliclmarkerのやつも。)
-
-             */
 
                         //デバッグ用のピン map.addMarker(new MarkerOptions().position(new LatLng(33, 133)));
                         Log.d("Home", "onSuccess: " + location.getLatitude() + " , " + location.getLongitude());
@@ -357,6 +311,11 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         */
 
+
+    }
+
+
+    public void CallBack(String result){ //SQLによる検索結果がここに格納されるので
 
     }
 
