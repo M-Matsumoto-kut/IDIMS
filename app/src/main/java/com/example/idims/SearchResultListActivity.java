@@ -239,6 +239,7 @@ public class SearchResultListActivity extends AppCompatActivity {
         for(int i = 0;i <resultLat.size(); i++){
             TextView textView = new TextView(this);
             textView.setTextSize(16);
+            //textView.setBackground(R.drawable.text_border);
             textView.setText(getDisasterName(resultConDis.get(i)) + "  レベル: " + resultLevel.get(i) + ", " + resultArea.get(i) + "\n 発生時刻: " + resultTime.get(i));
             linearLayout.addView(textView);
             //空行を入力
