@@ -36,8 +36,12 @@ public final class AWSConnect extends AsyncTask {
 
     // $FF: synthetic method
     // $FF: bridge method
-    public Object doInBackground(Object[] var1) {
-        return this.doInBackground((String[])var1);
+    public Object doInBackground(Object[] var1) { //わざわざObject型配列の中身を繰り返し処理でString配列に入れなければいけない
+        String[] tmp = new String[var1.length];
+        for(int i = 0; i < var1.length; i++){
+            tmp[i] = var1[i].toString();
+        }
+        return this.doInBackground(tmp);
     }
 
     protected void onPostExecute(@NotNull String result) {

@@ -9,12 +9,14 @@
     <!-- インターネットのパーミッション許可-->
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <!-- 19行目にURLを使用できるように追記している(android:usesCleartext...のところ)-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.IDIMS">
         <activity
             android:name=".Menu.MenuActivity"
