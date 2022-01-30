@@ -31,7 +31,7 @@ import android.location.Geocoder;
 
 
 
-public class SearchResultListActivity extends AppCompatActivity {
+public class SearchResultListActivity extends AppCompatActivity implements AWSConnect.CallBackTask{
 
     private int areaNumber;
     private boolean waveOn;
@@ -95,109 +95,34 @@ public class SearchResultListActivity extends AppCompatActivity {
         debugTimeLook(startTime, endTime);
 
 
-        /*
+
         //データベースに接続し検索結果を格納する
-        try{
-            Connection con = DriverManager.getConnection("jdbc:mysql://idims-database-dev-1", "admin", "Numasa_89");
-            Statement state = con.createStatement();
-            ResultSet resultWave = null;
-            ResultSet resultLandsride = null;
-            ResultSet resultThounder = null;
-            if(waveOn){
-                String sql = null;
-                if(allTime){ //全時間が対象の場合
-                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 1";
+        if (waveOn) { //もし津波の検索条件がonならAWSのMYSQLサーバに接続
+            AWSConnect con = new AWSConnect();
+            String url = ""; //PHPファイルの場所
+            StringBuffer var = new StringBuffer(); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
+            con.setOnCallBack(this); //callbackの呼び出し?
+            con.execute(url, String.valueOf(var)); //PHPファイルにアクセスしてSQLクエリを実行
+        }
+        if(landsrideOn){
+            AWSConnect con = new AWSConnect();
+            String url = ""; //PHPファイルの場所
+            StringBuffer var = new StringBuffer(); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
+            con.setOnCallBack(this); //callbackの呼び出し?
+            con.execute(url, String.valueOf(var)); //PHPファイルにアクセスしてSQLクエリを実行
 
-                }else{ //そうでない場合時間を指定
-                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 1 AND disaster_time >= " + startTime + " AND disaster_time <= " + endTime;
-                }
+        }
+        if(thounderOn){
+            AWSConnect con = new AWSConnect();
+            String url = ""; //PHPファイルの場所
+            StringBuffer var = new StringBuffer(); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
+            con.setOnCallBack(this); //callbackの呼び出し?
+            con.execute(url, String.valueOf(var)); //PHPファイルにアクセスしてSQLクエリを実行
 
-                resultWave = state.executeQuery(sql); //データの取得
-                while(resultWave.next()){
-                    //検索結果を格納していく
-                    selectLat.add(resultWave.getDouble("disaster_x")); //緯度
-                    selectLng.add(resultWave.getDouble("disaster_y")); //経度
-                    selectLevel.add(resultWave.getInt("disaster_level")); //災害レベル
-                    selectConDis.add(resultWave.getInt("disaster_class")); //災害種類
-                    selectTime.add(resultWave.getDouble("disaster_time")); //発生時刻
-                }
-            }
-            if(landsrideOn){
-                String sql = null;
-                if(allTime){ //全時間が対象の場合
-                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 2";
-
-                }else{ //そうでない場合時間を指定
-                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 2 AND disaster_time >= " + startTime + " AND disaster_time <= " + endTime;
-                }
-
-                resultLandsride = state.executeQuery(sql); //データの取得
-                while(resultLandsride.next()){
-                    //検索結果を格納していく
-                    selectLat.add(resultLandsride.getDouble("disaster_x")); //緯度
-                    selectLng.add(resultLandsride.getDouble("disaster_y")); //経度
-                    selectLevel.add(resultLandsride.getInt("disaster_level")); //災害レベル
-                    selectConDis.add(resultLandsride.getInt("disaster_class")); //災害種類
-                    selectTime.add(resultLandsride.getDouble("disaster_time")); //発生時刻
-                }
-
-            }
-            if(thounderOn){
-                String sql = null;
-                if(allTime){ //全時間が対象の場合
-                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 3";
-
-                }else{ //そうでない場合時間を指定
-                    sql = "SELECT disaster_x, disaster_y, disaster_level, disaster_class, disaster_time FROM disaster WHERE disaster_class = 3 AND disaster_time >= " + startTime + " AND disaster_time <= " + endTime;
-                }
-
-                resultThounder = state.executeQuery(sql); //データの取得
-                while(resultThounder.next()){
-                    //検索結果を格納していく
-                    selectLat.add(resultThounder.getDouble("disaster_x")); //緯度
-                    selectLng.add(resultThounder.getDouble("disaster_y")); //経度
-                    selectLevel.add(resultThounder.getInt("disaster_level")); //災害レベル
-                    selectConDis.add(resultThounder.getInt("disaster_class")); //災害種類
-                    selectTime.add(resultThounder.getDouble("disaster_time")); //発生時刻
-                }
-
-            }
-
-        }catch(SQLException ex){
-            TextView textView = (TextView) findViewById(R.id.textView_ErrorDBCon);
-            textView.setText("エラー:データベースに接続できませんでした。");
         }
 
-        //格納した検索結果の緯度経度から住所を割り出し、該当する場所であるかを検索する
-        //メモ:nullで帰ってくる場合は緯度経度に小数点以下が含まれている場合がある。それらがあると無理なのか？
-        for(int i = 0; i < selectLat.size(); i++){
-            //緯度経度を取得
-            Double lat = selectLat.get(i);
-            Double lng = selectLng.get(i);
-            //住所を取得するジオコーダークラスの宣言
-            Geocoder geocoder = new Geocoder(this);
-            //住所を取得
-            try {
-                //住所を取得
-                List<Address> address = geocoder.getFromLocation(lat, lng, 1);
-                //都道府県を取得
-                String addressAdm = address.get(0).getAdminArea(); //県名を取得
-                if(checkAdminArea(addressAdm, prefList)){ //割り出した都道府県が検索条件を満たす場合検索結果表示リストに入れる
-                    //市町村名を獲得して結合
-                    String addressLoc = address.get(0).getLocality();
-                    StringBuffer sb = new StringBuffer().append(addressAdm).append(addressLoc);
-                    resultLat.add(selectLat.get(i)); //緯度
-                    resultLng.add(selectLng.get(i)); //経度
-                    resultLevel.add(selectLevel.get(i)); //災害レベル
-                    resultConDis.add(selectConDis.get(i)); //災害種類
-                    resultTime.add(selectTime.get(i)); //災害時間
-                    resultArea.add(String.valueOf(sb)); //場所
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        */
+
+
 
         Log.d("debugDataOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "searching");
 
@@ -297,6 +222,13 @@ public class SearchResultListActivity extends AppCompatActivity {
 
 
 
+    }
+
+    //コールバックメソッド:mysql空のデータを処理する
+    public void CallBack(String str){
+
+        //災害発生個所の緯度経度
+        double lat = 111;
     }
 
     //引数に渡された数字に応じて災害名の文字列を返すメソッド
