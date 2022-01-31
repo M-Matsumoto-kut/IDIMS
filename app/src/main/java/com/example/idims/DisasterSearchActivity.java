@@ -194,16 +194,7 @@ public class DisasterSearchActivity extends AppCompatActivity{
                     intent.putExtra("startTime", search.getStartDate());
                     intent.putExtra("endTime", search.getEndDate());
                     intent.putExtra("allTime", search.getAllConstant());
-                    //AllayListを引き渡すためのテスト
-                    /*
-                    ArrayList<Integer> intTest = new ArrayList<Integer>();
-                    intTest.add(114514);
-                    intent.putIntegerArrayListExtra("testArrayInt", intTest);
-                    ArrayList<String> strTest = new ArrayList<String>();
-                    strTest.add("胸にかけて胸に");
-                    intent.putStringArrayListExtra("testArrayStr", strTest);
 
-                     */
                     startActivity(intent);
                 }
 
