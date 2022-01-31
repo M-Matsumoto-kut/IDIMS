@@ -68,9 +68,6 @@
             android:name=".Researcher.ResearcherLogin"
             android:exported="true" />
         <activity
-            android:name=".Menu.Menu"
-            android:exported="false" />
-        <activity
             android:name=".Authenticate"
             android:exported="false" />
         <activity
