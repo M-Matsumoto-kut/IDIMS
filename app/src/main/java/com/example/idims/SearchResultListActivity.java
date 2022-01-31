@@ -68,11 +68,6 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         startTime = intentDisasterSearch.getStringExtra("startTime");
         endTime = intentDisasterSearch.getStringExtra("endTime");
 
-        //ArrayListの引き渡しテスト
-        /*
-        ArrayList<Integer> intTest = intentDisasterSearch.getIntegerArrayListExtra("testArrayInt");
-        ArrayList<String> stringTest = intentDisasterSearch.getStringArrayListExtra("testArrayStr");
-         */
 
         //デバッグ用のクラス宣言
         debugDisasterSearchData debugData = new debugDisasterSearchData();
