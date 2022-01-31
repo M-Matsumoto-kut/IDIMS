@@ -14,12 +14,15 @@ import com.example.idims.R;
 import com.example.idims.Researcher.ResearcherLogin;
 import com.example.idims.Researcher.ResearcherPageActivity;
 import com.example.idims.Setting;
+import com.example.idims.StatusFlag;
 
 public class MenuActivity extends AppCompatActivity {
+    private StatusFlag status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.status = (StatusFlag) getApplication();
         setContentView(R.layout.activity_menu);
 
         //メニュー画面を閉じるボタン
@@ -30,11 +33,14 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         //災害通知地域一覧へ遷移するボタン
+        /*
         Button ToListSetArea = findViewById(R.id.buttonToListSetAreaPage);
         ToListSetArea.setOnClickListener( v -> {
             Intent intent = new Intent(getApplication(), AreaListActivity.class);
             startActivity(intent);
         });
+
+         */
 
         //設定画面へ遷移するボタン
         Button toSetting = findViewById(R.id.buttonToSettingPage);
@@ -53,6 +59,7 @@ public class MenuActivity extends AppCompatActivity {
         //研究者ページへ遷移するボタン
         Button toResearcherPage = findViewById(R.id.buttonToResearcherPage);
         toResearcherPage.setOnClickListener( v -> {
+            this.status.setActivityStatus(2); //MenuActivity
             Intent intent = new Intent(getApplication(), ResearcherLogin.class);
             startActivity(intent);
         });

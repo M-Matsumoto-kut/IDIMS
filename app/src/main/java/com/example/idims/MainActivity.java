@@ -1,19 +1,19 @@
 package com.example.idims;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.idims.Area.AreaListActivity;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-
-import com.example.idims.DisasterDetection.Asynchronous;
-
-import android.widget.Button;
+import com.example.idims.Area.AreaListActivity;
+import com.example.idims.Researcher.ResearcherLogin;
+import com.example.idims.StatusFlag;
 
 //起動時
 public class MainActivity extends AppCompatActivity {
+
+    private StatusFlag status;
 
     //なにこれ
     //private AppBarConfiguration appBarConfiguration;
@@ -22,8 +22,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //status（Activity状態）を取得
-        StatusFlag flag = (StatusFlag) getApplication();
+        this.status = (StatusFlag) getApplication();
+
+        //loginType（ログイン状態）を取得
+        int loginType = status.getLoginType();
+
+        //loginTypeの値によってActivityを変える（予定）
+        Intent intent;
+        if(loginType == 0) {
+            this.userTypeSelect();
+        } else {
+            intent = new Intent(getApplication(), HomeActivity.class);
+            startActivity(intent);
+        }
+
 
 
     }
@@ -37,14 +49,16 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         //災害検知モジュールを起動
+        /*
         Asynchronous r = new Asynchronous();
         Thread t = new Thread(r); // Runnableをスレッドに渡してインスタンスを生成する
         t.start();
 
-        //loginType（ログイン状態）を取得
-        StatusFlag flag = (StatusFlag) this.getApplication();
-        int loginType = flag.getLoginType();
+         */
 
+        //loginType（ログイン状態）を取得
+
+        int loginType = status.getLoginType();
         //loginTypeの値によってActivityを変える（予定）
         Intent intent;
         if(loginType == 0) {
@@ -53,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             intent = new Intent(getApplication(), HomeActivity.class);
             startActivity(intent);
         }
+        this.userTypeSelect();
     }
 
     //ユーザタイプ選択
@@ -67,13 +82,14 @@ public class MainActivity extends AppCompatActivity {
 
             //loginTypeを1(一般人)に設定
             StatusFlag flag = (StatusFlag) getApplication();
-            flag.setLoginTypeGen();
+            status.setLoginTypeGen();
 
 
             /*
                 設定画面に移行
                 ただし，自動ログイン機能が実現できない場合はメニュー画面に移行
              */
+
             Intent intent = new Intent(getApplication(), Setting.class);
             startActivity(intent);
 
@@ -89,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
         Button researchUser = findViewById(R.id.researcherType);
         researchUser.setOnClickListener( v -> {
             //研究者ユーザログイン画面に移行
-            Intent intent = new Intent(getApplication(), AreaListActivity.class);
+            status.setActivityStatus(1); //userTypeActivity
+            Intent intent = new Intent(getApplication(), ResearcherLogin.class);
             startActivity(intent);
         });
     }

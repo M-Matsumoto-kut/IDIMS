@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import com.example.idims.Menu.MenuActivity;
+import com.example.idims.StatusFlag;
 
 /*
     設定モジュール
@@ -24,12 +28,13 @@ public class Setting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.status = (StatusFlag) getApplication();
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_setting);
 
         //戻るボタン
         Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener(v -> {
-            finish();
+            Intent intent = new Intent(getApplication(), MenuActivity.class);
+            startActivity(intent);
         });
 
         //各種スイッチ、チェックボックス

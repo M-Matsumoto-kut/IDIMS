@@ -52,10 +52,7 @@ public class StatusFlag extends Application {
         this.setActivityStatus(1);
     }
     /*
-        activityStatusの値を返す
-            1:StartLogin
-            2:
-            3:
+        直前のアクティビティを記録
      */
     public int getActivityStatus() { return this.activityStatus; }
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.idims.HomeActivity;
 import com.example.idims.MainActivity;
 import com.example.idims.R;
 import com.example.idims.StatusFlag;
@@ -50,7 +51,7 @@ public class AreaListActivity extends AppCompatActivity {
         //戻るボタン->設定画面
         Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener( v -> {
-            Intent intent = new Intent(getApplication(), MainActivity.class);
+            Intent intent = new Intent(getApplication(), HomeActivity.class);
             startActivity(intent);
         });
 

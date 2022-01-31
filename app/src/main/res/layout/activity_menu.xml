@@ -28,26 +28,11 @@
         android:layout_height="wrap_content"
         android:text="@string/back"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:backgroundTint="#03A9F4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck" />
-
-    <Button
-        android:id="@+id/buttonToListSetAreaPage"
-        android:layout_width="410dp"
-        android:layout_height="80dp"
-        android:background="#00BCD4"
-        android:text="@string/arealist"
-        android:textSize="24sp"
-        app:backgroundTint="#454545"
-        app:iconTint="#454545"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298" />
 
     <Button
         android:id="@+id/buttonToSettingPage"
@@ -58,21 +43,22 @@
         app:backgroundTint="#454545"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView99"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintVertical_bias="0.242" />
 
     <Button
         android:id="@+id/buttonToArchivePage"
         android:layout_width="410dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="236dp"
+        android:layout_marginBottom="348dp"
         android:text="@string/archive"
         android:textSize="24sp"
         app:backgroundTint="#454545"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -85,9 +71,10 @@
         app:backgroundTint="#454545"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.843" />
+        app:layout_constraintVertical_bias="0.71" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

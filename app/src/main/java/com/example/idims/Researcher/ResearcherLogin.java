@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.idims.Authenticate;
+import com.example.idims.MainActivity;
+import com.example.idims.Menu.MenuActivity;
 import com.example.idims.R;
 import com.example.idims.Setting;
 import com.example.idims.StatusFlag;
@@ -20,6 +22,7 @@ import com.example.idims.StatusFlag;
 public class ResearcherLogin extends AppCompatActivity {
     EditText userId;        //id
     EditText password;      //現在のパスワード
+    private StatusFlag status;
 
     int userIdInt;          //整数値に変換されたid
     String passwordStr;     //文字列に変換されたpassword
@@ -32,16 +35,14 @@ public class ResearcherLogin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.loginResearcher();
-
+        this.status = (StatusFlag) getApplication();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         ///*
-        StatusFlag flag = (StatusFlag) this.getApplication();
-        int loginType = flag.getLoginType();
+        int loginType = status.getLoginType();
         if(loginType == 2) {
             //研究者ページに移行
             Intent intent = new Intent(ResearcherLogin.this, ResearcherPageActivity.class);
@@ -66,7 +67,16 @@ public class ResearcherLogin extends AppCompatActivity {
 
         //戻るボタン
         Button backButton = findViewById(R.id.backActivity);
-        backButton.setOnClickListener( v -> finish());
+        backButton.setOnClickListener( v -> {
+            int activityNum = status.getActivityStatus();
+            if(activityNum == 1) {
+                Intent intent = new Intent(getApplication(), MainActivity.class);
+                startActivity(intent);
+            } else if(activityNum == 2) {
+                Intent intent = new Intent(getApplication(), MenuActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         //ログインボタンが押された時
@@ -75,11 +85,26 @@ public class ResearcherLogin extends AppCompatActivity {
         loginButton.setOnClickListener( v -> {
 
 
-            //入力したIDを数値に変換
-            userIdInt = Integer.parseInt(String.valueOf(userId.getText()));
+            if(userId.getText() == null){
+                this.loginResearcher();
+            } else {
+                //入力したIDを数値に変換(本当は入力文字が整数じゃない場合にエラーを出す予定だったが，時間的に断念
+                userIdInt = Integer.parseInt(String.valueOf(userId.getText()));
+            }
+
+            if(password.getText() == null) {
+                this.loginResearcher();
+            } else {
+                //入力したパスワードを文字列に変換
+                passwordStr = password.getText().toString();
+            }
+
+            //入力したIDを数値に変換(本当は入力文字が整数じゃない場合にエラーを出す予定だったが，時間的に断念
+            //userIdInt = Integer.parseInt(String.valueOf(userId.getText()));
 
             //入力したパスワードを文字列に変換
-            passwordStr = password.getText().toString();
+            //passwordStr = password.getText().toString();
+
 
             //userIdとPasswordが正しいか
             if(authenticate.loginAuthenticate(userIdInt, passwordStr)) {
@@ -89,12 +114,13 @@ public class ResearcherLogin extends AppCompatActivity {
                 flag.setId(userIdInt);          //IDをを保存し，自動ログインを実現
 
                 //設定画面に移動
-                Intent intent = new Intent(getApplication(), Setting.class);
+                Intent intent = new Intent(getApplication(), ResearcherPageActivity.class);
                 startActivity(intent);
             } else {
                 //再入力を求める
-                Intent intent = new Intent(getApplication(), ResearcherLogin.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getApplication(), ResearcherLogin.class);
+                //startActivity(intent);
+                this.loginResearcher();
 
             }
 
