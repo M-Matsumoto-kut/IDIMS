@@ -47,10 +47,10 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
     private ArrayList<Integer> resultLevel = new ArrayList<>(); //災害レベル
     private ArrayList<Integer> resultConDis = new ArrayList<>(); //災害種類
     private ArrayList<Double> resultTime = new ArrayList<>(); //発生時刻
-    private ArrayList<String> resultArea = new ArrayList<>(); //発生地域
 
-    //地域を参照して県を格納する
-    private ArrayList<String> prefList = new ArrayList<>(); //県が格納されているリスト
+
+    //地方の4座標を格納する配列
+    private Double[][] areaRange = new Double[4][2];
 
 
 
@@ -86,8 +86,8 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         ArrayList<Integer> selectConDis = new ArrayList<>();
         ArrayList<Double> selectTime = new ArrayList<>();
 
-        //地域を参照して県をリストに格納する
-        addPrefFromAreaNum(areaNumber, prefList);
+        //地方を参照して選択地方を囲んだ4点の座標を格納する
+
 
 
         //デバック用
@@ -148,7 +148,6 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
                     resultLevel.add(debugData.getLevelList(i)); //災害レベル
                     resultConDis.add(debugData.getConDisList(i)); //災害種類
                     resultTime.add(debugData.getTimeList(i)); //災害時間
-                    resultArea.add(String.valueOf(sb)); //場所
                     Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOO", "setting");
 
 
@@ -163,10 +162,10 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlaytout_text);
         for(int i = 0;i <resultLat.size(); i++){
             TextView textView = new TextView(this);
-            textView.setTextSize(16);
-            //textView.setBackground(R.drawable.text_border);
-            textView.setText(getDisasterName(resultConDis.get(i)) + "  レベル: " + resultLevel.get(i) + ", " + resultArea.get(i) + "\n 発生時刻: " + resultTime.get(i));
-            linearLayout.addView(textView);
+            textView.setTextSize(16); //文字サイズの指定
+            textView.setBackgroundResource(R.drawable.text_border); //枠線を表示する背景ファイルの設定
+            textView.setText(getDisasterName(resultConDis.get(i)) + "  レベル: " + resultLevel.get(i) + "\n 発生時刻: " + resultTime.get(i)); //テキストのセット
+            linearLayout.addView(textView); //テキストの表示
             //空行を入力
             if(i == resultLat.size() - 1){
                 TextView kara = new TextView(this);
@@ -203,7 +202,6 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
                 intent.putIntegerArrayListExtra("resultLevel", resultLevel); //災害レベル
                 intent.putIntegerArrayListExtra("resultConDis", resultConDis); //災害種類
                 intent.putStringArrayListExtra("resultTime", castTime); //発生時刻(型変換)
-                intent.putStringArrayListExtra("resultArea", resultArea); //発生地域
                 intent.putIntegerArrayListExtra("disasterNumber", disasterNum); //災害番号
                 intent.putExtra("areaNumber", areaNumber); //検索地域
                 startActivity(intent);
@@ -254,17 +252,6 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
     }
 
-    //都道府県が検索条件内に入っているかを確認するメソッド
-    private boolean checkAdminArea(String str){
-        //Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", str);
-        //Log.d("Prefを示せやこらあああああああああああああ", prefList.get(0));
-        for(int i = 0; i < prefList.size(); i++){
-            Log.d("現在のprefを示していますうううううううううううう", prefList.get(i));
-            if(str.equals(prefList.get(i))){return true;} //同じ文字列が入っていた場合その地方に該当するので真を返す
-            //Log.d("ループ回数を示しています......", String.valueOf(i));
-        }
-        return false;
-    }
 
     //選択地方から県をリストに格納するメソッド
     /////////////////もしかしたら日本語も入れる必要性があるかもしれない
