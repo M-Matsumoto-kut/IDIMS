@@ -186,14 +186,16 @@ public class DisasterSearchActivity extends AppCompatActivity{
                 }else{
                     //検索結果画面へ移動
                     Intent intent = new Intent(DisasterSearchActivity.this, SearchResultListActivity.class);
+                    //検索条件の日付に時間、分、秒の桁を足す
+                    StringBuffer addStZero = new StringBuffer().append(search.getStartDate()).append("000000");
+                    StringBuffer addEnZero = new StringBuffer().append(search.getEndDate()).append("000000");
                     //検索結果の条件を一つずつ引き渡す
-                    intent.putExtra("AreaNumber", areaNum);
-                    intent.putExtra("Wave", search.getWave_On());
-                    intent.putExtra("Landsride", search.getLandsride_On());
-                    intent.putExtra("Thounder", search.getThounder_On());
-                    intent.putExtra("startTime", search.getStartDate());
-                    intent.putExtra("endTime", search.getEndDate());
-                    intent.putExtra("allTime", search.getAllConstant());
+                    intent.putExtra("AreaNumber", areaNum); //地方
+                    intent.putExtra("Wave", search.getWave_On()); //津波検索条件On
+                    intent.putExtra("Landsride", search.getLandsride_On()); //土砂崩れ検索条件On
+                    intent.putExtra("Thounder", search.getThounder_On()); //雷検索条件On
+                    intent.putExtra("startTime", search.getStartDate()); //検索開始時間
+                    intent.putExtra("endTime", search.getEndDate()); //検索終了時間
 
                     startActivity(intent);
                 }

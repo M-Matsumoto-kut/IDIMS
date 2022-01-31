@@ -32,6 +32,7 @@ public class SearchConditions {
         String five_year = "過去５年";
         if (str.equals(all)) {
             allConstant = true;//全ての日数有効化
+            startDate = "20210101"; //2021年1月1日を開始としているのでこうしている
         } else {
             allConstant = false;//全ての日数無効化
             //検索の起点となる時刻(過去の時刻のこと)を算出する

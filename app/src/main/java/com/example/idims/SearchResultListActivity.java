@@ -37,7 +37,6 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
     private boolean waveOn;
     private boolean landsrideOn;
     private boolean thounderOn;
-    private boolean allTime;
     private String startTime;
     private String endTime;
 
@@ -68,7 +67,6 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         thounderOn = intentDisasterSearch.getBooleanExtra("Thounder", false);
         startTime = intentDisasterSearch.getStringExtra("startTime");
         endTime = intentDisasterSearch.getStringExtra("endTime");
-        allTime = intentDisasterSearch.getBooleanExtra("allTime", false);
 
         //ArrayListの引き渡しテスト
         /*
@@ -191,6 +189,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
                 ArrayList<String> castLat = new ArrayList<>(); //緯度
                 ArrayList<String> castLng = new ArrayList<>(); //経度
                 ArrayList<String> castTime = new ArrayList<>(); //発生時刻
+
 
                 for(int i = 0; i < resultLat.size(); i++){ //double型をstring型に変換して返す
                     castLat.add(resultLat.get(i).toString());
