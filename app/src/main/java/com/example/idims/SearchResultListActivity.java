@@ -49,7 +49,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
     private ArrayList<String> resultTime = new ArrayList<>(); //発生時刻
 
     //地方の4座標を格納する配列
-    private Double[][] areaRange = new Double[4][2];
+    private Double[] areaLange = new Double[4]; //左緯度、右緯度、上経度、下経度
 
     //データベース検索用のArrayList 発生場所により不要な情報もあるので消去するため一時的な保存個所として置いておく
     ArrayList<Double> selectLat = new ArrayList<>(); //緯度
@@ -82,6 +82,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
 
         //地方を参照して選択地方を囲んだ4点の座標を格納する
+        setAreaLange(areaNumber);
 
 
 
@@ -94,23 +95,23 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         //データベースに接続し検索結果を格納する
         if (waveOn) { //もし津波の検索条件がonならAWSのMYSQLサーバに接続
             AWSConnect con = new AWSConnect();
-            String url = ""; //PHPファイルの場所
-            StringBuffer var = new StringBuffer(); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
+            String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearch.php"; //PHPファイルの場所
+            StringBuffer var = new StringBuffer().append(1).append(",").append(startTime).append(",").append(endTime); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
             con.setOnCallBack(this); //callbackの呼び出し?
             con.execute(url, String.valueOf(var)); //PHPファイルにアクセスしてSQLクエリを実行
         }
         if(landsrideOn){
             AWSConnect con = new AWSConnect();
-            String url = ""; //PHPファイルの場所
-            StringBuffer var = new StringBuffer(); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
+            String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearch.php"; //PHPファイルの場所
+            StringBuffer var = new StringBuffer().append(2).append(",").append(startTime).append(",").append(endTime); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
             con.setOnCallBack(this); //callbackの呼び出し?
             con.execute(url, String.valueOf(var)); //PHPファイルにアクセスしてSQLクエリを実行
 
         }
         if(thounderOn){
             AWSConnect con = new AWSConnect();
-            String url = ""; //PHPファイルの場所
-            StringBuffer var = new StringBuffer(); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
+            String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearch.php"; //PHPファイルの場所
+            StringBuffer var = new StringBuffer().append(3).append(",").append(startTime).append(",").append(endTime); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
             con.setOnCallBack(this); //callbackの呼び出し?
             con.execute(url, String.valueOf(var)); //PHPファイルにアクセスしてSQLクエリを実行
 
@@ -120,8 +121,22 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         Log.d("debugDataOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "searching");
 
         //データベース検索後格納したデータから該当地域か判定し、真であれば格納する
+        if(selectLat.size() != 0){ //データを受け取ってない場合そもそも判定しない
+            for(int i = 0; i < selectLat.size(); i++){
+                double nowlat = selectLat.get(i);
+                double nowlng = selectLng.get(i);
+                if(areaLange[0] <= nowlat && areaLange[1] > nowlat){//もし 経度下 < 災害緯度 < 経度上 かつ 緯度左 < 緯度右ならばデータをセット
+                    resultLat.add(nowlat); //緯度
+                    resultLng.add(nowlng); //経度
+                    resultConDis.add(selectConDis.get(i)); //災害種類
+                    resultLevel.add(selectLevel.get(i)); //災害レベル
+                    resultTime.add(selectTime.get(i)); //時間
+                }
+            }
+        }
 
 
+        /*
         //デバッグ:単なるデータセット
         for(int i = 0; i < 20; i++){
             Double lat = debugData.getLatList(i);
@@ -133,6 +148,8 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
             resultTime.add(debugData.getTimeList(i)); //災害時間
             Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOO", "setting");
         }
+
+         */
 
 
 
@@ -196,14 +213,66 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         });
 
 
+    }
 
+    //地方を囲む四方の頂点緯度経度を格納する
+    public void setAreaLange(int num){
+        if(num == 1){ //北海道の座標
+            areaLange[0] = 41.26171; //緯度下
+            areaLange[1] = 46.62585; //緯度上
+            areaLange[2] = 139.18517; //経度右
+            areaLange[3] = 150.93011; //経度左
+
+        }else if(num == 2){ //東北
+            areaLange[0] = 36.68679; //緯度下
+            areaLange[1] = 41.77072; //緯度上
+            areaLange[2] = 138.78217; //経度右
+            areaLange[3] = 142.31465; //経度左
+
+        }else if(num == 3){ //関東
+            areaLange[0] = 34.59297; //緯度下
+            areaLange[1] = 37.27521; //緯度上
+            areaLange[2] = 138.29331; //経度右
+            areaLange[3] = 141.15635; //経度左
+
+        }else if(num == 4){ //中部
+            areaLange[0] = 34.21240; //緯度下
+            areaLange[1] = 38.77298; //緯度上
+            areaLange[2] = 135.36760; //経度右
+            areaLange[3] = 140.11170; //経度左
+
+        }else if(num == 5){ //近畿
+            areaLange[0] = 33.20705; //緯度下
+            areaLange[1] = 36.05544; //緯度上
+            areaLange[2] = 133.98506; //経度右
+            areaLange[3] = 137.10602; //経度左
+
+        }else if(num == 6){ //中国四国
+            areaLange[0] = 32.42970; //緯度下
+            areaLange[1] = 36.45527; //緯度上
+            areaLange[2] = 130.95228; //経度右
+            areaLange[3] = 135.33631; //経度左
+
+        }else if(num == 7){ //九州
+            areaLange[0] = 25.57795; //緯度下
+            areaLange[1] = 34.96802; //緯度上
+            areaLange[2] = 127.10649; //経度右
+            areaLange[3] = 132.20441; //経度左
+
+        }
     }
 
     //コールバックメソッド:mysql空のデータを処理する
-    public void CallBack(String str){
-
-        //災害発生個所の緯度経度
-        double lat = 111;
+    public void CallBack(String result){
+        String[] tmp = result.split(","); //,(カンマ)を区切り文字として文字型配列に格納
+        int alpha = 5; //SQLで要求する要素数
+        for(int i = 0; i < tmp.length - alpha; i += alpha){
+            selectLat.add(Double.parseDouble(tmp[i])); //緯度を追加
+            selectLng.add(Double.parseDouble(tmp[i + 1])); //経度を追加
+            selectLevel.add(Integer.parseInt(tmp[i + 2])); //災害レベルを追加
+            selectConDis.add(Integer.parseInt(tmp[i + 3])); //災害種類を追加
+            selectTime.add(tmp[4]); //災害時間を追加
+        }
     }
 
     //引数に渡された数字に応じて災害名の文字列を返すメソッド
@@ -235,6 +304,8 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
     //Android搭載の戻るボタンの無効化 処理を書かないことにより無効化される
     @Override
     public void onBackPressed(){}
+
+
 
     //データ受け取りが出来ているかのデバッグ
     private void debugGetData(){
