@@ -53,7 +53,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
         app:layout_constraintEnd_toEndOf="@+id/toolbar4"
-        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar4"
         app:layout_constraintVertical_bias="0.592"
@@ -63,12 +63,14 @@
         android:id="@+id/button_Map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
         android:background="#03a9f4"
         android:text="@string/mapGamen"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
         app:layout_constraintEnd_toEndOf="@+id/toolbar4"
         app:layout_constraintTop_toTopOf="@+id/toolbar4"
+        app:layout_constraintVertical_bias="0.592"
         tools:ignore="TextContrastCheck" />
 
     <TextView
@@ -119,7 +121,7 @@
         <LinearLayout
             android:id="@+id/linearlayout_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
 

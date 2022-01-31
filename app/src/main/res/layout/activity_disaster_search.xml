@@ -11,14 +11,13 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="0dp"
+        android:layout_width="411dp"
         android:layout_height="75dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar6">
 
         <Button
             android:id="@+id/button_SelectArea"
@@ -36,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/area"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/content"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/toolbar3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,8 +138,8 @@
         android:id="@+id/spinner_Constant"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="84dp"
-        android:background="#454545"
+        android:layout_marginTop="76dp"
+        android:background="@color/white"
         android:backgroundTint="#454545"
         android:entries="@array/spinner_constant"
         android:spinnerMode="dialog"
@@ -159,8 +160,9 @@
             android:id="@+id/spinner_FreeYear_Start"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#454545"
+            android:background="@color/white"
             android:entries="@array/spinner_yearStart"
+            android:popupBackground="@color/white"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
     </LinearLayout>
@@ -179,6 +181,7 @@
             android:background="#454545"
             android:text="@string/year"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -193,7 +196,7 @@
             android:id="@+id/spinner_FreeMonth_Start"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#454545"
+            android:background="@color/white"
             android:entries="@array/spinner_monthStart"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
@@ -213,6 +216,7 @@
             android:background="#454545"
             android:text="@string/month"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -232,6 +236,7 @@
             android:background="#454545"
             android:text="@string/kara"
             android:textAlignment="textEnd"
+            android:textColor="@color/white"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -246,7 +251,7 @@
             android:id="@+id/spinner_FreeYear_End"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#454545"
+            android:background="@color/white"
             android:entries="@array/spinner_yearEnd"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -266,6 +271,7 @@
             android:background="#454545"
             android:text="@string/year"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -280,7 +286,7 @@
             android:id="@+id/spinner_FreeMonth_End"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#454545"
+            android:background="@color/white"
             android:entries="@array/spinner_monthEnd"
             android:spinnerMode="dialog"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -300,6 +306,7 @@
             android:background="#454545"
             android:text="@string/month"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -319,6 +326,7 @@
             android:background="#454545"
             android:text="@string/made"
             android:textAlignment="textEnd"
+            android:textColor="@color/white"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -365,5 +373,40 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="@string/period"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup_period"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#03a9f4"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_backMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/backMenu"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/toolbar6"
+        app:layout_constraintTop_toTopOf="@+id/toolbar6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

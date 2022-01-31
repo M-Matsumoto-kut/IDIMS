@@ -18,6 +18,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.idims.Menu.MenuActivity;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -200,6 +202,16 @@ public class DisasterSearchActivity extends AppCompatActivity{
                     startActivity(intent);
                 }
 
+            }
+        });
+
+        //画面上部のボタンでメニューに戻る
+        Button backbutton = (Button) findViewById(R.id.button_backMenu);
+        backbutton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(DisasterSearchActivity.this, MenuActivity.class);
+                startActivity(intent);
             }
         });
     }
