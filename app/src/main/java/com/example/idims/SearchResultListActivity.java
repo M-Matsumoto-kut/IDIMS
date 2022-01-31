@@ -159,7 +159,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
             TextView textView = new TextView(this);
             textView.setTextSize(16); //文字サイズの指定
             textView.setBackgroundResource(R.drawable.text_border); //枠線を表示する背景ファイルの設定
-            textView.setText(getDisasterName(resultConDis.get(i)) + "  レベル: " + resultLevel.get(i) + "\n 発生時刻: " + resultTime.get(i)); //テキストのセット
+            textView.setText(getDisasterName(resultConDis.get(i)) + "  レベル: " + resultLevel.get(i) + ", 発生時刻: " + resultTime.get(i) + "\n 緯度:" + resultLat.get(i) + " , 経度:" + resultLng.get(i)); //テキストのセット
             linearLayout.addView(textView); //テキストの表示
             //空行を入力
             if(i == resultLat.size() - 1){
