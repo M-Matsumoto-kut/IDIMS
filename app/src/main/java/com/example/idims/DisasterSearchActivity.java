@@ -194,8 +194,8 @@ public class DisasterSearchActivity extends AppCompatActivity{
                     intent.putExtra("Wave", search.getWave_On()); //津波検索条件On
                     intent.putExtra("Landsride", search.getLandsride_On()); //土砂崩れ検索条件On
                     intent.putExtra("Thounder", search.getThounder_On()); //雷検索条件On
-                    intent.putExtra("startTime", search.getStartDate()); //検索開始時間
-                    intent.putExtra("endTime", search.getEndDate()); //検索終了時間
+                    intent.putExtra("startTime", String.valueOf(addStZero)); //検索開始時間
+                    intent.putExtra("endTime", String.valueOf(addEnZero)); //検索終了時間
 
                     startActivity(intent);
                 }
