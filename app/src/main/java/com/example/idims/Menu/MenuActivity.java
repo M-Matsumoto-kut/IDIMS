@@ -11,6 +11,7 @@ import com.example.idims.DisasterSearchActivity;
 import com.example.idims.HomeActivity;
 import com.example.idims.R;
 
+import com.example.idims.Researcher.ResearcherLogin;
 import com.example.idims.Researcher.ResearcherPageActivity;
 import com.example.idims.Setting;
 
@@ -29,8 +30,8 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         //災害通知地域一覧へ遷移するボタン
-        Button TolistSetArea = findViewById(R.id.buttonToListSetAreaPage);
-        TolistSetArea.setOnClickListener( v -> {
+        Button ToListSetArea = findViewById(R.id.buttonToListSetAreaPage);
+        ToListSetArea.setOnClickListener( v -> {
             Intent intent = new Intent(getApplication(), AreaListActivity.class);
             startActivity(intent);
         });
@@ -52,7 +53,7 @@ public class MenuActivity extends AppCompatActivity {
         //研究者ページへ遷移するボタン
         Button toResearcherPage = findViewById(R.id.buttonToResearcherPage);
         toResearcherPage.setOnClickListener( v -> {
-            Intent intent = new Intent(getApplication(), ResearcherPageActivity.class);
+            Intent intent = new Intent(getApplication(), ResearcherLogin.class);
             startActivity(intent);
         });
 

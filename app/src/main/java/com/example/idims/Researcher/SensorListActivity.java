@@ -10,18 +10,21 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.idims.AWSConnect;
 import com.example.idims.R;
 import com.example.idims.StatusFlag;
 
 /*
     センサー確認モジュール
  */
-public class SensorListActivity extends AppCompatActivity {
+public class SensorListActivity extends AppCompatActivity implements AWSConnect.CallBackTask{
 
     private StatusFlag status;
     private int sensorNum;
     private String sensorName;
     private int textHeight;
+    private int listLength;
+    String[] sensorList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +39,35 @@ public class SensorListActivity extends AppCompatActivity {
         sensorNum = 0;
         sensorName = "";
         textHeight = 0;
+        listLength = 0;
         this.sensorListActivity();
+    }
+
+    //コールバックメソッド:パスワードが返ってくるはず？だからパスワードを受け取る
+    public void CallBack(String str){
+        sensorList = str.split(",");
+        listLength = sensorList.length; //センサーリストの長さを取得
     }
 
     //センサー異常一覧を表示
     private void sensorListActivity() {
 
         //データベースからセンサー情報を取得
+        //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
+        AWSConnect con = new AWSConnect(); //AWSConnectインスタンスの呼び出し
+        ////phpファイルの置いてある場所の指定
+        String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/sensor.php";
+        //データベースに転送する文字列の転送
+
+        //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
+        con.setOnCallBack(this);
+        //実行
+        con.execute(url);
+
 
 
         //レイアウト生成
         setContentView(R.layout.activity_sensor);
-
 
         //戻るボタン->研究者ページ
         Button backButton = findViewById(R.id.backActivity);
@@ -66,13 +86,11 @@ public class SensorListActivity extends AppCompatActivity {
 
         //一覧表示(8件まで）
         for(int i = 0; i < 8; i++) {
-            sensorNum = status.getPrefectureNum(i);
 
-            if(sensorNum > 46) {
+            if(i >= listLength) {
                 break;
             } else {
                 //格納したprefectureNumをもとに都道府県の名前を取得
-                sensorName = status.getPrefectureName(sensorNum);
 
                 //表示
                 textView[i] = new TextView(this);
@@ -85,7 +103,7 @@ public class SensorListActivity extends AppCompatActivity {
                     textView[i].setBackgroundColor(0xFF454545);
                 }
 
-                textView[i].setText(sensorName);
+                textView[i].setText(sensorList[i]);
                 textView[i].setGravity(Gravity.CENTER);
                 linearLayout.addView(textView[i],
                         new LinearLayout.LayoutParams(

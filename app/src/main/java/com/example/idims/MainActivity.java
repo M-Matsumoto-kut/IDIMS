@@ -8,8 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 
-import com.example.idims.Researcher.ResearcherPageActivity;
-import com.example.idims.Researcher.SensorListActivity;
+import com.example.idims.DisasterDetection.Asynchronous;
 
 import android.widget.Button;
 

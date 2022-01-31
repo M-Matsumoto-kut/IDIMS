@@ -1,4 +1,4 @@
-package com.example.idims;
+package com.example.idims.DisasterDetection;
 
 import android.app.Application;
 import android.app.Notification;
@@ -10,6 +10,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+
+import com.example.idims.HomeActivity;
+import com.example.idims.StatusFlag;
 
 //災害発生を通知し，ホーム画面に遷移させる
 public class DisasterNotification extends AppCompatActivity {

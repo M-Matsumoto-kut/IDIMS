@@ -7,29 +7,68 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 //認証モジュール
-public class Authenticate extends AppCompatActivity {
+public class Authenticate extends AppCompatActivity implements AWSConnect.CallBackTask{
+
+    private String password;
+
+
+    //コールバックメソッド:パスワードが返ってくるはず？だからパスワードを受け取る
+    public void CallBack(String str){
+        this.password = str;
+    }
+
 
     //IDとパスワードが一致しているか検証(true：一致，false:不一致)
-    public static boolean loginAuthenticate(int id, String inputPassword) {
+    public boolean loginAuthenticate(int id, String inputPassword) {
         //boolean match = false;
 
         //idを元にパスワードを取得
-        String password = "jjjjj"; //テスト
+        //String password = "jjjjj"; //テスト
+
+        //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
+        AWSConnect con = new AWSConnect(); //AWSConnectインスタンスの呼び出し
+        ////phpファイルの置いてある場所の指定
+        String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/admin.php";
+        //データベースに転送する文字列の転送
+        String str = String.valueOf(id);
+
+        //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
+        con.setOnCallBack(this);
+        //実行
+        con.execute(url, str);
+
 
         //入力されたパスワードとpasswordが一致しているか
-        return inputPassword.equals(password);
+        return this.matchPassword(inputPassword);
 
     }
 
+    //DBから買ってきたパスワードと入力したパスワードが一致しているか
+    private boolean matchPassword(String inputPassword) {
+        return inputPassword.equals(this.password);
+    }
+
     //現在のパスワードが一致しているか検証(true：一致，false:不一致)
-    public static boolean nowPasswordAuthenticate(int id, String nowPassword) {
+    public boolean nowPasswordAuthenticate(int id, String nowPassword) {
         //boolean match = false;
 
         //idを元にパスワードを取得
-        String password = "unko"; //テスト
+        //String password = "unko"; //テスト
+
+        //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
+        AWSConnect con = new AWSConnect(); //AWSConnectインスタンスの呼び出し
+        ////phpファイルの置いてある場所の指定
+        String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/admin.php";
+        //データベースに転送する文字列の転送
+        String str = String.valueOf(id);
+
+        //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
+        con.setOnCallBack(this);
+        //実行
+        con.execute(url, str);
 
         //nowPasswordとpasswordが一致しているか
-        return nowPassword.equals(password);
+        return this.matchPassword(nowPassword);
 
     }
 

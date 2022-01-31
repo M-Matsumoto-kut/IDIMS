@@ -22,6 +22,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
     EditText nowPassword; //現在のパスワード
     EditText newPassword; //現在のパスワード
 
+    Authenticate authenticate;
+
     String nowPasswordStr, newPasswordStr;
 
     ImageView eye1, eye2; //パスワードの表示・非表示
@@ -31,6 +33,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        authenticate = new Authenticate();
         this.passwordChange();
     }
     /*
@@ -62,7 +65,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
         //戻るボタン
         Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener( v -> {
-            finish();
+            Intent intent = new Intent(ChangePasswordActivity.this, ResearcherPageActivity.class);
+            startActivity(intent);
         });
 
         //更新ボタンが押された時
@@ -76,7 +80,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             int id = 1230344;
 
             //現在のパスワードが正しいか
-            if(Authenticate.nowPasswordAuthenticate(id, nowPasswordStr)) {
+            if(authenticate.nowPasswordAuthenticate(id, nowPasswordStr)) {
 
                 //現在のパスワードが半角英数字でかつ8文字以上16文字以下か
                 if(Authenticate.newPasswordAuthenticate(newPasswordStr)){

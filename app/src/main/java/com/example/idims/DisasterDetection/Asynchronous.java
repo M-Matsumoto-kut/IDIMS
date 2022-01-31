@@ -1,4 +1,4 @@
-package com.example.idims;
+package com.example.idims.DisasterDetection;
 
 
 import java.util.Timer;

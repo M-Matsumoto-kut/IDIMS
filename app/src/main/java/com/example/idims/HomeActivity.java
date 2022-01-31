@@ -293,7 +293,6 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         }
 
 
-
                         //デバッグ用のピン map.addMarker(new MarkerOptions().position(new LatLng(33, 133)));
                         Log.d("Home", "onSuccess: " + location.getLatitude() + " , " + location.getLongitude());
                     }else{

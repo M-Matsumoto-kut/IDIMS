@@ -27,6 +27,8 @@ public class ResearcherLogin extends AppCompatActivity {
     ImageView eye1;   //パスワードの表示・非表示
     boolean state = false;  //表示・非表示の切り替えステータス
 
+    Authenticate authenticate = new Authenticate();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +71,6 @@ public class ResearcherLogin extends AppCompatActivity {
 
         //ログインボタンが押された時
 
-
         Button loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener( v -> {
 
@@ -81,8 +82,7 @@ public class ResearcherLogin extends AppCompatActivity {
             passwordStr = password.getText().toString();
 
             //userIdとPasswordが正しいか
-
-            if(Authenticate.loginAuthenticate(userIdInt, passwordStr)) {
+            if(authenticate.loginAuthenticate(userIdInt, passwordStr)) {
 
                 StatusFlag flag = (StatusFlag) getApplication();
                 flag.setLoginTypeRes();         //loginTypeを2（研究者）に更新
