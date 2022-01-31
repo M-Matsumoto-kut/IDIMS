@@ -135,6 +135,7 @@ public class debugDisasterSearchData {
         timelist[17] = 20211030;
         timelist[18] = 20210721;
         timelist[19] = 20210815;
+
     }
 
     public double getLatList(int i){

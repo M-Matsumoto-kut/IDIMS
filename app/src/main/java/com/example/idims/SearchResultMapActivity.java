@@ -49,8 +49,6 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
     private ArrayList<String> getLng = new ArrayList<>(); //経度
     private ArrayList<String> getTime = new ArrayList<>(); //発生時刻
 
-    //マーカーのリスト
-    private ArrayList<Marker> marker;
 
 
 
@@ -147,8 +145,8 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
     public void onMapReady(GoogleMap map) { //マップのセッティング
         //受け取ったリストからマーカーを作成する
         for(int i = 0; i < listLat.size(); i++){
-            marker.add(map.addMarker(new MarkerOptions().position(new LatLng(listLat.get(i), listLng.get(i)))));
-            marker.get(i).setTag(i); //現在の番号をタグとしてセットする
+            Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(listLat.get(i), listLng.get(i))));
+            marker.setTag(i); //現在の番号をタグとしてセットする
             map.setOnMarkerClickListener(this);
         }
     }
