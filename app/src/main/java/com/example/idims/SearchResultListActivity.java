@@ -33,12 +33,13 @@ import android.location.Geocoder;
 
 public class SearchResultListActivity extends AppCompatActivity implements AWSConnect.CallBackTask{
 
-    private int areaNumber;
-    private boolean waveOn;
-    private boolean landsrideOn;
-    private boolean thounderOn;
-    private String startTime;
-    private String endTime;
+    //検索条件画面から受け取った検索条件
+    private int areaNumber; //選択地方
+    private boolean waveOn; //検索条件_津波
+    private boolean landsrideOn; //検索条件_地すべり
+    private boolean thounderOn; //検索条件_雷
+    private String startTime; //検索条件_開始時刻
+    private String endTime; //検索条件_終了時刻
 
     //DBの検索結果を格納する
     private ArrayList<Double> resultLat = new ArrayList<>(); //緯度
@@ -47,9 +48,15 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
     private ArrayList<Integer> resultConDis = new ArrayList<>(); //災害種類
     private ArrayList<Double> resultTime = new ArrayList<>(); //発生時刻
 
-
     //地方の4座標を格納する配列
     private Double[][] areaRange = new Double[4][2];
+
+    //データベース検索用のArrayList 発生場所により不要な情報もあるので消去するため一時的な保存個所として置いておく
+    ArrayList<Double> selectLat = new ArrayList<>(); //緯度
+    ArrayList<Double> selectLng = new ArrayList<>(); //経度
+    ArrayList<Integer> selectLevel = new ArrayList<>(); //レベル
+    ArrayList<Integer> selectConDis = new ArrayList<>(); //災害種類
+    ArrayList<Double> selectTime = new ArrayList<>(); //時間
 
 
 
@@ -72,12 +79,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         //デバッグ用のクラス宣言
         debugDisasterSearchData debugData = new debugDisasterSearchData();
 
-        //データベース検索用のArrayList 発生場所により不要な情報もあるので消去するため一時的な保存個所として置いておく
-        ArrayList<Double> selectLat = new ArrayList<>();
-        ArrayList<Double> selectLng = new ArrayList<>();
-        ArrayList<Integer> selectLevel = new ArrayList<>();
-        ArrayList<Integer> selectConDis = new ArrayList<>();
-        ArrayList<Double> selectTime = new ArrayList<>();
+
 
         //地方を参照して選択地方を囲んだ4点の座標を格納する
 
@@ -115,9 +117,9 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         }
 
 
-
-
         Log.d("debugDataOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "searching");
+
+        //データベース検索後格納したデータから該当地域か判定し、真であれば格納する
 
 
         //デバッグ:単なるデータセット

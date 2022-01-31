@@ -42,7 +42,6 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
     private ArrayList<Integer> listLevel = new ArrayList<>(); //災害レベル
     private ArrayList<Integer> listConDis = new ArrayList<>(); //災害種類
     private ArrayList<Double> listTime = new ArrayList<>(); //発生時刻
-    private ArrayList<String> listArea = new ArrayList<>(); //発生地域
     private ArrayList<Integer> disasterNum = new ArrayList<>(); //災害番号
 
     //型変換を行う必要のあるリストの受け口
@@ -67,7 +66,6 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
         listLevel = searchResultList.getIntegerArrayListExtra("resultLevel"); //災害レベル
         listConDis = searchResultList.getIntegerArrayListExtra("resultConDis"); //災害種類
         getTime = searchResultList.getStringArrayListExtra("resultTime"); //発生時刻の受け取り
-        listArea = searchResultList.getStringArrayListExtra("resultArea"); //発生地域
         disasterNum = searchResultList.getIntegerArrayListExtra("disasterNumber"); //検索番号
         areaNumber = searchResultList.getIntExtra("areaNumber", 0); //検索地方
 
@@ -180,7 +178,7 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
         if (disasterNum != null){ //タグ番号がnullでない場合
             //画面下部レイアウトに災害情報の詳細を書き出す
             TextView disasterInfo = (TextView) findViewById(R.id.textView_DisasterInfo);
-            disasterInfo.setText(getDisasterName(listConDis.get(disasterNum)) + "  [レベル" + listLevel.get(disasterNum) + "] " + listArea.get(disasterNum)); //災害情報の概要
+            disasterInfo.setText(getDisasterName(listConDis.get(disasterNum)) + "  [レベル" + listLevel.get(disasterNum)); //災害情報の概要
             TextView timeInfo = (TextView) findViewById(R.id.textView_TimeInfo);
             timeInfo.setText("発生日時: " + getNowTimeString(listTime.get(disasterNum))); //発生時間
             TextView latlngInfo = (TextView) findViewById(R.id.textView_InfoLatLng);
