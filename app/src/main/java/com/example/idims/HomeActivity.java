@@ -185,16 +185,6 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-    //画面下部の避難勧告表示のテキストのセット
-    protected void setTextevacuationAdvisory(){
-        TextView textView = (TextView) findViewById(R.id.textView_Eva);
-        if(do_Wave == true || do_Landsride == true){
-            textView.setText("避難勧告が発生しています");
-        }else{
-            textView.setText("避難勧告は発生していません");
-        }
-    }
-
     //位置情報が取得できなかった時にテキストを表示する
     protected void cantGetLocation(){
         TextView textView = (TextView) findViewById(R.id.textView_LocErr);
@@ -272,18 +262,25 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         double nowLat = location.getLatitude();
                         double nowLng = location.getLongitude();
                         Log.d("処理直前", "どこまで行ったのかな？");
-                        Marker markerNow = map.addMarker(new MarkerOptions().position(new LatLng(nowLat, nowLng)).snippet("NowLocation \n " + location.getLatitude() + " , " + location.getLongitude()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                        Marker markerNow = map.addMarker(new MarkerOptions().position(new LatLng(nowLat, nowLng)).snippet("NowLocation \n " + location.getLatitude() + " , " + location.getLongitude()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                         Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
 
                         //デバッグ用のピン map.addMarker(new MarkerOptions().position(new LatLng(33, 133)));
                         Log.d("Home", "onSuccess: " + location.getLatitude() + " , " + location.getLongitude());
 
+
                         //最後に位置情報と発生災害との距離を図り、一定距離にある災害のみ表示する
-                        if(disLat.size() != 0){ //DBからデータを受け取っていない場合災害の表示を行わない
+                        try{
                             for(int i = 0; i < disLat.size(); i++){
                                 if(judgeDisasterDistance(nowLat, nowLng, disLat.get(i), disLng.get(i))){ //もし自身の位置より近くにあればその災害をマップのマーカーに表示して表示する災害情報を格納
-                                    Marker markerDisaster = map.addMarker(new MarkerOptions().position(new LatLng(disLat.get(i), disLng.get(i))).title(getDisasterName(disCon.get(i)) + ":レベル" + String.valueOf(dislevel.get(i)))); //マーカーをセット
+                                    if(disCon.get(i) == 1){ //津波の場合青色に設定
+                                        Marker markerDisaster = map.addMarker(new MarkerOptions().position(new LatLng(disLat.get(i), disLng.get(i))).title(getDisasterName(disCon.get(i)) + ":レベル" + String.valueOf(dislevel.get(i))).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))); //マーカーをセット
+                                    }else if(disCon.get(i) == 2){ //地すべりの場合緑
+                                        Marker markerDisaster = map.addMarker(new MarkerOptions().position(new LatLng(disLat.get(i), disLng.get(i))).title(getDisasterName(disCon.get(i)) + ":レベル" + String.valueOf(dislevel.get(i))).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))); //マーカーをセット
+                                    }else if(disCon.get(i) == 3){ //雷の場合黄色
+                                        Marker markerDisaster = map.addMarker(new MarkerOptions().position(new LatLng(disLat.get(i), disLng.get(i))).title(getDisasterName(disCon.get(i)) + ":レベル" + String.valueOf(dislevel.get(i))).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))); //マーカーをセット
+                                    }
                                     nearLat.add(disLat.get(i)); //緯度
                                     nearLng.add(disLng.get(i)); //経度
                                     nearCon.add(disCon.get(i)); //災害種類
@@ -294,8 +291,11 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     }
                                 }
                             }
+                        }catch(NullPointerException e){ //DBからデータを受け取っていない場合災害の表示を行わない
 
+                            Log.d("失敗しています","Nullを取得しました");
                         }
+
 
                     }else{
                         cantGetLocation();

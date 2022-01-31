@@ -58,6 +58,9 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
     ArrayList<Integer> selectConDis = new ArrayList<>(); //災害種類
     ArrayList<String> selectTime = new ArrayList<>(); //時間
 
+    //Nullを処理した場合onになりマップに移動できない
+    private boolean nullP = false;
+
 
 
     @Override
@@ -120,20 +123,31 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
         Log.d("debugDataOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "searching");
 
+        Button mapButton = (Button) findViewById(R.id.button_Map); //マップ画面遷移ボタン
+
+
         //データベース検索後格納したデータから該当地域か判定し、真であれば格納する
-        if(selectLat.size() != 0){ //データを受け取ってない場合そもそも判定しない
-            for(int i = 0; i < selectLat.size(); i++){
-                double nowlat = selectLat.get(i);
-                double nowlng = selectLng.get(i);
-                if(areaLange[0] <= nowlat && areaLange[1] > nowlat){//もし 経度下 < 災害緯度 < 経度上 かつ 緯度左 < 緯度右ならばデータをセット
-                    resultLat.add(nowlat); //緯度
-                    resultLng.add(nowlng); //経度
-                    resultConDis.add(selectConDis.get(i)); //災害種類
-                    resultLevel.add(selectLevel.get(i)); //災害レベル
-                    resultTime.add(selectTime.get(i)); //時間
+        try{
+            if(selectLat.size() != 0){ //データを受け取ってない場合そもそも判定しない
+                for(int i = 0; i < selectLat.size(); i++){
+                    double nowlat = selectLat.get(i);
+                    double nowlng = selectLng.get(i);
+                    if(areaLange[0] <= nowlat && areaLange[1] > nowlat){//もし 経度下 < 災害緯度 < 経度上 かつ 緯度左 < 緯度右ならばデータをセット
+                        resultLat.add(nowlat); //緯度
+                        resultLng.add(nowlng); //経度
+                        resultConDis.add(selectConDis.get(i)); //災害種類
+                        resultLevel.add(selectLevel.get(i)); //災害レベル
+                        resultTime.add(selectTime.get(i)); //時間
+                    }
                 }
             }
+        }catch(NullPointerException e){ //そもそもデータベースに一致する条件がなければこうするほかなし
+            Log.d("配列指定エラー", "NullPointerException");
+            //マップ遷移ボタンを押下不可にする
+            mapButton.setClickable(false);
+            nullP = true;
         }
+
 
 
         /*
@@ -171,7 +185,6 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         }
 
         //マップ画面に移行する
-        Button mapButton = (Button) findViewById(R.id.button_Map);
         mapButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -199,6 +212,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
                 intent.putIntegerArrayListExtra("disasterNumber", disasterNum); //災害番号
                 intent.putExtra("areaNumber", areaNumber); //検索地域
                 startActivity(intent);
+
             }
         });
 

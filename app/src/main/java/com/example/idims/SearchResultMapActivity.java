@@ -143,7 +143,14 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
     public void onMapReady(GoogleMap map) { //マップのセッティング
         //受け取ったリストからマーカーを作成する
         for(int i = 0; i < listLat.size(); i++){
-            Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(listLat.get(i), listLng.get(i))));
+            Marker marker = null;
+            if(listConDis.get(i) == 1){ //津波の場合青色
+                marker = map.addMarker(new MarkerOptions().position(new LatLng(listLat.get(i), listLng.get(i))).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+            } else if (listConDis.get(i) == 2) { //地すべりの場合緑
+                marker = map.addMarker(new MarkerOptions().position(new LatLng(listLat.get(i), listLng.get(i))).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+            }else if(listConDis.get(i) == 3){ //雷の場合黄色
+                marker = map.addMarker(new MarkerOptions().position(new LatLng(listLat.get(i), listLng.get(i))).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+            }
             Log.d("中に格納されている時間の確認", listTime.get(i));
             marker.setTag(i); //現在の番号をタグとしてセットする
             map.setOnMarkerClickListener(this);

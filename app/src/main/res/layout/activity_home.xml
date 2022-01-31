@@ -11,6 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:apiKey="AIzaSyDy8LqOFFXeRlbf-0eZEQWwFwVJleCfxHg"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
