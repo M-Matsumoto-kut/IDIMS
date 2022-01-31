@@ -8,7 +8,7 @@ public class debugDisasterSearchData {
     private double lnglist[] = new double[20]; //経度
     private int levellist[] = new int[20]; //災害レベル
     private int condislist[] = new int[20]; //災害種類
-    private double timelist[] = new double[20]; //発生時刻
+    private String timelist[] = new String[20]; //発生時刻
 
 
     public debugDisasterSearchData(){
@@ -115,26 +115,26 @@ public class debugDisasterSearchData {
     }
 
     private void setTimeList(){
-        timelist[0] = 20220116;
-        timelist[1] = 20210106;
-        timelist[2] = 20220715;
-        timelist[3] = 20211103;
-        timelist[4] = 20210928;
-        timelist[5] = 20210101;
-        timelist[6] = 20220228;
-        timelist[7] = 20220303;
-        timelist[8] = 20210304;
-        timelist[9] = 20220614;
-        timelist[10] = 20210506;
-        timelist[11] = 20220101;
-        timelist[12] = 20220806;
-        timelist[13] = 20220909;
-        timelist[14] = 20220101;
-        timelist[15] = 20220305;
-        timelist[16] = 20220108;
-        timelist[17] = 20211030;
-        timelist[18] = 20210721;
-        timelist[19] = 20210815;
+        timelist[0] = "20220116040543";
+        timelist[1] = "20210106080221";
+        timelist[2] = "20220715094555";
+        timelist[3] = "20211103112449";
+        timelist[4] = "20210928073349";
+        timelist[5] = "20210101234401";
+        timelist[6] = "20220228030059";
+        timelist[7] = "20220303151919";
+        timelist[8] = "20210304114515";
+        timelist[9] = "20220614033925";
+        timelist[10] = "20210506056827";
+        timelist[11] = "20220101234839";
+        timelist[12] = "20220806174203";
+        timelist[13] = "20220909224455";
+        timelist[14] = "20220101001234";
+        timelist[15] = "20220305034732";
+        timelist[16] = "20220108164044";
+        timelist[17] = "20211030223030";
+        timelist[18] = "20210721072119";
+        timelist[19] = "20210815020248";
 
     }
 
@@ -154,7 +154,7 @@ public class debugDisasterSearchData {
         return condislist[i];
     }
 
-    public double getTimeList(int i){
+    public String getTimeList(int i){
         return timelist[i];
     }
 }

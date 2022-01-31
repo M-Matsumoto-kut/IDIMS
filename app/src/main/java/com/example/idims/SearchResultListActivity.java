@@ -46,7 +46,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
     private ArrayList<Double> resultLng = new ArrayList<>(); //経度
     private ArrayList<Integer> resultLevel = new ArrayList<>(); //災害レベル
     private ArrayList<Integer> resultConDis = new ArrayList<>(); //災害種類
-    private ArrayList<Double> resultTime = new ArrayList<>(); //発生時刻
+    private ArrayList<String> resultTime = new ArrayList<>(); //発生時刻
 
     //地方の4座標を格納する配列
     private Double[][] areaRange = new Double[4][2];
@@ -56,7 +56,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
     ArrayList<Double> selectLng = new ArrayList<>(); //経度
     ArrayList<Integer> selectLevel = new ArrayList<>(); //レベル
     ArrayList<Integer> selectConDis = new ArrayList<>(); //災害種類
-    ArrayList<Double> selectTime = new ArrayList<>(); //時間
+    ArrayList<String> selectTime = new ArrayList<>(); //時間
 
 
 
@@ -126,29 +126,12 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         for(int i = 0; i < 20; i++){
             Double lat = debugData.getLatList(i);
             Double lng = debugData.getLngList(i);
-            //住所を取得するジオコーダークラスの宣言
-            Geocoder geocoder = new Geocoder(this);
-            //住所を取得
-            Log.d("テスト配列内の文字列を表示しま―――――――ス", String.valueOf(i));
-            try {
-                //住所を取得
-                List<Address> address = geocoder.getFromLocation(lat, lng, 1);
-                //都道府県を取得
-                String addressAdm = address.get(0).getAdminArea(); //県名を取得
-
-                    String addressLoc = address.get(0).getLocality();
-                    StringBuffer sb = new StringBuffer().append(addressAdm).append(addressLoc);
-                    resultLat.add(debugData.getLatList(i)); //緯度
-                    resultLng.add(debugData.getLngList(i)); //経度
-                    resultLevel.add(debugData.getLevelList(i)); //災害レベル
-                    resultConDis.add(debugData.getConDisList(i)); //災害種類
-                    resultTime.add(debugData.getTimeList(i)); //災害時間
-                    Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOO", "setting");
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            resultLat.add(debugData.getLatList(i)); //緯度
+            resultLng.add(debugData.getLngList(i)); //経度
+            resultLevel.add(debugData.getLevelList(i)); //災害レベル
+            resultConDis.add(debugData.getConDisList(i)); //災害種類
+            resultTime.add(debugData.getTimeList(i)); //災害時間
+            Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOO", "setting");
         }
 
 
@@ -185,19 +168,17 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
                 //その前に型変換を行う
                 ArrayList<String> castLat = new ArrayList<>(); //緯度
                 ArrayList<String> castLng = new ArrayList<>(); //経度
-                ArrayList<String> castTime = new ArrayList<>(); //発生時刻
 
 
                 for(int i = 0; i < resultLat.size(); i++){ //double型をstring型に変換して返す
                     castLat.add(resultLat.get(i).toString());
                     castLng.add(resultLng.get(i).toString());
-                    castTime.add(resultTime.get(i).toString());
                 }
                 intent.putStringArrayListExtra("resultLat", castLat); //緯度(型変換)
                 intent.putStringArrayListExtra("resultLng", castLng); //経度(型変換)
                 intent.putIntegerArrayListExtra("resultLevel", resultLevel); //災害レベル
                 intent.putIntegerArrayListExtra("resultConDis", resultConDis); //災害種類
-                intent.putStringArrayListExtra("resultTime", castTime); //発生時刻(型変換)
+                intent.putStringArrayListExtra("resultTime", resultTime); //発生時刻(型変換)
                 intent.putIntegerArrayListExtra("disasterNumber", disasterNum); //災害番号
                 intent.putExtra("areaNumber", areaNumber); //検索地域
                 startActivity(intent);

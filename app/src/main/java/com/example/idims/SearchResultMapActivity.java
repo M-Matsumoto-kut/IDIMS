@@ -41,13 +41,12 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
     private ArrayList<Double> listLng = new ArrayList<>(); //経度
     private ArrayList<Integer> listLevel = new ArrayList<>(); //災害レベル
     private ArrayList<Integer> listConDis = new ArrayList<>(); //災害種類
-    private ArrayList<Double> listTime = new ArrayList<>(); //発生時刻
+    private ArrayList<String> listTime = new ArrayList<>(); //発生時刻
     private ArrayList<Integer> disasterNum = new ArrayList<>(); //災害番号
 
     //型変換を行う必要のあるリストの受け口
     private ArrayList<String> getLat = new ArrayList<>(); //緯度
     private ArrayList<String> getLng = new ArrayList<>(); //経度
-    private ArrayList<String> getTime = new ArrayList<>(); //発生時刻
 
 
 
@@ -63,7 +62,7 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
         getLng = searchResultList.getStringArrayListExtra("resultLng"); //経度の受け取り
         listLevel = searchResultList.getIntegerArrayListExtra("resultLevel"); //災害レベル
         listConDis = searchResultList.getIntegerArrayListExtra("resultConDis"); //災害種類
-        getTime = searchResultList.getStringArrayListExtra("resultTime"); //発生時刻の受け取り
+        listTime = searchResultList.getStringArrayListExtra("resultTime"); //発生時刻の受け取り
         disasterNum = searchResultList.getIntegerArrayListExtra("disasterNumber"); //検索番号
         areaNumber = searchResultList.getIntExtra("areaNumber", 0); //検索地方
 
@@ -71,7 +70,6 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
         for(int i = 0; i < getLat.size(); i++){ //String型をdouble型に変換
             listLat.add(Double.parseDouble(getLat.get(i))); //緯度
             listLng.add(Double.parseDouble(getLng.get(i))); //経度
-            listTime.add(Double.parseDouble(getTime.get(i))); //発生時刻
         }
 
 
@@ -176,11 +174,11 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
         if (disasterNum != null){ //タグ番号がnullでない場合
             //画面下部レイアウトに災害情報の詳細を書き出す
             TextView disasterInfo = (TextView) findViewById(R.id.textView_DisasterInfo);
-            disasterInfo.setText(getDisasterName(listConDis.get(disasterNum)) + "  [レベル" + listLevel.get(disasterNum)); //災害情報の概要
+            disasterInfo.setText(getDisasterName(listConDis.get(disasterNum)) + "  [レベル " + listLevel.get(disasterNum) + " ]"); //災害情報の概要
             TextView timeInfo = (TextView) findViewById(R.id.textView_TimeInfo);
             timeInfo.setText("発生日時: " + getNowTimeString(listTime.get(disasterNum))); //発生時間
             TextView latlngInfo = (TextView) findViewById(R.id.textView_InfoLatLng);
-            latlngInfo.setText("発生予測地点 \n 緯度:" + listLat.get(disasterNum) + "\n 経度: " + listLng.get(disasterNum));
+            latlngInfo.setText("発生予測地点 \n 緯度:" + listLat.get(disasterNum) + ", 経度: " + listLng.get(disasterNum));
         }
         return false;
     }
@@ -194,13 +192,18 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
     }
 
     //~年~月~日~:~の表記として返すメソッド
-    private String getNowTimeString(Double time){
-        String before = String.valueOf(time); //ダブル型を文字列型に変換
-        String year = before.substring(0, 3); //年を取得
-        String month = before.substring(4, 5); //月
-        String day = before.substring(6, 7); //日
-        String hour = before.substring(8, 9); //時
-        String minute = before.substring(10, 11); //分
+    private String getNowTimeString(String time){
+        //String before = String.valueOf(time); //ダブル型を文字列型に変換
+        String year = time.substring(0, 3); //年を取得
+        String month = time.substring(4, 5); //月
+        String day = time.substring(6, 7); //日
+        String hour = time.substring(8, 9); //時
+        String minute = time.substring(10, 11); //分
+        Log.d("表示の確認", year);
+        Log.d("表示の確認", month);
+        Log.d("表示の確認", day);
+        Log.d("表示の確認", hour);
+        Log.d("表示の確認", minute);
         StringBuffer str = new StringBuffer().append(year).append("年").append(month).append("月").append(day).append("日").append(hour).append(":").append(minute); //結合
         return String.valueOf(str);
 
