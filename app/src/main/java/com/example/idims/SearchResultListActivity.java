@@ -154,7 +154,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
 
         //テキストビューで追加する
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlaytout_text);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlayout_text);
         for(int i = 0;i <resultLat.size(); i++){
             TextView textView = new TextView(this);
             textView.setTextSize(16); //文字サイズの指定

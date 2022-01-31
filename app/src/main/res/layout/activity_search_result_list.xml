@@ -56,7 +56,8 @@
         app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar4"
-        app:layout_constraintVertical_bias="0.592" />
+        app:layout_constraintVertical_bias="0.592"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/button_Map"
@@ -67,7 +68,8 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
         app:layout_constraintEnd_toEndOf="@+id/toolbar4"
-        app:layout_constraintTop_toTopOf="@+id/toolbar4" />
+        app:layout_constraintTop_toTopOf="@+id/toolbar4"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView_timeSet"
@@ -79,16 +81,43 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Space
+        android:id="@+id/space_right"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4" />
+
+    <Space
+        android:id="@+id/space_left"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4" />
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="0dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="162dp"
+        android:layout_marginEnd="189dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/space_right"
+        app:layout_constraintStart_toEndOf="@+id/space_left" />
+
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="535dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/space2"
+        app:layout_constraintEnd_toStartOf="@+id/space_right"
+        app:layout_constraintStart_toEndOf="@+id/space_left"
         app:layout_constraintTop_toBottomOf="@+id/toolbar4"
         tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
-            android:id="@+id/linearlaytout_text"
+            android:id="@+id/linearlayout_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" />

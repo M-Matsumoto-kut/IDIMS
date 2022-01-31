@@ -188,7 +188,7 @@ public class DisasterSearchActivity extends AppCompatActivity{
                     Intent intent = new Intent(DisasterSearchActivity.this, SearchResultListActivity.class);
                     //検索条件の日付に時間、分、秒の桁を足す
                     StringBuffer addStZero = new StringBuffer().append(search.getStartDate()).append("000000");
-                    StringBuffer addEnZero = new StringBuffer().append(search.getEndDate()).append("000000");
+                    StringBuffer addEnZero = new StringBuffer().append(search.getEndDate()).append("235959");
                     //検索結果の条件を一つずつ引き渡す
                     intent.putExtra("AreaNumber", areaNum); //地方
                     intent.putExtra("Wave", search.getWave_On()); //津波検索条件On
