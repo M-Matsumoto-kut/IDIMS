@@ -144,6 +144,7 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
         //受け取ったリストからマーカーを作成する
         for(int i = 0; i < listLat.size(); i++){
             Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(listLat.get(i), listLng.get(i))));
+            Log.d("中に格納されている時間の確認", listTime.get(i));
             marker.setTag(i); //現在の番号をタグとしてセットする
             map.setOnMarkerClickListener(this);
         }
@@ -194,11 +195,11 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
     //~年~月~日~:~の表記として返すメソッド
     private String getNowTimeString(String time){
         //String before = String.valueOf(time); //ダブル型を文字列型に変換
-        String year = time.substring(0, 3); //年を取得
-        String month = time.substring(4, 5); //月
-        String day = time.substring(6, 7); //日
-        String hour = time.substring(8, 9); //時
-        String minute = time.substring(10, 11); //分
+        String year = time.substring(0, 4); //年を取得
+        String month = time.substring(4, 6); //月
+        String day = time.substring(6, 8); //日
+        String hour = time.substring(8, 10); //時
+        String minute = time.substring(10, 12); //分
         Log.d("表示の確認", year);
         Log.d("表示の確認", month);
         Log.d("表示の確認", day);
