@@ -278,6 +278,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
     //コールバックメソッド:mysql空のデータを処理する
     public void CallBack(String result){
+        Log.d("CallBackが呼び出されました", result);
         String[] tmp = result.split(","); //,(カンマ)を区切り文字として文字型配列に格納
         int alpha = 5; //SQLで要求する要素数
         for(int i = 0; i < tmp.length - alpha; i += alpha){

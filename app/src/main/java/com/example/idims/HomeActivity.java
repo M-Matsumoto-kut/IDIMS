@@ -95,7 +95,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //MySQLへ接続して24時間前までの災害を検索
         AWSConnect con = new AWSConnect(); //AWSConnectインスタンス宣言
-        String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearch_now.php"; //24時間前の災害を検索するSQLクエリの入ったphpファイルのurl
+        String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearch.php"; //24時間前の災害を検索するSQLクエリの入ったphpファイルのurl
         String startTime = getYesterday(); //検索開始時刻,まぁ24時間前
         String endTime = getToday(); //現在時刻を取得
         StringBuffer dist = new StringBuffer().append("value=").append(startTime).append(",").append(endTime); //startTime,endTime の形で条件を送る
@@ -129,6 +129,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     //SQLによる検索結果を処理
     public void CallBack(String result){ //stringには緯度,経度,災害レベル,災害種類,災害発生時間,...で格納されている
+        Log.d("CallBackが呼び出されました", result);
         String[] tmp = result.split(","); //,(カンマ)を区切り文字として文字型配列に格納
         int alpha = 5; //SQLで要求する要素数
         for(int i = 0; i < tmp.length - alpha; i += alpha){
