@@ -99,14 +99,14 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         if (waveOn) { //もし津波の検索条件がonならAWSのMYSQLサーバに接続
             AWSConnect con = new AWSConnect();
             String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearch.php"; //PHPファイルの場所
-            StringBuffer var = new StringBuffer().append(1).append(",").append(startTime).append(",").append(endTime); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
+            StringBuffer var = new StringBuffer().append("value=").append(1).append(",").append(startTime).append(",").append(endTime); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
             con.setOnCallBack(this); //callbackの呼び出し?
             con.execute(url, String.valueOf(var)); //PHPファイルにアクセスしてSQLクエリを実行
         }
         if(landsrideOn){
             AWSConnect con = new AWSConnect();
             String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearch.php"; //PHPファイルの場所
-            StringBuffer var = new StringBuffer().append(2).append(",").append(startTime).append(",").append(endTime); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
+            StringBuffer var = new StringBuffer().append("value=").append(2).append(",").append(startTime).append(",").append(endTime); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
             con.setOnCallBack(this); //callbackの呼び出し?
             con.execute(url, String.valueOf(var)); //PHPファイルにアクセスしてSQLクエリを実行
 
@@ -114,7 +114,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         if(thounderOn){
             AWSConnect con = new AWSConnect();
             String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearch.php"; //PHPファイルの場所
-            StringBuffer var = new StringBuffer().append(3).append(",").append(startTime).append(",").append(endTime); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
+            StringBuffer var = new StringBuffer().append("value=").append(3).append(",").append(startTime).append(",").append(endTime); //SQL探索条件を格納する文字の代入,区切り文字はカンマ(,)
             con.setOnCallBack(this); //callbackの呼び出し?
             con.execute(url, String.valueOf(var)); //PHPファイルにアクセスしてSQLクエリを実行
 

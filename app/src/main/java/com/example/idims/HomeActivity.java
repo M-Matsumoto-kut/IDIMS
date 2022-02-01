@@ -95,7 +95,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearch_now.php"; //24時間前の災害を検索するSQLクエリの入ったphpファイルのurl
         String startTime = getYesterday(); //検索開始時刻,まぁ24時間前
         String endTime = getToday(); //現在時刻を取得
-        StringBuffer dist = new StringBuffer().append(startTime).append(",").append(endTime); //startTime,endTime の形で条件を送る
+        StringBuffer dist = new StringBuffer().append("value=").append(startTime).append(",").append(endTime); //startTime,endTime の形で条件を送る
         con.setOnCallBack(this); //コールバックメソッド呼び出し
         con.execute(url, String.valueOf(dist)); //AWS接続
 
