@@ -265,7 +265,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         double nowLat = location.getLatitude();
                         double nowLng = location.getLongitude();
                         Log.d("処理直前", "どこまで行ったのかな？");
-                        Marker markerNow = map.addMarker(new MarkerOptions().position(new LatLng(nowLat, nowLng)).snippet("NowLocation \n " + location.getLatitude() + " , " + location.getLongitude()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                        Marker markerNow = map.addMarker(new MarkerOptions().position(new LatLng(nowLat, nowLng)).title("NowLocation").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                         Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
                         //カメラの初期位置を変更する
