@@ -101,6 +101,8 @@ public class Setting extends AppCompatActivity {
                      */
 
 
+
+
                 }else {
                     //スイッチがON->OFFなら
                     Toast.makeText(getApplication(), "位置情報OFF", Toast.LENGTH_LONG).show();

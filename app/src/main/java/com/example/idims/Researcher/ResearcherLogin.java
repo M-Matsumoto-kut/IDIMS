@@ -1,9 +1,11 @@
 package com.example.idims.Researcher;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,11 +34,12 @@ public class ResearcherLogin extends AppCompatActivity {
     ImageView eye1;   //パスワードの表示・非表示
     boolean state = false;  //表示・非表示の切り替えステータス
 
-    Authenticate authenticate = new Authenticate();
+    private Authenticate authenticate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.authenticate = new Authenticate();
         this.status = (StatusFlag) getApplication();
     }
 
@@ -51,12 +54,11 @@ public class ResearcherLogin extends AppCompatActivity {
             startActivity(intent);
         }
          //*/
-
-        this.loginResearcher();
+        this.loginResearcher(0);
     }
 
     //ログイン
-    private void loginResearcher(){
+    private void loginResearcher(int error){
         //userID/パスワード入力画面生成
         setContentView(R.layout.activity_researcher_login);
 
@@ -83,44 +85,53 @@ public class ResearcherLogin extends AppCompatActivity {
         });
 
         //エラーテキスト表示
-        int error = status.getError();
         if(error == 1) {
-            TextView errorView = (TextView) findViewById(R.id.loginError);
-            errorView.setText("IDまたはパスワードが間違っています");
+            TextView errorView = (TextView) findViewById(R.id.errorText);
+            String errorMessage = "IDまたはパスワードが間違っています";
+            errorView.setText(errorMessage);
         }
 
 
         //ログインボタンが押された時
-
         Button loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener( v -> {
 
-
-            //入力したIDを数値に変換(本当は入力文字が整数じゃない場合にエラーを出す予定だったが，時間的に断念
-            userIdInt = Integer.parseInt(String.valueOf(userId.getText()));
+            //IDを文字列に変換
+            String idStr = String.valueOf(userId.getText());
+            if(authenticate.userIdAuthenticate(idStr)){
+                userIdInt = Integer.parseInt(idStr);
+            } else {
+                this.loginResearcher(1);
+            }
 
             //入力したパスワードを文字列に変換
             passwordStr = password.getText().toString();
 
 
             //userIdとPasswordが正しいか
-            if(authenticate.loginAuthenticate(userIdInt, passwordStr)) {
+            if(authenticate.passAuthenticate(userIdInt, passwordStr)) {
 
                 StatusFlag flag = (StatusFlag) getApplication();
                 flag.setLoginTypeRes();         //loginTypeを2（研究者）に更新
                 flag.setId(userIdInt);          //IDをを保存し，自動ログインを実現
 
-                //設定画面に移動
-                Intent intent = new Intent(getApplication(), ResearcherPageActivity.class);
-                startActivity(intent);
+
+
+                int activityNum = status.getActivityStatus();
+                if(activityNum == 1) {
+                    //設定画面に移動
+                    Intent intent = new Intent(ResearcherLogin.this, Setting.class);
+                    startActivity(intent);
+                } else if(activityNum == 2) {
+                    //研究者ページ画面に移動
+                    Intent intent = new Intent(ResearcherLogin.this, ResearcherPageActivity.class);
+                    startActivity(intent);
+                }
             } else {
                 //再入力を求める
-                this.loginResearcher();
-                //Intent intent = new Intent(getApplication(), AreaListActivity.class);
-                //startActivity(intent);
+                this.loginResearcher(1);
             }
         });
-
     }
 
     //パスワードの表示・非表示

@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.idims.AWSConnect;
 import com.example.idims.Authenticate;
 import com.example.idims.R;
+import com.example.idims.StatusFlag;
+import com.google.android.material.snackbar.Snackbar;
 
 /*
     パスワード更新モジュール
@@ -24,6 +27,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements AWSConn
     EditText newPassword; //現在のパスワード
 
     Authenticate authenticate;
+    private StatusFlag status;
 
     String nowPasswordStr, newPasswordStr;
 
@@ -34,30 +38,34 @@ public class ChangePasswordActivity extends AppCompatActivity implements AWSConn
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        authenticate = new Authenticate();
-        this.passwordChange();
+        this.authenticate = new Authenticate();
+        this.status = (StatusFlag) getApplication();
     }
-    /*
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "パスワードを変更しました",  Snackbar.LENGTH_SHORT).show();
-                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(ResearcherPassword.this, ResearcherPage.class);
-                        startActivity(intent);
-                    }
-                }, 1000);
-            }
-     */
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        this.passwordChange(0);
+    }
 
     public void CallBack(String str){
 
     }
 
-    private void passwordChange(){
+    private void passwordChange(int error){
         //パスワード変更画面生成
         setContentView(R.layout.activity_researcherpassword);
+
+        //エラーテキスト
+        TextView errorView;
+        if(error == 1){
+            errorView = (TextView) findViewById(R.id.errorText);
+            errorView.setText("パスワードが間違っています");
+        }else if(error == 2){
+            String errorMessage = "8~16文字の英数字を入力してください";
+            errorView = (TextView) findViewById(R.id.errorText);
+            errorView.setText(errorMessage);
+        }
 
         //現在のパスワードと新しいパスワードを紐付け
         nowPassword = findViewById(R.id.nowPassword);
@@ -74,6 +82,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements AWSConn
             startActivity(intent);
         });
 
+
         //更新ボタンが押された時
         findViewById(R.id.changePassword).setOnClickListener( v -> {
 
@@ -82,10 +91,10 @@ public class ChangePasswordActivity extends AppCompatActivity implements AWSConn
             newPasswordStr = newPassword.getText().toString();
 
             //フラグからIDを取得
-            int id = 1230344;
+            int id = status.getId();
 
             //現在のパスワードが正しいか
-            if(authenticate.nowPasswordAuthenticate(id, nowPasswordStr)) {
+            if(authenticate.passAuthenticate(id, nowPasswordStr)) {
 
                 //現在のパスワードが半角英数字でかつ8文字以上16文字以下か
                 if(Authenticate.newPasswordAuthenticate(newPasswordStr)){
@@ -96,32 +105,26 @@ public class ChangePasswordActivity extends AppCompatActivity implements AWSConn
                     ////phpファイルの置いてある場所の指定
                     String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/adminexchange.php";
                     //データベースに転送する文字列の転送
-                    StringBuffer sb = new StringBuffer();
-                    sb.append("value=");
-                    sb.append(newPasswordStr);
-                    String dist = String.valueOf(sb);
+                    String dist = "value=" + id + "," + newPasswordStr;
                     //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
                     con.setOnCallBack(this);
                     //実行
                     con.execute(url, dist);
+
+                    Snackbar.make(v, "パスワードを変更しました",  Snackbar.LENGTH_SHORT).show();
 
                     //研究者ページに戻る
                     Intent intent = new Intent(ChangePasswordActivity.this, ResearcherPageActivity.class);
                     startActivity(intent);
                 } else {
                     //再入力を求める
-                    this.passwordChange();
+                    this.passwordChange(2);
                 }
 
             } else {
                 //再入力を求める
-                this.passwordChange();
+                this.passwordChange(1);
             }
-
-            //test-------------------------------------------------------------
-            Intent intent = new Intent(ChangePasswordActivity.this, ResearcherPageActivity.class);
-            startActivity(intent);
-            //test-------------------------------------------------------------
         });
     }
 

@@ -94,6 +94,21 @@ public class SensorListActivity extends AppCompatActivity implements AWSConnect.
 
         //一覧表示(8件まで）
         for(int i = 0; i < 4; i++) {
+            if(listLength == 0) {
+                //表示
+                textView[i] = new TextView(this);
+                textView[i].setTextColor(0xffffffff);
+                textView[i].setTextSize(10 * dp);
+
+                textView[i].setBackgroundColor(0xFF575757);
+
+                textView[i].setText("全センサーは正常に稼働しています");
+                textView[i].setGravity(Gravity.CENTER);
+                linearLayout.addView(textView[i],
+                        new LinearLayout.LayoutParams(
+                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                textHeight));
+            }
 
             if(i >= listLength) {
                 break;

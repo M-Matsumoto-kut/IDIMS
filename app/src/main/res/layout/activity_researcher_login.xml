@@ -46,7 +46,7 @@
         android:backgroundTint="#03A9F4"
         android:text="@string/back"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:backgroundTint="#03A9F4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -99,14 +99,14 @@
         app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintVertical_bias="0.468" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginBottom="30dp"
         android:background="#FBFAFD"
         android:ems="10"
         android:hint="@string/input_password"
@@ -114,34 +114,35 @@
         android:maxLength="20"
         android:maxLines="1"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:passwordToggleEnabled="true" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:passwordToggleEnabled="true"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/login"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="116dp"
-        android:layout_height="57dp"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="410dp"
+        android:layout_marginTop="47dp"
         android:layout_marginEnd="140dp"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="191dp"
         android:background="#03A9F4"
         android:backgroundTint="#03A9F4"
         android:text="@string/login"
         android:textColor="#F4F4F4"
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:backgroundTint="#03A9F4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618" />
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/toggle_view1"
@@ -155,10 +156,28 @@
         android:src="@drawable/eye_off1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintHorizontal_bias="0.849"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.513"
+        app:layout_constraintVertical_bias="0.557"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="297dp"
+        android:layout_height="66dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="74dp"
+        android:gravity="center_horizontal"
+        android:textColor="#E91E1E"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

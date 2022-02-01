@@ -39,10 +39,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    /*
-        開始状態になると動作
-        初起動時，flagはLoginStart(1)を返す
-     */
 
     @Override
     protected void onStart(){
@@ -56,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
          */
 
         //loginType（ログイン状態）を取得
-
         int loginType = status.getLoginType();
         //loginTypeの値によってActivityを変える（予定）
         Intent intent;
@@ -83,18 +78,8 @@ public class MainActivity extends AppCompatActivity {
             StatusFlag flag = (StatusFlag) getApplication();
             status.setLoginTypeGen();
 
-            /*
-                設定画面に移行
-                ただし，自動ログイン機能が実現できない場合はメニュー画面に移行
-             */
-
-            Intent intent = new Intent(getApplication(), Setting.class);
+            Intent intent = new Intent(MainActivity.this, Setting.class);
             startActivity(intent);
-
-            //テスト-------------------------------------------------------
-            //Intent intent = new Intent(getApplication(), SensorListActivity.class);
-            //startActivity(intent);
-            //テスト-------------------------------------------------------
 
         });
 
@@ -104,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         researchUser.setOnClickListener( v -> {
             //研究者ユーザログイン画面に移行
             status.setActivityStatus(1); //userTypeActivity
-            Intent intent = new Intent(getApplication(), SensorListActivity.class);
+            Intent intent = new Intent(MainActivity.this, ResearcherLogin.class);
             startActivity(intent);
         });
     }

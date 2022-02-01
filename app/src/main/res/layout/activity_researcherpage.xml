@@ -17,7 +17,7 @@
         android:textColor="#FBFAFD"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck" />
@@ -37,18 +37,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/sensor_error"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/next1Activity"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/next1Activity"
         android:layout_width="0dp"
@@ -56,9 +44,9 @@
         android:layout_marginBottom="350dp"
         android:background="#454545"
         android:gravity="center"
-        android:text="センサーの異常はありません"
+        android:text="@string/sensorList"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:backgroundTint="#454545"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +63,7 @@
         android:gravity="center"
         android:text="@string/password_chenge"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:backgroundTint="#454545"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

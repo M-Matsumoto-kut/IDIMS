@@ -2,6 +2,7 @@ package com.example.idims;
 
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Objects;
@@ -19,28 +20,22 @@ public class Authenticate extends AppCompatActivity implements AWSConnect.CallBa
         this.password = str;
     }
 
-
     //IDとパスワードが一致しているか検証(true：一致，false:不一致)
-    public boolean loginAuthenticate(int id, String inputPassword) {
+    public boolean passAuthenticate(int id, String inputPassword) {
 
         //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
         AWSConnect con = new AWSConnect(); //AWSConnectインスタンスの呼び出し
         ////phpファイルの置いてある場所の指定
         String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/admin.php";
         //データベースに転送する文字列の転送
-        StringBuffer sb = new StringBuffer();
-        sb.append("value=");
-        sb.append(String.valueOf(id));
-        String dist = String.valueOf(sb);
+        String dist = "value=" + id;
         //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
         con.setOnCallBack(this);
         //実行
         con.execute(url, dist);
 
-
         //入力されたパスワードとpasswordが一致しているか
         return this.matchPassword(inputPassword);
-
     }
 
     //DBから買ってきたパスワードと入力したパスワードが一致しているか
@@ -48,32 +43,11 @@ public class Authenticate extends AppCompatActivity implements AWSConnect.CallBa
         return inputPassword.equals(this.password);
     }
 
-    //現在のパスワードが一致しているか検証(true：一致，false:不一致)
-    public boolean nowPasswordAuthenticate(int id, String nowPassword) {
-
-        //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
-        AWSConnect con = new AWSConnect(); //AWSConnectインスタンスの呼び出し
-        ////phpファイルの置いてある場所の指定
-        String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/admin.php";
-        StringBuffer sb = new StringBuffer();
-        sb.append("value=");
-        sb.append(String.valueOf(id));
-        String dist = String.valueOf(sb);
-        //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
-        con.setOnCallBack(this);
-        //実行
-        con.execute(url, dist);
-
-        //nowPasswordとpasswordが一致しているか
-        return this.matchPassword(nowPassword);
-
-    }
-
     //新しいパスワードが規定通りか検証(true：一致，false:不一致)
     public static boolean newPasswordAuthenticate(String newPassword) {
         boolean match = false;
 
-        //パスワードが空じゃないか
+        //パスワードが空か
         if( newPassword == null || newPassword.isEmpty() ) return false ;
 
         //パスワードが8文字以上でかつ16文字以下か
@@ -86,6 +60,24 @@ public class Authenticate extends AppCompatActivity implements AWSConnect.CallBa
         // 3. 引数に指定した正規表現regexがnewPasswordにマッチするか確認する
         Pattern p1 = Pattern.compile(regex); // 正規表現パターンの読み込み
         Matcher m1 = p1.matcher(newPassword); // パターンと検査対象文字列の照合
+        match = m1.matches(); // 照合結果をtrueかfalseで取得
+
+        return match;
+    }
+
+    //idの入力文字が正しいか検証(true：一致，false:不一致)
+    public boolean userIdAuthenticate(String inputId) {
+        boolean match = false;
+
+        //idが空か
+        if( inputId == null || inputId.isEmpty() ) return false ;
+
+        //idが英数字で構成されているか
+        String regex = "[0-9]" ; // 数字(整数)のみ
+
+        // 3. 引数に指定した正規表現regexがnewPasswordにマッチするか確認する
+        Pattern p1 = Pattern.compile(regex); // 正規表現パターンの読み込み
+        Matcher m1 = p1.matcher(inputId); // パターンと検査対象文字列の照合
         match = m1.matches(); // 照合結果をtrueかfalseで取得
 
         return match;
