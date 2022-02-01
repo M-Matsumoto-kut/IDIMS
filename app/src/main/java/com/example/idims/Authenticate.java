@@ -22,22 +22,20 @@ public class Authenticate extends AppCompatActivity implements AWSConnect.CallBa
 
     //IDとパスワードが一致しているか検証(true：一致，false:不一致)
     public boolean loginAuthenticate(int id, String inputPassword) {
-        //boolean match = false;
-
-        //idを元にパスワードを取得
-        //String password = "jjjjj"; //テスト
 
         //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
         AWSConnect con = new AWSConnect(); //AWSConnectインスタンスの呼び出し
         ////phpファイルの置いてある場所の指定
         String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/admin.php";
         //データベースに転送する文字列の転送
-        String str = String.valueOf(id);
-
+        StringBuffer sb = new StringBuffer();
+        sb.append("value=");
+        sb.append(String.valueOf(id));
+        String dist = String.valueOf(sb);
         //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
         con.setOnCallBack(this);
         //実行
-        con.execute(url, str);
+        con.execute(url, dist);
 
 
         //入力されたパスワードとpasswordが一致しているか
@@ -52,22 +50,19 @@ public class Authenticate extends AppCompatActivity implements AWSConnect.CallBa
 
     //現在のパスワードが一致しているか検証(true：一致，false:不一致)
     public boolean nowPasswordAuthenticate(int id, String nowPassword) {
-        //boolean match = false;
-
-        //idを元にパスワードを取得
-        //String password = "unko"; //テスト
 
         //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
         AWSConnect con = new AWSConnect(); //AWSConnectインスタンスの呼び出し
         ////phpファイルの置いてある場所の指定
         String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/admin.php";
-        //データベースに転送する文字列の転送
-        String str = String.valueOf(id);
-
+        StringBuffer sb = new StringBuffer();
+        sb.append("value=");
+        sb.append(String.valueOf(id));
+        String dist = String.valueOf(sb);
         //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
         con.setOnCallBack(this);
         //実行
-        con.execute(url, str);
+        con.execute(url, dist);
 
         //nowPasswordとpasswordが一致しているか
         return this.matchPassword(nowPassword);

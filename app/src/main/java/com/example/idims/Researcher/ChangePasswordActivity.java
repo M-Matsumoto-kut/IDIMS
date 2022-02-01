@@ -11,13 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.idims.AWSConnect;
 import com.example.idims.Authenticate;
 import com.example.idims.R;
 
 /*
     パスワード更新モジュール
  */
-public class ChangePasswordActivity extends AppCompatActivity {
+public class ChangePasswordActivity extends AppCompatActivity implements AWSConnect.CallBackTask {
 
     EditText nowPassword; //現在のパスワード
     EditText newPassword; //現在のパスワード
@@ -49,6 +50,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 }, 1000);
             }
      */
+
+    public void CallBack(String str){
+
+    }
 
     private void passwordChange(){
         //パスワード変更画面生成
@@ -86,6 +91,19 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 if(Authenticate.newPasswordAuthenticate(newPasswordStr)){
                     //データベースにアクセスし，パスワードを更新
 
+                    //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
+                    AWSConnect con = new AWSConnect(); //AWSConnectインスタンスの呼び出し
+                    ////phpファイルの置いてある場所の指定
+                    String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/adminexchange.php";
+                    //データベースに転送する文字列の転送
+                    StringBuffer sb = new StringBuffer();
+                    sb.append("value=");
+                    sb.append(newPasswordStr);
+                    String dist = String.valueOf(sb);
+                    //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
+                    con.setOnCallBack(this);
+                    //実行
+                    con.execute(url, dist);
 
                     //研究者ページに戻る
                     Intent intent = new Intent(ChangePasswordActivity.this, ResearcherPageActivity.class);

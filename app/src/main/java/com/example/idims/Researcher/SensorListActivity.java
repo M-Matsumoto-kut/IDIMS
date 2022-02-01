@@ -43,7 +43,7 @@ public class SensorListActivity extends AppCompatActivity implements AWSConnect.
         //戻るボタン->研究者ページ
         Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplication(), MenuActivity.class);
+            Intent intent = new Intent(SensorListActivity.this, MenuActivity.class);
             startActivity(intent);
         });
     }

@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.idims.Menu.MenuActivity;
 import com.example.idims.R;
 import com.example.idims.StatusFlag;
 
@@ -63,7 +64,8 @@ public class ResearcherPageActivity extends AppCompatActivity {
         //戻るボタン　
         Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener(v -> {
-            finish();
+            Intent intent = new Intent(ResearcherPageActivity.this, MenuActivity.class);
+            startActivity(intent);
         });
     }
 }

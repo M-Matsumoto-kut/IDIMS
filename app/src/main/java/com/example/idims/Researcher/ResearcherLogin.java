@@ -96,23 +96,6 @@ public class ResearcherLogin extends AppCompatActivity {
         loginButton.setOnClickListener( v -> {
 
 
-            /*
-            if(userId.getText() == null){
-                this.loginResearcher();
-            } else {
-                //入力したIDを数値に変換(本当は入力文字が整数じゃない場合にエラーを出す予定だったが，時間的に断念
-                userIdInt = Integer.parseInt(String.valueOf(userId.getText()));
-            }
-
-            if(password.getText() == null) {
-                this.loginResearcher();
-            } else {
-                //入力したパスワードを文字列に変換
-                passwordStr = password.getText().toString();
-            }
-
-             */
-
             //入力したIDを数値に変換(本当は入力文字が整数じゃない場合にエラーを出す予定だったが，時間的に断念
             userIdInt = Integer.parseInt(String.valueOf(userId.getText()));
 
@@ -132,9 +115,9 @@ public class ResearcherLogin extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 //再入力を求める
-                //this.loginResearcher();
-                Intent intent = new Intent(getApplication(), AreaListActivity.class);
-                startActivity(intent);
+                this.loginResearcher();
+                //Intent intent = new Intent(getApplication(), AreaListActivity.class);
+                //startActivity(intent);
             }
         });
 
