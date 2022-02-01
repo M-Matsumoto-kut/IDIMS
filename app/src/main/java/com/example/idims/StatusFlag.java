@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class StatusFlag extends Application {
     private int activityStatus;             // 起動時のActivityの状態
     private int loginType;                  // login時のユーザのタイプ
-    private int id;
+    private String id;                         // 研究者ID記録
     private static final int USER_ID = 0;   // (研究者)ログイン後IDを保存する
     final private String[] regions = {"北海道地方", "東北地方", "関東地方", "中部地方", "近畿地方",
             "中国地方", "四国地方", "九州地方"};
@@ -30,7 +30,6 @@ public class StatusFlag extends Application {
     private int tsunamiStatus;      // 津波のの通知許可状態
     private int landslideStatus;    // 土砂崩れの通知許可状態
     private int thunderStatus;      // 雷の通知許可状態
-    private int error;              //　入力エラー
 
     @Override
     public void onCreate() {
@@ -42,23 +41,17 @@ public class StatusFlag extends Application {
         countPre = 0;
         loginType = 0;
         selRegion = 99;
-        id = 0;
+        id = "";
         gpsPermission = 0;
         noticePermission = 0;
         alertPermission = 0;
         tsunamiStatus = 0;
         landslideStatus = 0;
         thunderStatus = 0;
-        error = 0;
+
 
         this.setActivityStatus(1);
     }
-
-    public int getError() {return this.error;}
-
-    public void setErrorOccurrence() { this.error = 1; }
-
-    public void setErrorRelease() {this.error = 0;}
 
 
     /*
@@ -92,20 +85,14 @@ public class StatusFlag extends Application {
     }
 
     //研究者ユーザのidを返す
-    public int getId() {
+    public String getId() {
         return this.id;
     }
 
     //研究者ユーザのidの値を更新して保存
-    public void setId(int id) {
-        //SharedPreferences sharedPref = getPreferences(MODE_PRIVATE);
-        //SharedPreferences.Editor editor = sharedPref.edit();
+    public void setId(String id) {
         this.id = id;
     }
-
-    //regions（地方リスト）から番号に対応した地方名を返す
-    public String getRegionName(int num) { return regions[num]; }
-
 
     //prefectures（都道府県リスト）から番号に対応した都道府県名を返す
     public String getPrefectureName(int num) { return prefectures[num]; }

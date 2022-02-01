@@ -91,13 +91,13 @@ public class ChangePasswordActivity extends AppCompatActivity implements AWSConn
             newPasswordStr = newPassword.getText().toString();
 
             //フラグからIDを取得
-            int id = status.getId();
+            String id = status.getId();
 
             //現在のパスワードが正しいか
             if(authenticate.passAuthenticate(id, nowPasswordStr)) {
 
                 //現在のパスワードが半角英数字でかつ8文字以上16文字以下か
-                if(Authenticate.newPasswordAuthenticate(newPasswordStr)){
+                if(authenticate.newPasswordAuthenticate(newPasswordStr)){
                     //データベースにアクセスし，パスワードを更新
 
                     //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す

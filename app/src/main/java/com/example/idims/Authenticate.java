@@ -1,6 +1,7 @@
 package com.example.idims;
 
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,23 +13,25 @@ import java.util.regex.Pattern;
 //認証モジュール
 public class Authenticate extends AppCompatActivity implements AWSConnect.CallBackTask{
 
-    private String password;
+    public String password;
 
 
     //コールバックメソッド:パスワードが返ってくるはず？だからパスワードを受け取る
-    public void CallBack(String str){
+    @Override
+    public void CallBack(@NonNull String str){
         this.password = str;
     }
 
     //IDとパスワードが一致しているか検証(true：一致，false:不一致)
-    public boolean passAuthenticate(int id, String inputPassword) {
-
+    public boolean passAuthenticate(String id, String inputPassword) {
+        Log.i("id1", String.valueOf(id));
         //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
         AWSConnect con = new AWSConnect(); //AWSConnectインスタンスの呼び出し
         ////phpファイルの置いてある場所の指定
         String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/admin.php";
         //データベースに転送する文字列の転送
         String dist = "value=" + id;
+        Log.i("id", dist);
         //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
         con.setOnCallBack(this);
         //実行

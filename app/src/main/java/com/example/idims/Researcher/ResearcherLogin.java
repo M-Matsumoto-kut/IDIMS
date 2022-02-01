@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -72,7 +73,6 @@ public class ResearcherLogin extends AppCompatActivity {
         //戻るボタン
         Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener( v -> {
-            status.setErrorRelease(); //エラーリセット
 
             int activityNum = status.getActivityStatus();
             if(activityNum == 1) {
@@ -91,31 +91,25 @@ public class ResearcherLogin extends AppCompatActivity {
             errorView.setText(errorMessage);
         }
 
-
         //ログインボタンが押された時
         Button loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener( v -> {
 
             //IDを文字列に変換
+
             String idStr = String.valueOf(userId.getText());
-            if(authenticate.userIdAuthenticate(idStr)){
-                userIdInt = Integer.parseInt(idStr);
-            } else {
-                this.loginResearcher(1);
-            }
 
             //入力したパスワードを文字列に変換
             passwordStr = password.getText().toString();
 
-
+            Log.i("id4",idStr);
             //userIdとPasswordが正しいか
-            if(authenticate.passAuthenticate(userIdInt, passwordStr)) {
+            if(authenticate.passAuthenticate(idStr, passwordStr)) {
 
                 StatusFlag flag = (StatusFlag) getApplication();
                 flag.setLoginTypeRes();         //loginTypeを2（研究者）に更新
-                flag.setId(userIdInt);          //IDをを保存し，自動ログインを実現
-
-
+                flag.setId(idStr);          //IDをを保存し，自動ログインを実現
+                authenticate.password = "";
 
                 int activityNum = status.getActivityStatus();
                 if(activityNum == 1) {

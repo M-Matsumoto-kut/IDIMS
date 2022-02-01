@@ -83,7 +83,6 @@ public class SensorListActivity extends AppCompatActivity implements AWSConnect.
     //センサー異常一覧を表示
     private void sensorListActivity() {
 
-
         TextView[] textView = new TextView[47];
 
         float dp = getResources().getDisplayMetrics().density;
