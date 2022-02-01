@@ -63,10 +63,14 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result_list);
+
+        Button mapButton = (Button) findViewById(R.id.button_Map); //マップ画面遷移ボタン
 
 
         //DisasterSearchActivityから検索条件を受け取る
@@ -123,30 +127,6 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
         Log.d("debugDataOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "searching");
 
-        Button mapButton = (Button) findViewById(R.id.button_Map); //マップ画面遷移ボタン
-
-
-        //データベース検索後格納したデータから該当地域か判定し、真であれば格納する
-        try{
-            if(selectLat.size() != 0){ //データを受け取ってない場合そもそも判定しない
-                for(int i = 0; i < selectLat.size(); i++){
-                    double nowlat = selectLat.get(i);
-                    double nowlng = selectLng.get(i);
-                    if(areaLange[0] <= nowlat && areaLange[1] > nowlat){//もし 経度下 < 災害緯度 < 経度上 かつ 緯度左 < 緯度右ならばデータをセット
-                        resultLat.add(nowlat); //緯度
-                        resultLng.add(nowlng); //経度
-                        resultConDis.add(selectConDis.get(i)); //災害種類
-                        resultLevel.add(selectLevel.get(i)); //災害レベル
-                        resultTime.add(selectTime.get(i)); //時間
-                    }
-                }
-            }
-        }catch(NullPointerException e){ //そもそもデータベースに一致する条件がなければこうするほかなし
-            Log.d("配列指定エラー", "NullPointerException");
-            //マップ遷移ボタンを押下不可にする
-            mapButton.setClickable(false);
-            nullP = true;
-        }
 
 
         /*
@@ -164,26 +144,6 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
          */
 
-
-
-
-
-        //テキストビューで追加する
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlayout_text);
-        for(int i = 0;i <resultLat.size(); i++){
-            TextView textView = new TextView(this);
-            textView.setTextSize(14); //文字サイズの指定
-            textView.setBackgroundResource(R.drawable.text_border); //枠線を表示する背景ファイルの設定
-            textView.setText(getDisasterName(resultConDis.get(i)) + "  レベル" + resultLevel.get(i) + "  ,緯度:"  + getLatitudeString(resultLat.get(i)) + "  ,経度:" + getLongtitudeString(resultLng.get(i))  +"\n発生時刻: " + getNowTimeString(resultTime.get(i))); //テキストのセット
-            linearLayout.addView(textView); //テキストの表示
-            //空行を入力
-            if(i == resultLat.size() - 1){
-                TextView kara = new TextView(this);
-                kara.setTextSize(20);
-                kara.setText("\n \n");
-                linearLayout.addView(kara);
-            }
-        }
 
         //マップ画面に移行する
         mapButton.setOnClickListener(new View.OnClickListener(){
@@ -227,7 +187,81 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
             }
         });
 
+        Log.d("まさかとは思うが...", "最終端");
 
+
+    }
+
+    //コールバックメソッド:mysql空のデータを処理する
+    public void CallBack(String result){
+        Log.d("CallBackが呼び出されました", result);
+        String[] tmp = result.split(","); //,(カンマ)を区切り文字として文字型配列に格納
+        int alpha = 5; //SQLで要求する要素数
+        for(int i = 0; i < tmp.length - alpha; i += alpha){
+            selectLat.add(Double.parseDouble(tmp[i])); //緯度を追加
+            selectLng.add(Double.parseDouble(tmp[i + 1])); //経度を追加
+            selectConDis.add(Integer.parseInt(tmp[i + 2])); //災害種類を追加
+            selectLevel.add(Integer.parseInt(tmp[i + 3])); //災害レベルを追加
+            selectTime.add(tmp[i + 4]); //災害時間を追加
+            Log.d("中身を見てみましょう", String.valueOf(tmp[i + 4]));
+        }
+        setListData();
+        setTextList();
+    }
+
+
+
+
+    //コールバック後:地方の中にある災害情報をリストに表示させる
+    private void setListData(){
+        //データベース検索後格納したデータから該当地域か判定し、真であれば格納する
+        try{
+            if(selectLat.size() != 0){ //データを受け取ってない場合そもそも判定しない
+                for(int i = 0; i < selectLat.size(); i++){
+                    double nowlat = selectLat.get(i);
+                    double nowlng = selectLng.get(i);
+                    Log.d("条件検索を行います", String.valueOf(nowlat));
+                    Log.d("条件検索を行います", String.valueOf(nowlat));
+                    Log.d("条件検索を行います:選択エリアの緯度下", String.valueOf(nowlat));
+                    Log.d("条件検索を行います:選択エリアの緯度上", String.valueOf(nowlat));
+                    Log.d("条件検索を行います:選択エリアの経度左", String.valueOf(nowlat));
+                    Log.d("条件検索を行います:選択エリアの経度右", String.valueOf(nowlat));
+                    if(areaLange[0] <= nowlat && areaLange[1] > nowlat && areaLange[2] <= nowlng && areaLange[3] > nowlng){//もし 経度下 < 災害緯度 < 経度上 かつ 緯度左 < 緯度右　ならばデータをセット
+                        resultLat.add(nowlat); //緯度
+                        resultLng.add(nowlng); //経度
+                        resultConDis.add(selectConDis.get(i)); //災害種類
+                        resultLevel.add(selectLevel.get(i)); //災害レベル
+                        resultTime.add(selectTime.get(i)); //時間
+                    }
+                }
+            }
+        }catch(NullPointerException e){ //そもそもデータベースに一致する条件がなければこうするほかなし
+            Log.d("配列指定エラー", "NullPointerException");
+            //マップ遷移ボタンを押下不可にする
+            nullP = true;
+        }
+    }
+
+    //コールバック後:リストに表示する
+    private void setTextList(){
+        //テキストビューで追加する
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlayout_text); //災害情報一覧表示用メソッド
+        for(int i = 0;i <resultLat.size(); i++){
+            TextView textView = new TextView(this);
+            textView.setTextSize(14); //文字サイズの指定
+            textView.setBackgroundResource(R.drawable.text_border); //枠線を表示する背景ファイルの設定
+            textView.setText(getDisasterName(resultConDis.get(i)) + "  レベル" + resultLevel.get(i) + "  ,緯度:"  + getLatitudeString(resultLat.get(i)) + "  ,経度:" + getLongtitudeString(resultLng.get(i))  +"\n発生時刻: " + getNowTimeString(resultTime.get(i))); //テキストのセット
+            linearLayout.addView(textView); //テキストの表示
+            //空行を入力
+            /*
+            if(i == resultLat.size() - 1){
+                TextView kara = new TextView(this);
+                kara.setTextSize(20);
+                kara.setText("\n \n");
+                linearLayout.addView(kara);
+            }
+            */
+        }
     }
 
     //地方を囲む四方の頂点緯度経度を格納する
@@ -277,19 +311,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         }
     }
 
-    //コールバックメソッド:mysql空のデータを処理する
-    public void CallBack(String result){
-        Log.d("CallBackが呼び出されました", result);
-        String[] tmp = result.split(","); //,(カンマ)を区切り文字として文字型配列に格納
-        int alpha = 5; //SQLで要求する要素数
-        for(int i = 0; i < tmp.length - alpha; i += alpha){
-            selectLat.add(Double.parseDouble(tmp[i])); //緯度を追加
-            selectLng.add(Double.parseDouble(tmp[i + 1])); //経度を追加
-            selectConDis.add(Integer.parseInt(tmp[i + 2])); //災害種類を追加
-            selectLevel.add(Integer.parseInt(tmp[i + 3])); //災害レベルを追加
-            selectTime.add(tmp[i + 4]); //災害時間を追加
-        }
-    }
+
 
     //引数に渡された数字に応じて災害名の文字列を返すメソッド
     private String getDisasterName(int num){
