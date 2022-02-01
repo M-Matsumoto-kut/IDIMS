@@ -405,7 +405,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="#03a9f4"
-        android:text="@string/backMenu"
+        android:text="@string/back"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/toolbar6"
         app:layout_constraintTop_toTopOf="@+id/toolbar6" />
