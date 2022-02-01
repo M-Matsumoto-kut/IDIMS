@@ -98,7 +98,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearchNoclass.php"; //24時間前の災害を検索するSQLクエリの入ったphpファイルのurl
         String startTime = getYesterday(); //検索開始時刻,まぁ24時間前
         String endTime = getToday(); //現在時刻を取得
-        StringBuffer dist = new StringBuffer().append("value=").append(startTime).append(",").append(endTime); //startTime,endTime の形で条件を送る
+        StringBuffer dist = new StringBuffer().append("value=").append(startTime).append(",").append(endTime); //value=startTime,endTime の形で条件を送る
         con.setOnCallBack(this); //コールバックメソッド呼び出し
         con.execute(url, String.valueOf(dist)); //AWS接続
 
@@ -147,6 +147,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/hh/mm/ss"); //年月日と時間分秒のデータに変換
         String str = sdf.format(date); //文字型に変換
+        Log.d("今日の日付を検索します", str);
         return str.replace("/", "");         //文字列にスラッシュ(//)が入っているので除去して返す
     }
 
@@ -159,6 +160,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         Date pastDate = calendar.getTime(); //Date型に戻す
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/hh/mm/ss"); //年月日と時間分秒のデータに変換
         String str = sdf.format(pastDate); //文字型に変換
+        Log.d("昨日の時間帯を表示します", str);
         return str.replace("/", "");         //文字列にスラッシュ(//)が入っているので除去して返す
     }
 
