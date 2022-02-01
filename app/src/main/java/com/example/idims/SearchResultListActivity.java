@@ -283,9 +283,9 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         for(int i = 0; i < tmp.length - alpha; i += alpha){
             selectLat.add(Double.parseDouble(tmp[i])); //緯度を追加
             selectLng.add(Double.parseDouble(tmp[i + 1])); //経度を追加
-            selectLevel.add(Integer.parseInt(tmp[i + 2])); //災害レベルを追加
-            selectConDis.add(Integer.parseInt(tmp[i + 3])); //災害種類を追加
-            selectTime.add(tmp[4]); //災害時間を追加
+            selectConDis.add(Integer.parseInt(tmp[i + 2])); //災害種類を追加
+            selectLevel.add(Integer.parseInt(tmp[i + 3])); //災害レベルを追加
+            selectTime.add(tmp[i + 4]); //災害時間を追加
         }
     }
 

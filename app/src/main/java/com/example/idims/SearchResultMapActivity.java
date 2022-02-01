@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -49,7 +51,8 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
     private ArrayList<String> getLng = new ArrayList<>(); //経度
 
     //カメラの緯度経度と初期倍率セットのための配列
-    private double[] cameraLatLngZoom = new double[3]; //緯度、経度、カメラ倍率の順
+    private double[] cameraLatLngZoom = new double[2]; //緯度、経度
+    private int cameraZoom; //カメラズーム
 
 
 
@@ -77,6 +80,7 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
 
 
         //カメラ位置セット用配列の定義
+        setAreaCenterLatLng();
 
         //MapViewを使用するのに必要
         Bundle mapViewBundle = null;
@@ -87,7 +91,7 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
         mMapView.onCreate(mapViewBundle);
         mMapView.getMapAsync(this);
 
-        //検索する地方付近にカメラをズームする
+
 
 
 
@@ -159,6 +163,10 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
             marker.setTag(i); //現在の番号をタグとしてセットする
             map.setOnMarkerClickListener(this);
         }
+        //マップカメラ位置の設定
+        //カメラの初期位置を変更する
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(new LatLng(cameraLatLngZoom[0], cameraLatLngZoom[1]), cameraZoom); //GoogleMapアップデートインスタンスの生成
+        map.moveCamera(update); //カメラ位置セット
     }
 
     @Override
@@ -227,31 +235,31 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
         if(areaNumber == 1){ //北海道
             cameraLatLngZoom[0] = 43.03395;
             cameraLatLngZoom[1] = 141.77227;
-            cameraLatLngZoom[2] = 6;
+            cameraZoom = 6;
         }else if(areaNumber == 2){ //東北
             cameraLatLngZoom[0] = 39.20803;
             cameraLatLngZoom[1] = 140.70062;
-            cameraLatLngZoom[2] = 7;
+            cameraZoom = 6;
         }else if(areaNumber == 3){ //関東
             cameraLatLngZoom[0] = 36.19734;
             cameraLatLngZoom[1] = 139.72135;
-            cameraLatLngZoom[2] = 8;
+            cameraZoom = 7;
         }else if(areaNumber == 4){ //中部
             cameraLatLngZoom[0] = 36.18243;
             cameraLatLngZoom[1] = 138.02149;
-            cameraLatLngZoom[2] = 6;
+            cameraZoom = 6;
         }else if(areaNumber == 5){ //近畿
             cameraLatLngZoom[0] = 34.67699;
             cameraLatLngZoom[1] = 135.49018;
-            cameraLatLngZoom[2] = 8;
+            cameraZoom = 7;
         }else if(areaNumber == 6){ //中国四国
             cameraLatLngZoom[0] = 34.58577;
             cameraLatLngZoom[1] = 133.38383;
-            cameraLatLngZoom[2] = 6;
+            cameraZoom = 6;
         }else if(areaNumber == 7){ //九州
             cameraLatLngZoom[0] = 32.66277;
             cameraLatLngZoom[1] = 130.68623;
-            cameraLatLngZoom[2] = 7;
+            cameraZoom = 7;
         }
     }
 }
