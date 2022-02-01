@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     static final int REQUEST_CODE = 1;
 
     //災害を検知する距離と避難所の距離
-    static final double disasterDistance = 200; //200メートル
+    static final double disasterDistance = 100; //100キロメートル
     static final double shelterDistance = 50; //50メートル
 
     //現在から24時間前までの緯度、経度、レベルと種類を格納する
