@@ -53,11 +53,6 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     //マップ表示に必要な文字列
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
 
-    //一定レベル以上の災害が発生しているかを検索するメソッド
-    public boolean disasterOccureing = false;
-    public boolean do_Wave;
-    public boolean do_Landsride;
-    public boolean do_Thounder;
 
     //現在位置の位置情報を取得するために必要なクラス
     private FusedLocationProviderClient fusedLocationClient;
@@ -71,22 +66,22 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     static final int REQUEST_CODE = 1;
 
     //災害を検知する距離と避難所の距離
-    static final double disasterDistance = 100; //100キロメートル
+    static final double disasterDistance = 100000; //100キロメートル = 100000メートル
     static final double shelterDistance = 50; //50メートル
 
     //現在から24時間前までの緯度、経度、レベルと種類を格納する
-    private ArrayList<Double> disLat; //緯度
-    private ArrayList<Double> disLng; //経度
-    private ArrayList<Integer> disCon; //災害種類
-    private ArrayList<Integer> dislevel; //レベル
-    private ArrayList<String> disTime; //時間
+    private ArrayList<Double> disLat = new ArrayList<>(); //緯度
+    private ArrayList<Double> disLng = new ArrayList<>(); //経度
+    private ArrayList<Integer> disCon = new ArrayList<>(); //災害種類
+    private ArrayList<Integer> dislevel = new ArrayList<>(); //レベル
+    private ArrayList<String> disTime = new ArrayList<>();; //時間
 
     //現在地付近で発生した災害の緯度経度などを格納する
-    private ArrayList<Double> nearLat; //緯度
-    private ArrayList<Double> nearLng; //経度
-    private ArrayList<Integer> nearCon; //災害種類
-    private ArrayList<Integer> nearLevel; //レベル
-    private ArrayList<String> nearTime; //時間
+    private ArrayList<Double> nearLat = new ArrayList<>();; //緯度
+    private ArrayList<Double> nearLng = new ArrayList<>();; //経度
+    private ArrayList<Integer> nearCon = new ArrayList<>();; //災害種類
+    private ArrayList<Integer> nearLevel = new ArrayList<>();; //レベル
+    private ArrayList<String> nearTime = new ArrayList<>();; //時間
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,8 +107,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMapView.onCreate(mapViewBundle);
         mMapView.getMapAsync(this);
 
-        //災害状況の発生有無を表示するテキスト表示
-        setTextdisasterOccurrences();
+        //検知時刻のテキスト表示
+        setTextNowTime();
 
         //メニュー画面への遷移
         Button menuButton = (Button) findViewById(R.id.button_Menu);
@@ -133,6 +128,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         String[] tmp = result.split(","); //,(カンマ)を区切り文字として文字型配列に格納
         int alpha = 5; //SQLで要求する要素数
         for(int i = 0; i < tmp.length - alpha; i += alpha){
+            Log.d("ループ回数のチェック", String.valueOf(i));
+            Log.d("中身の確認をします", String.valueOf(tmp[i]));
             disLat.add(Double.parseDouble(tmp[i])); //緯度を追加
             disLng.add(Double.parseDouble(tmp[i + 1])); //経度を追加
             disCon.add(Integer.parseInt(tmp[i + 2])); //災害種類を追加
@@ -176,13 +173,12 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     //画面上部の災害発生状況を表すテキストのセット
     protected void setTextdisasterOccurrences(){
         TextView textViewEva = (TextView) findViewById(R.id.textView_DisasterOccurrence);
-        if(!disasterOccureing){
-            textViewEva.setText("24時間以内の災害発生はありません");
-        }else{
-            textViewEva.setText("災害が発生しています");
-        }
+        textViewEva.setText("災害が発生しています");
 
-        //検知時刻のテキスト表示
+    }
+
+    //検知時刻のテキスト表示
+    protected void setTextNowTime(){
         TextView textViewTime = (TextView) findViewById(R.id.textView_CurrentTime);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm");
@@ -202,6 +198,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         //結果を返す溜めの配列。1番目に2点間の距離、2番目に始点からみた方位角、3番目に終点から見た方位角が格納される
         float[] result = new float[3];
         Location.distanceBetween(nowLat, nowLng, disLat, disLng, result); //2点間の距離を緯度経度から割り出すメソッド(Locationクラスの標準搭載)
+        Log.d("距離測定の結果を表示してください", String.valueOf(result[0]));
         if(result[0] <= disasterDistance){ //もし　2点間の距離 <= 災害検知距離　ならば真を返す
             return true;
         }
@@ -284,6 +281,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                         //最後に位置情報と発生災害との距離を図り、一定距離にある災害のみ表示する
                         try{
+                            Log.d("可変長配列がNULLになってないかを確認", String.valueOf(disCon.size()));
                             for(int i = 0; i < disLat.size(); i++){
                                 if(judgeDisasterDistance(nowLat, nowLng, disLat.get(i), disLng.get(i))){ //もし自身の位置より近くにあればその災害をマップのマーカーに表示して表示する災害情報を格納
                                     if(disCon.get(i) == 1){ //津波の場合青色に設定
@@ -298,9 +296,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     nearCon.add(disCon.get(i)); //災害種類
                                     nearLevel.add(dislevel.get(i)); //災害レベル
                                     nearTime.add(disTime.get(i)); //時間
-                                    if(dislevel.get(i) >= maxlevel){ //もし一定レベル以上の災害が発生しているならば警告を出す
-                                        disasterOccureing = true;
-                                    }
+                                    setTextdisasterOccurrences();
                                 }
                             }
                         }catch(NullPointerException e){ //DBからデータを受け取っていない場合災害の表示を行わない

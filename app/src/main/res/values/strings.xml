@@ -89,6 +89,7 @@
     <string name="menu">メニュー</string>
     <string name="period">期間</string>
     <string name="backMenu">メニューへ戻る</string>
+    <string name="notOccureDisaster">24時間以内の災害発生はありません</string>
 
     <!-- ここから、災害検索アクティビティのレイアウトファイルで使用するspinnerコンポーネントの配列一覧-->
     <string-array name="spinner_constant">
