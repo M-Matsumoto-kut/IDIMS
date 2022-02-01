@@ -70,11 +70,6 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result_list);
 
-
-
-        Log.d("時間を見たいのですか?検索開始時刻です", startTime);
-        Log.d("時間を見たいのですか?検索終了時刻です", endTime);
-
         //DisasterSearchActivityから検索条件を受け取る
         Intent intentDisasterSearch = getIntent();
         areaNumber = intentDisasterSearch.getIntExtra("AreaNumber", 0);
@@ -83,6 +78,9 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         thounderOn = intentDisasterSearch.getBooleanExtra("Thounder", false);
         startTime = intentDisasterSearch.getStringExtra("startTime");
         endTime = intentDisasterSearch.getStringExtra("endTime");
+
+        Log.d("時間を見たいのですか?検索開始時刻です", startTime);
+        Log.d("時間を見たいのですか?検索終了時刻です", endTime);
 
 
         //デバッグ用のクラス宣言
