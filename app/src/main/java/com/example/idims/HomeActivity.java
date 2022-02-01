@@ -170,7 +170,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     //画面上部の災害発生状況を表すテキストのセット
     protected void setTextdisasterOccurrences(){
         TextView textViewEva = (TextView) findViewById(R.id.textView_DisasterOccurrence);
-        if(disasterOccureing){
+        if(!disasterOccureing){
             textViewEva.setText("24時間以内の災害発生はありません");
         }else{
             textViewEva.setText("災害が発生しています");
