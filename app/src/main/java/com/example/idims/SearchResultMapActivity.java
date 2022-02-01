@@ -216,4 +216,28 @@ public class SearchResultMapActivity extends AppCompatActivity implements OnMapR
         return String.valueOf(str);
 
     }
+
+    //受け取ったareaNumberによって最初にマップを表示する場所を変える
+    private void setGooglemapCameraView(){
+        if(areaNumber == 1){ //北海道
+        }else if(areaNumber == 2){ //東北
+        }else if(areaNumber == 3){ //関東
+        }else if(areaNumber == 4){ //中部
+        }else if(areaNumber == 5){ //近畿
+        }else if(areaNumber == 6){ //中国四国
+        }else if(areaNumber == 7){ //九州
+        }
+    }
+
+    //各地方の中央...ぽい緯度経度を格納する
+    private void setAreaCenterLatLng(){
+        if(areaNumber == 1){ //北海道
+        }else if(areaNumber == 2){ //東北
+        }else if(areaNumber == 3){ //関東
+        }else if(areaNumber == 4){ //中部
+        }else if(areaNumber == 5){ //近畿
+        }else if(areaNumber == 6){ //中国四国
+        }else if(areaNumber == 7){ //九州
+        }
+    }
 }

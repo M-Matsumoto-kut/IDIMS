@@ -6,6 +6,9 @@ import androidx.core.app.ActivityCompat;
 import com.example.idims.Menu.MenuActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -264,6 +267,12 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Log.d("処理直前", "どこまで行ったのかな？");
                         Marker markerNow = map.addMarker(new MarkerOptions().position(new LatLng(nowLat, nowLng)).snippet("NowLocation \n " + location.getLatitude() + " , " + location.getLongitude()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                         Log.d("ooooooooooooooooooooooooooooooooooo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+                        //カメラの初期位置を変更する
+                        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(new LatLng(nowLat, nowLng), 8); //GoogleMapアップデートインスタンスの生成
+                        map.moveCamera(update); //カメラ位置セット
+
+
 
 
                         //デバッグ用のピン map.addMarker(new MarkerOptions().position(new LatLng(33, 133)));
