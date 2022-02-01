@@ -70,8 +70,10 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result_list);
 
-        Button mapButton = (Button) findViewById(R.id.button_Map); //マップ画面遷移ボタン
 
+
+        Log.d("時間を見たいのですか?検索開始時刻です", startTime);
+        Log.d("時間を見たいのですか?検索終了時刻です", endTime);
 
         //DisasterSearchActivityから検索条件を受け取る
         Intent intentDisasterSearch = getIntent();
@@ -94,8 +96,8 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
 
         //デバック用
-        debugGetData();
-        debugTimeLook(startTime, endTime);
+        //debugGetData();
+        //debugTimeLook(startTime, endTime);
 
 
 
@@ -146,6 +148,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
 
         //マップ画面に移行する
+        Button mapButton = (Button) findViewById(R.id.button_Map); //マップ画面遷移ボタン
         mapButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -187,7 +190,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
             }
         });
 
-        Log.d("まさかとは思うが...", "最終端");
+        Log.d("コールバックメソッドがどこで行われているかを確認します", "最終端");
 
 
     }

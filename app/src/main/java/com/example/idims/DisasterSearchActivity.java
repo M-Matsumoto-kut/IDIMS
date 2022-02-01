@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.ArraySet;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -141,7 +142,9 @@ public class DisasterSearchActivity extends AppCompatActivity{
                             //期間の取得
                             String str = spinner_Constant.getSelectedItem().toString();
                             search.settingConstant(str);
-                            debugTimeSet(search);  //デバッグ用
+                            Log.d("時間を見たいのですか?検索開始時刻です", search.getStartDate());
+                            Log.d("時間を見たいのですか?検索終了時刻です", search.getEndDate());
+
                             break;
                         case R.id.radioButton_free://自由期間が押されている場合
                             //自由期間スピナーのクリックを有効にする
@@ -157,7 +160,8 @@ public class DisasterSearchActivity extends AppCompatActivity{
                             String endYear = spinner_Free_YearEnd.getSelectedItem().toString();
                             String endMonth = spinner_Free_MonthEnd.getSelectedItem().toString();
                             search.settingFree(startYear, startMonth, endYear, endMonth);
-                            debugTimeSet(search); //デバッグ用
+                            Log.d("時間を見たいのですか?検索開始時刻です", search.getStartDate());
+                            Log.d("時間を見たいのですか?検索終了時刻です", search.getEndDate());
                             break;
                     }
                     //期間選択がされた
@@ -277,6 +281,7 @@ public class DisasterSearchActivity extends AppCompatActivity{
     }
 
     //デバッグ用:時間が正しく設定されているか
+
     protected void debugTimeSet(SearchConditions search){
         TextView start = (TextView) findViewById(R.id.textViewStartTime);
         TextView end = (TextView) findViewById(R.id.textViewEndtime);
