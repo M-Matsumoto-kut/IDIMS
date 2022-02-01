@@ -140,7 +140,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="76dp"
         android:background="@color/white"
-        android:backgroundTint="#454545"
+        android:backgroundTint="@color/white"
         android:entries="@array/spinner_constant"
         android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
