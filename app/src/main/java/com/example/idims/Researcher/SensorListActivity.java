@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.idims.AWSConnect;
+import com.example.idims.MainActivity;
+import com.example.idims.Menu.MenuActivity;
 import com.example.idims.R;
 import com.example.idims.StatusFlag;
 
@@ -24,33 +26,36 @@ public class SensorListActivity extends AppCompatActivity implements AWSConnect.
     private String sensorName;
     private int textHeight;
     private int listLength;
-    String[] sensorList;
+    private String[] sensorList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.status = (StatusFlag) getApplication();
+        sensorNum = 0;
+        sensorName = "";
+        textHeight = 0;
+        listLength = 0;
+
+        //レイアウト生成
+        setContentView(R.layout.activity_sensor);
+
+        //戻るボタン->研究者ページ
+        Button backButton = findViewById(R.id.backActivity);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplication(), MenuActivity.class);
+            startActivity(intent);
+        });
     }
 
     //毎動作時に実行
     @Override
     protected void onStart() {
         super.onStart();
-        this.status = (StatusFlag) getApplication();
         sensorNum = 0;
         sensorName = "";
         textHeight = 0;
         listLength = 0;
-        this.sensorListActivity();
-    }
-
-    //コールバックメソッド:パスワードが返ってくるはず？だからパスワードを受け取る
-    public void CallBack(String str){
-        sensorList = str.split(",");
-        listLength = sensorList.length; //センサーリストの長さを取得
-    }
-
-    //センサー異常一覧を表示
-    private void sensorListActivity() {
 
         //データベースからセンサー情報を取得
         //AWSConnectを用いてPHPファイルに接続しSQL文の結果を返す
@@ -58,23 +63,26 @@ public class SensorListActivity extends AppCompatActivity implements AWSConnect.
         ////phpファイルの置いてある場所の指定
         String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/sensor.php";
         //データベースに転送する文字列の転送
+        String str = "n";
 
         //CallBackの設定...コールバック関数内でデータベースからの返信(SQL探索結果)を受け取る
         con.setOnCallBack(this);
         //実行
-        con.execute(url);
+        con.execute(url,str);
+    }
 
 
 
-        //レイアウト生成
-        setContentView(R.layout.activity_sensor);
+    //コールバックメソッド:パスワードが返ってくるはず？だからパスワードを受け取る
+    public void CallBack(String str){
+        sensorList = str.split(",");
+        listLength = sensorList.length; //センサーリストの長さを取得
+        this.sensorListActivity();
+    }
 
-        //戻るボタン->研究者ページ
-        Button backButton = findViewById(R.id.backActivity);
-        backButton.setOnClickListener( v -> {
-            Intent intent = new Intent(getApplication(), ResearcherPageActivity.class);
-            startActivity(intent);
-        });
+    //センサー異常一覧を表示
+    private void sensorListActivity() {
+
 
         TextView[] textView = new TextView[47];
 
@@ -85,7 +93,7 @@ public class SensorListActivity extends AppCompatActivity implements AWSConnect.
         linearLayout.setGravity(Gravity.TOP);
 
         //一覧表示(8件まで）
-        for(int i = 0; i < 8; i++) {
+        for(int i = 0; i < 4; i++) {
 
             if(i >= listLength) {
                 break;
@@ -103,7 +111,7 @@ public class SensorListActivity extends AppCompatActivity implements AWSConnect.
                     textView[i].setBackgroundColor(0xFF454545);
                 }
 
-                textView[i].setText(sensorList[i]);
+                textView[i].setText("【No." + sensorList[i] + "】");
                 textView[i].setGravity(Gravity.CENTER);
                 linearLayout.addView(textView[i],
                         new LinearLayout.LayoutParams(

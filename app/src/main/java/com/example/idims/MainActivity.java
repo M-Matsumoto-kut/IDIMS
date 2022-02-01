@@ -1,6 +1,7 @@
 package com.example.idims;
 
 import android.content.Intent;
+import android.hardware.Sensor;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.idims.Area.AreaListActivity;
 import com.example.idims.Researcher.ResearcherLogin;
+import com.example.idims.Researcher.SensorListActivity;
 import com.example.idims.StatusFlag;
 
 //起動時
@@ -36,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-
-
     }
     /*
         開始状態になると動作
@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         Asynchronous r = new Asynchronous();
         Thread t = new Thread(r); // Runnableをスレッドに渡してインスタンスを生成する
         t.start();
-
          */
 
         //loginType（ログイン状態）を取得
@@ -84,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             StatusFlag flag = (StatusFlag) getApplication();
             status.setLoginTypeGen();
 
-
             /*
                 設定画面に移行
                 ただし，自動ログイン機能が実現できない場合はメニュー画面に移行
@@ -93,11 +91,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplication(), Setting.class);
             startActivity(intent);
 
-
             //テスト-------------------------------------------------------
             //Intent intent = new Intent(getApplication(), SensorListActivity.class);
             //startActivity(intent);
             //テスト-------------------------------------------------------
+
         });
 
 
@@ -106,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         researchUser.setOnClickListener( v -> {
             //研究者ユーザログイン画面に移行
             status.setActivityStatus(1); //userTypeActivity
-            Intent intent = new Intent(getApplication(), ResearcherLogin.class);
+            Intent intent = new Intent(getApplication(), SensorListActivity.class);
             startActivity(intent);
         });
     }

@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.idims.Area.AreaListActivity;
 import com.example.idims.Authenticate;
 import com.example.idims.MainActivity;
 import com.example.idims.Menu.MenuActivity;
@@ -68,6 +70,8 @@ public class ResearcherLogin extends AppCompatActivity {
         //戻るボタン
         Button backButton = findViewById(R.id.backActivity);
         backButton.setOnClickListener( v -> {
+            status.setErrorRelease(); //エラーリセット
+
             int activityNum = status.getActivityStatus();
             if(activityNum == 1) {
                 Intent intent = new Intent(getApplication(), MainActivity.class);
@@ -78,6 +82,13 @@ public class ResearcherLogin extends AppCompatActivity {
             }
         });
 
+        //エラーテキスト表示
+        int error = status.getError();
+        if(error == 1) {
+            TextView errorView = (TextView) findViewById(R.id.loginError);
+            errorView.setText("IDまたはパスワードが間違っています");
+        }
+
 
         //ログインボタンが押された時
 
@@ -85,6 +96,7 @@ public class ResearcherLogin extends AppCompatActivity {
         loginButton.setOnClickListener( v -> {
 
 
+            /*
             if(userId.getText() == null){
                 this.loginResearcher();
             } else {
@@ -99,11 +111,13 @@ public class ResearcherLogin extends AppCompatActivity {
                 passwordStr = password.getText().toString();
             }
 
+             */
+
             //入力したIDを数値に変換(本当は入力文字が整数じゃない場合にエラーを出す予定だったが，時間的に断念
-            //userIdInt = Integer.parseInt(String.valueOf(userId.getText()));
+            userIdInt = Integer.parseInt(String.valueOf(userId.getText()));
 
             //入力したパスワードを文字列に変換
-            //passwordStr = password.getText().toString();
+            passwordStr = password.getText().toString();
 
 
             //userIdとPasswordが正しいか
@@ -118,16 +132,10 @@ public class ResearcherLogin extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 //再入力を求める
-                //Intent intent = new Intent(getApplication(), ResearcherLogin.class);
-                //startActivity(intent);
-                this.loginResearcher();
-
+                //this.loginResearcher();
+                Intent intent = new Intent(getApplication(), AreaListActivity.class);
+                startActivity(intent);
             }
-
-            //テスト----------------------------------------
-            Intent intent = new Intent(getApplication(), ResearcherPageActivity.class);
-            startActivity(intent);
-            //テスト----------------------------------------
         });
 
     }

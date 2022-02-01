@@ -58,10 +58,10 @@
             android:exported="true" />
         <activity
             android:name=".Researcher.SensorListActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Researcher.ResearcherPageActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".DisasterSearchActivity"
             android:exported="true" />

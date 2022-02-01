@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:text="@string/back"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:backgroundTint="#03A9F4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -30,6 +30,7 @@ public class StatusFlag extends Application {
     private int tsunamiStatus;      // 津波のの通知許可状態
     private int landslideStatus;    // 土砂崩れの通知許可状態
     private int thunderStatus;      // 雷の通知許可状態
+    private int error;              //　入力エラー
 
     @Override
     public void onCreate() {
@@ -48,9 +49,18 @@ public class StatusFlag extends Application {
         tsunamiStatus = 0;
         landslideStatus = 0;
         thunderStatus = 0;
+        error = 0;
 
         this.setActivityStatus(1);
     }
+
+    public int getError() {return this.error;}
+
+    public void setErrorOccurrence() { this.error = 1; }
+
+    public void setErrorRelease() {this.error = 0;}
+
+
     /*
         直前のアクティビティを記録
      */
