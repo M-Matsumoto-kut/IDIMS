@@ -134,9 +134,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         for(int i = 0; i < tmp.length - alpha; i += alpha){
             disLat.add(Double.parseDouble(tmp[i])); //緯度を追加
             disLng.add(Double.parseDouble(tmp[i + 1])); //経度を追加
-            dislevel.add(Integer.parseInt(tmp[i + 2])); //災害レベルを追加
-            disCon.add(Integer.parseInt(tmp[i + 3])); //災害種類を追加
-            disTime.add(tmp[4]); //災害時間を追加
+            disCon.add(Integer.parseInt(tmp[i + 2])); //災害種類を追加
+            dislevel.add(Integer.parseInt(tmp[i + 3])); //災害レベルを追加
+            disTime.add(tmp[i + 4]); //災害時間を追加
         }
     }
 
