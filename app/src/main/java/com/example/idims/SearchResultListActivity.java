@@ -149,8 +149,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         }
 
 
-
-
+        /*
         //デバッグ:単なるデータセット
         for(int i = 0; i < 20; i++){
             Double lat = debugData.getLatList(i);
@@ -162,6 +161,8 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
             resultTime.add(debugData.getTimeList(i)); //災害時間
             Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOO", "setting");
         }
+
+         */
 
 
 

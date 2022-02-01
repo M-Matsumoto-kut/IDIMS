@@ -95,7 +95,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //MySQLへ接続して24時間前までの災害を検索
         AWSConnect con = new AWSConnect(); //AWSConnectインスタンス宣言
-        String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearch.php"; //24時間前の災害を検索するSQLクエリの入ったphpファイルのurl
+        String url = "http://ec2-44-198-252-235.compute-1.amazonaws.com/disastersearchNoclass.php"; //24時間前の災害を検索するSQLクエリの入ったphpファイルのurl
         String startTime = getYesterday(); //検索開始時刻,まぁ24時間前
         String endTime = getToday(); //現在時刻を取得
         StringBuffer dist = new StringBuffer().append("value=").append(startTime).append(",").append(endTime); //startTime,endTime の形で条件を送る
