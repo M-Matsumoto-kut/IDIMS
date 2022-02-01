@@ -150,7 +150,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
 
 
 
-        /*
+
         //デバッグ:単なるデータセット
         for(int i = 0; i < 20; i++){
             Double lat = debugData.getLatList(i);
@@ -163,7 +163,7 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
             Log.d("OOOOOOOOOOOOOOOOOOOOOOOOOOOO", "setting");
         }
 
-         */
+
 
 
 
@@ -171,9 +171,9 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlayout_text);
         for(int i = 0;i <resultLat.size(); i++){
             TextView textView = new TextView(this);
-            textView.setTextSize(16); //文字サイズの指定
+            textView.setTextSize(14); //文字サイズの指定
             textView.setBackgroundResource(R.drawable.text_border); //枠線を表示する背景ファイルの設定
-            textView.setText(getDisasterName(resultConDis.get(i)) + "  レベル: " + resultLevel.get(i) + ", 発生時刻: " + resultTime.get(i) + "\n 緯度:" + resultLat.get(i) + " , 経度:" + resultLng.get(i)); //テキストのセット
+            textView.setText(getDisasterName(resultConDis.get(i)) + "  レベル" + resultLevel.get(i) + "  ,緯度:"  + getLatitudeString(resultLat.get(i)) + "  ,経度:" + getLongtitudeString(resultLng.get(i))  +"\n発生時刻: " + getNowTimeString(resultTime.get(i))); //テキストのセット
             linearLayout.addView(textView); //テキストの表示
             //空行を入力
             if(i == resultLat.size() - 1){
@@ -297,17 +297,43 @@ public class SearchResultListActivity extends AppCompatActivity implements AWSCo
         else{return "識別エラー";}
     }
 
-    //~年~月~日~:~の表記として返すメソッド
-    private String getNowTimeString(Double time){
-        String before = String.valueOf(time); //ダブル型を文字列型に変換
-        String year = before.substring(0, 3); //年を取得
-        String month = before.substring(4, 5); //月
-        String day = before.substring(6, 7); //日
-        //String hour = before.substring(8, 9); //時
-        //String minute = before.substring(10, 11); //分
-        //StringBuffer str = new StringBuffer().append(year).append("年").append(month).append("月").append(day).append("日").append(hour).append(":").append(minute); //結合
-        StringBuffer str = new StringBuffer().append(year).append("年").append(month).append("月").append(day).append("日").append("00:00"); //結合
+    //緯度を成形した文字型として返すメソッド
+    private String getLatitudeString(Double lat){
+        String strLat = String.valueOf(lat);
+        String ret = strLat;
+        if(strLat.length() >= 6){
+            ret = strLat.substring(0, 6); //小数点3桁まで取得(整数2桁、少数桁3桁)
+        }
+        return ret;
+    }
 
+    //経度を成型した文字型として返すメソッド
+    private String getLongtitudeString(Double lng){
+        String strLng = String.valueOf(lng);
+        String ret = strLng;
+        if(strLng.length() >= 7){
+            ret = strLng.substring(0, 7); //小数点3桁まで取得(整数3桁、少数桁3桁)
+        }
+        return ret;
+    }
+
+
+
+
+    //~年~月~日~:~の表記として返すメソッド
+    private String getNowTimeString(String time){
+        //String before = String.valueOf(time); //ダブル型を文字列型に変換
+        String year = time.substring(0, 4); //年を取得
+        String month = time.substring(4, 6); //月
+        String day = time.substring(6, 8); //日
+        String hour = time.substring(8, 10); //時
+        String minute = time.substring(10, 12); //分
+        Log.d("表示の確認", year);
+        Log.d("表示の確認", month);
+        Log.d("表示の確認", day);
+        Log.d("表示の確認", hour);
+        Log.d("表示の確認", minute);
+        StringBuffer str = new StringBuffer().append(year).append("年").append(month).append("月").append(day).append("日").append(hour).append(":").append(minute); //結合
         return String.valueOf(str);
 
     }
