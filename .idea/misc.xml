@@ -15,7 +15,6 @@
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_researcher_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_researcherpassword.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_search_result_list.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_search_result_map.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_select_area.xml" value="0.33" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_sensor.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/masas/AndroidStudioProjects/IDIMS/app/src/main/res/layout/activity_usertype_select.xml" value="0.36666666666666664" />
@@ -36,7 +35,7 @@
         <entry key="app/src/main/res/layout/activity_password_change.xml" value="0.23052536231884058" />
         <entry key="app/src/main/res/layout/activity_prefecture_select.xml" value="0.346875" />
         <entry key="app/src/main/res/layout/activity_region_select.xml" value="0.346875" />
-        <entry key="app/src/main/res/layout/activity_researcher_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_researcher_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_researcherpage.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/activity_researcherpassword.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_search_result_list.xml" value="0.346875" />
