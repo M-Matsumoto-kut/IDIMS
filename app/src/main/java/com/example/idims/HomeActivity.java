@@ -127,15 +127,20 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.d("CallBackが呼び出されました", result);
         String[] tmp = result.split(","); //,(カンマ)を区切り文字として文字型配列に格納
         int alpha = 5; //SQLで要求する要素数
-        for(int i = 0; i < tmp.length - alpha; i += alpha){
-            Log.d("ループ回数のチェック", String.valueOf(i));
-            Log.d("中身の確認をします", String.valueOf(tmp[i]));
-            disLat.add(Double.parseDouble(tmp[i])); //緯度を追加
-            disLng.add(Double.parseDouble(tmp[i + 1])); //経度を追加
-            disCon.add(Integer.parseInt(tmp[i + 2])); //災害種類を追加
-            dislevel.add(Integer.parseInt(tmp[i + 3])); //災害レベルを追加
-            disTime.add(tmp[i + 4]); //災害時間を追加
+        try{
+            for(int i = 0; i < tmp.length - alpha; i += alpha){
+                Log.d("ループ回数のチェック", String.valueOf(i));
+                Log.d("中身の確認をします", String.valueOf(tmp[i]));
+                disLat.add(Double.parseDouble(tmp[i])); //緯度を追加
+                disLng.add(Double.parseDouble(tmp[i + 1])); //経度を追加
+                disCon.add(Integer.parseInt(tmp[i + 2])); //災害種類を追加
+                dislevel.add(Integer.parseInt(tmp[i + 3])); //災害レベルを追加
+                disTime.add(tmp[i + 4]); //災害時間を追加
+            }
+        }catch (NullPointerException e){
+            Log.d("Nullをキャッチしました", "データを取得できません");
         }
+
     }
 
 
